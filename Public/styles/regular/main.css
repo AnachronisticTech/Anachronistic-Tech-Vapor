@@ -1,0 +1,52 @@
+	/* GLOBAL STYLES */
+
+	/* ARCHIVE STYLES */
+.post h3 {
+	font-size:30px;
+}
+.post p {
+	font-size:18px;
+}
+		
+	/* ARTICLE STYLES */
+#post h3 {
+	font-size:40px;
+}
+#post p {
+	font-size:18px;
+}
+
+.inlineImg h5 {
+	font-size:20px;
+}
+	
+	/* PROJECT STYLES */
+.narrow h5, .wide h5 {
+	font-size: 20pt;
+}
+
+@media only screen and (max-width:359px) {
+	h1 {
+		font-size:40px;
+	}
+}
+
+@media only screen and (max-width:575px) and (min-width:360px) {
+	h1 {
+		font-size:50px;
+	}
+
+	#nav li {
+		font-size:20px;
+	}
+}
+
+@media only screen and (min-width:576px) {
+	h1 {
+		font-size:60px;
+	}
+
+	#nav li {
+		font-size:20px;
+	}
+}

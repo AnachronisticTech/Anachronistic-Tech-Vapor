@@ -1,0 +1,93 @@
+#content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project {
+    display: block;
+    height: 320px;
+    padding: 20px;
+    border-radius: 10px;
+    transition:0.3s ease;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.narrow {
+    width: 200px;
+}
+.narrow h5 {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.narrow p {
+    display: block;
+    margin: 0;
+    text-align: center;
+}
+.wide {
+    width: calc(100% - 40px);
+    margin-right: 0;
+    clear: both;
+}
+.wide .icon h5, .wide .icon p {
+    display: none;
+}
+
+
+.project .container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-height: 320px;
+}
+.project .icon {
+    display: block;
+    width: 196px;
+    position: relative;
+}
+.project .icon img {
+    border-radius: 50%;
+    width: 196px;
+}
+.detail {
+    display: block;
+}
+.narrow .detail {
+    width: 0;
+    overflow: hidden;
+}
+.wide .detail {
+    margin-left: 20px;
+    width: calc(100% - 220px);
+}
+.wide h5 {
+    display: block;
+    margin: 0;
+}
+.wide p {
+    margin: 0;
+}
+.link {
+    float: right;
+}
+.link a {
+    display: block;
+}
+.link img {
+    width: 50px;
+}
+
+    /* RESPONSIVE STYLES */
+
+/* Screens narrower than 360px */
+@media only screen and (max-width:359px) {}
+
+/* Screens between 360px and 575px */
+@media only screen and (max-width:575px) and (min-width:360px) {
+    .narrow {
+        margin-right:auto;
+        margin-left:auto;
+    }
+}

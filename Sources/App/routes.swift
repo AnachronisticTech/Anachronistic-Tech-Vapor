@@ -1,14 +1,37 @@
 import Fluent
 import Vapor
+import Leaf
 
 func routes(_ app: Application) throws {
     app.get { req in
-        return "It works!"
+        req.view.render("index", [
+            "title": "Home"
+        ])
     }
 
-    app.get("hello") { req -> String in
-        return "Hello, world!"
+    app.get("projects") { req in
+       req.view.render("projects", [
+           "title": "Projects"
+       ])
     }
 
-    try app.register(collection: TodoController())
+    app.get("archive") { req in
+       req.view.render("archive", [
+           "title": "Archive"
+       ])
+    }
+
+    app.get("contact") { req in
+       req.view.render("contact", [
+           "title": "Contact"
+       ])
+    }
+    
+    app.get("articles", ":id") { req in
+        req.view.render("article", [
+            "title": "Article"
+        ])
+    }
+
+    try app.register(collection: PostController())
 }

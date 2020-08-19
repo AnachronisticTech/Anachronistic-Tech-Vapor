@@ -1,0 +1,19 @@
+@font-face {
+	font-family:"futura-normal";
+	src:url('FuturaLight.ttf');
+}
+@font-face {
+	font-family:"futura-bold";
+	src:url('FuturaMedium.ttf');
+}
+
+h1, h2, h3, h4, h5, h6, .CodeMirror-code {
+	font-family: 'Alegreya Sans SC', sans-serif;
+	font-weight:normal;
+	text-shadow:0px 0px 0px;
+}
+p, a, .CodeMirror-code {
+	font-family: 'Quicksand', sans-serif;
+	font-weight:normal;
+	text-shadow:0px 0px 0px;
+}

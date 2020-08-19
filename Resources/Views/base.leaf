@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+        <title>#(title)</title>
+
+        <!-- Default styles -->
+        <link rel="stylesheet" id="main" href="/styles/light/main.css">
+        <link rel="stylesheet" id="main_size" href="/styles/regular/main.css">
+        <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,700|Quicksand:400,500" rel="stylesheet">
+        <link rel="stylesheet" id="fonts" href="/styles/fonts.css">
+        <link rel="stylesheet" href="/styles/main.css">
+
+        <!-- Libraries and scripts -->
+        <script src='/scripts/jquery-3.3.1.min.js'></script>
+        <script src='/scripts/theme.js'></script>
+        <script src='/scripts/controls.js'></script>
+        <script src='/scripts/js.cookie.js'></script>
+        
+        <!-- Page dependencies -->
+        #import("dependencies")
+    </head>
+    
+    <body>
+        <!-- Header and menu -->
+        <div id="title">
+            <h1>Anachronistic Technology</h1>
+        </div>
+        <div id="nav">
+            <div id="menu-layer-1">
+                <button id="settings"><img src="/images/cog.png" height="40px" width="40px"></button>
+                <div id="menu">
+                    <button id="home">Home</button><!--
+                    --><button id="archive">Archive</button><!--
+                    --><button id="projects">Projects</button><!--
+                    --><button id="contact">About</button>
+                </div>
+            </div>
+            <div id="menu-layer-2">
+                <button class="contrast">High contrast</button><!--
+                --><button class="dark">Dark mode</button><!--
+                --><button class="bold">Bolder text</button><!--
+                --><button class="large">Larger text</button>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div id="wrapper">
+            <div id="content">
+                #import("body")
+            </div>
+            
+            <!-- About section and notices -->
+            <div id="sidebar">
+                <div class="about">
+                    <div class="profileImgContainer">
+                        <img class="profileImg" src="/images/avatar_512.jpg">
+                    </div>
+                    <h2>Daniel Marriner</h2>
+                    <p>is a third-year computer science student at the University of Warwick, UK. His passions include science-fiction, dismantling anything technological that isn't nailed to the floor, learning new programming techniques, and light gaming. His favourite drink is diet Pepsi, and he also enjoys having chocolate-coated digestive biscuits to hand.</p>
+                </div>
+                <div class="about">
+                    <h2>Cookie Policy</h2>
+                    <p>This site uses cookies for saving visual preferences and powering the Disqus comments. These cookies are essential to site functionality, so there is no way to disable them, unless you wish to remove them entirely. Further, this site does not employ analytics tracking. Your data is your own, and I am more interested in respecting peoples' boundaries than measuring statistics. If you would still prefer not to have cookies on your device, please feel free to block cookies on this site, but the visual and accessibility features will no longer function as intended.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer section -->
+        <div id="footer">
+            <div class="links">
+                <div class="section">
+                    <h6>Blogs I enjoy reading:</h6>
+                    <p><a href="http://bit-player.org">bit-player by Brian Hayes</a></p>
+                    <p><a href="https://www.jorel.dev/blog">Jorel's Blog by Jorel Ali</a></p>
+                </div>
+                <div class="section">
+                    <h6>My other sites:</h6>
+                    <p><a href="https://sto-database.co.uk">STO Database project</a></p>
+                    <p><a href="https://github.com/AnachronisticTech">My GitHub</a></p>
+                    <p><a href="https://www.linkedin.com/in/AnachronisticTech">My LinkedIn</a></p>
+                    <p><a href="https://www.deviantart.com/iwillcomply">My DeviantArt</a></p>
+                </div>
+                <div class="section">
+                    <h6>Groups I am affiliated with:</h6>
+                    <p><a href="http://warwickgamedesign.co.uk/">Warwick Game Design Society</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fallback for small screens -->
+        <div class="fallback">
+            <h1>Anachronistic Technology</h1>
+            <h2>Sorry :(</h2>
+            <p>The screen is too small to display this content. Please try again on a larger display.</p>
+        </div>
+
+        <!-- Post template -->
+        #import("template")
+        
+        <!-- Load posts -->
+        #import("content")
+    </body>
+</html>

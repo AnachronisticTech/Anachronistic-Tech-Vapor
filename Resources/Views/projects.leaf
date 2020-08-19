@@ -1,0 +1,17 @@
+#extend("base"):
+
+    #export("dependencies"):
+        <link rel="stylesheet" href="/styles/projects.css">
+        <script src='/scripts/getProjects.js'></script>
+    #endexport
+
+    #export("body"):
+    #endexport
+
+    #export("template"):
+    #endexport
+    
+    #export("content"):
+    #endexport
+
+#endextend

@@ -1,0 +1,95 @@
+	/* GLOBAL STYLES */
+body {
+	background:#fefefe;
+}
+h1 {
+	color:#999;
+}
+
+	/* INDEX STYLES */
+#subProjects h2, #subBlog h2 {
+	margin-top:0px;
+	margin-bottom:0px;
+	color:#111;
+}
+	
+	/* ARCHIVE STYLES */
+.post {
+	color:#777;
+}
+.post:hover {
+	color:#333;
+}
+	
+	/* ARTICLE STYLES */
+#post {
+	color:#000;
+}
+#post a {
+	color:#000;
+	text-decoration:none;
+	border-bottom:1px solid #000;
+	transition:0.3s ease;
+}
+#post a:hover {
+	border-bottom:4px solid #000;
+}
+	
+	/* PROJECT STYLES */
+.narrow {
+	background: #eee;
+}
+.wide {
+	background: #bbb;
+}
+.narrow, .wide {
+	color:#111;
+}
+
+.project:hover {
+    background: #bbb;
+}
+.project .icon img {
+	border: #555 2px solid;
+}
+
+@media only screen and (min-width:360px) {
+	#nav {
+		background:#ececec;
+	}
+	#nav button {
+		color:#111;
+		background:#eee;
+	}
+	#nav button:hover {
+		background:#bbb;
+	}
+
+	.about, .controls {
+		border:#555 1px dashed;
+		color:#777;
+	}
+	.profileImg {
+		border:#555 2px solid;
+	}
+
+	#footer {
+		background:rgba(0,0,0,0);
+	}
+	.links {
+		border:solid #444;
+		border-width:2px 0px 0px 0px;
+	}
+	.links a {
+		color:#111;
+		border-bottom:1px solid #111;
+		transition:0.3s ease;
+	}
+	.links a:hover {
+		border-bottom:4px solid #000;
+	}
+	.section:not(:first-child) {
+		border:solid #444;
+		border-width:0px 0px 0px 2px;
+	}
+}

@@ -1,0 +1,112 @@
+	/* GLOBAL STYLES */
+body {
+	background:#fff;
+}
+h1 {
+	color:#111;
+}
+
+	/* INDEX STYLES */
+#subProjects h2, #subBlog h2 {
+	margin-top:0px;
+	margin-bottom:0px;
+	color:#111;
+}
+	
+	/* ARCHIVE STYLES */
+.post {
+	color:#000;
+}
+.post:hover {
+	color:#fff;
+	background:#111;
+}
+		
+	/* ARTICLE STYLES */
+#post {
+	color:#000;
+}
+#post a {
+	color:#000;
+	text-decoration:none;
+	border-bottom:1px solid #000;
+	transition:0.3s ease;
+}
+#post a:hover {
+	background:#000;
+	color:#fff;
+}
+	
+	/* PROJECT STYLES */
+.narrow {
+	background: #fff;
+	color:#111;
+}
+.narrow:hover {
+	color: #fff;
+}
+.wide {
+	background: #111;
+	color:#fff;
+}
+
+.project:hover {
+    background: #111;
+}
+.project .icon img {
+	border: #111 2px solid;
+}
+.narrow:hover .icon img, .wide .icon img {
+	border: #fff 2px solid;
+}
+.link img {
+	filter: invert(100%);
+}
+
+@media only screen and (min-width:360px) {
+	#nav {
+		background:#fff;
+	}
+	#nav button {
+		background:#fff;
+		color:#111;
+	}
+	#nav button:not(#settings):hover {
+		background:#111;
+		color:#fff;
+	}
+	#nav #settings:hover {
+		background:#eee;
+		filter: invert(100%);
+	}
+
+	.about, .controls {
+		border:#111 1px dashed;
+		color:#111;
+	}
+	.profileImg {
+		border:#111 2px solid;
+	}
+
+	#footer {
+		background:rgba(0,0,0,0);
+	}
+	.links {
+		border:solid #000;
+		border-width:2px 0px 0px 0px;
+	}
+	.links a {
+		color:#111;
+		border-bottom:1px solid #111;
+		transition:0.3s ease;
+	}
+	.links a:hover {
+		border-bottom:4px solid #000;
+		background:#000;
+		color:#fff;
+	}
+	.section:not(:first-child) {
+		border:solid #000;
+		border-width:0px 0px 0px 2px;
+	}
+}

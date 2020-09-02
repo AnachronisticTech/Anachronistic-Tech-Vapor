@@ -3,8 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-        <title>#(title)</title>
+        <link rel="icon" href="/images/icons/favicon.ico" type="image/x-icon">
+        <title>#(title) | Anachronistic Tech</title>
 
         <!-- Default styles -->
         <link rel="stylesheet" id="main" href="/styles/light/main.css">
@@ -30,7 +30,7 @@
         </div>
         <div id="nav">
             <div id="menu-layer-1">
-                <button id="settings"><img src="/images/cog.png" height="40px" width="40px"></button>
+                <button id="settings"><img src="/images/icons/cog.png" height="40px" width="40px"></button>
                 <div id="menu">
                     <button id="home">Home</button><!--
                     --><button id="archive">Archive</button><!--

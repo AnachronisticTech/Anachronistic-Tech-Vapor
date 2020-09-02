@@ -11,11 +11,11 @@ function getPosts(postType, limit, location) {
         success: function(result) {
             $.each(result, function() {
                 var post = document.querySelector('#post');
-                post.content.querySelector('a').href = 'articles/'+this.id;
+                post.content.querySelector('a').href = '/articles/'+this.id;
                 post.content.querySelector('#post_title').textContent = this.title;
                 post.content.querySelector('#post_summary').textContent = this.summary;
                 post.content.querySelector('#post_date').textContent = this.date;
-                post.content.querySelector('#post_image').src = (this.thumbnail ? 'images/'+this.thumbnail : '');
+                post.content.querySelector('#post_image').src = (this.image ? '/images/'+this.image : '');
 
                 var clone = document.importNode(post.content, true);
                 document.querySelector('#'+location).appendChild(clone);

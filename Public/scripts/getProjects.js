@@ -1,18 +1,17 @@
 function getProjects() {
     $.ajax({
-        type:"POST",
-        url:"../scripts/getProjects.php",
+        type:"GET",
+        url:"/api/projects",
         datatype:'json',
-        success: function(data) {
-            var result = JSON.parse(data);
+        success: function(result) {
             $.each(result, function() {
                 var post = document.querySelector('#project');
-                post.content.querySelector('img').src = (this.thumbnail ? 'images/'+this.thumbnail : '');
+                post.content.querySelector('img').src = (this.image ? '/images/'+this.image : '');
                 post.content.querySelector('.icon').querySelector('h5').textContent = this.title;
                 post.content.querySelector('.icon').querySelector('p').textContent = this.short;
                 post.content.querySelector('.detail').querySelector('h5').textContent = this.title;
                 post.content.querySelector('.detail').querySelector('.summary').textContent = this.summary;
-                var icons = (this.source ? '<a href="'+this.source+'"><img src="../images/github.svg"></a>' : '') + (this.link ? '<a href="'+this.link+'"><img src="../images/world.png"></a>' : '');
+                var icons = (this.source ? '<a href="'+this.source+'"><img src="/images/icons/github.svg"></a>' : '') + (this.link ? '<a href="'+this.link+'"><img src="/images/icons/world.png"></a>' : '');
                 post.content.querySelector('.link').innerHTML = icons;
 
                 var clone = document.importNode(post.content, true);

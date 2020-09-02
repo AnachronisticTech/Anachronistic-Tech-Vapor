@@ -1,14 +1,13 @@
 function getImages() {
     $.ajax({
-        type:"POST",
-        url:"../scripts/getImages.php",
+        type:"GET",
+        url:"/api/images",
         datatype:'json',
         success: function(data) {
             document.querySelector('#imgscroller').textContent = '';
-            var result = JSON.parse(data);
-            $.each(result, function(_, path) {
+            $.each(data, function(_, path) {
                 var image = document.querySelector('#image');
-                image.content.querySelector('img').src = 'images/'+path;
+                image.content.querySelector('img').src = '/images/'+path;
                 var clone = document.importNode(image.content, true);
                 document.querySelector('#imgscroller').appendChild(clone);
             });

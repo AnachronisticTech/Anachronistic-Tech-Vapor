@@ -33,6 +33,7 @@ function getPost(id, full) {
                     string += arr[i];
                 }
 
+                string = string.split("</h1>")[1];
                 document.querySelector('#post_content').innerHTML = converter.makeHtml(string);
                 
                 // Apply syntax highlighting
@@ -40,16 +41,13 @@ function getPost(id, full) {
                     hljs.highlightBlock(this);
                 });
             } else {
-                document.querySelector('#post_id').setAttribute('value',  result.id);
-                document.querySelector('#post_title').setAttribute('value',  result.title);
-                document.querySelector('#post_content').textContent = result.content;
-                document.querySelector('#post_summary').textContent = result.summary;
-                document.querySelector('#post_image').setAttribute('value',  result.thumbnail ? result.thumbnail : '');
+                document.querySelector('#editor').innerHTML = "Editing: " + result.title;
+                document.querySelector('#icon').setAttribute('value',  result.icon ? result.icon : '');
 
                 if (result.type == 0) {
-                    document.querySelector('#post_type_blog').setAttribute('checked',  'true');
+                    document.querySelector('#type_article').setAttribute('checked',  'true');
                 } else {
-                    document.querySelector('#post_type_project').setAttribute('checked',  'true');
+                    document.querySelector('#type_project').setAttribute('checked',  'true');
                 }
             
             }

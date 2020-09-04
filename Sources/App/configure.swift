@@ -6,7 +6,7 @@ import Leaf
 // configures your application
 public func configure(_ app: Application) throws {
     // uncomment to serve files from /Public folder
-     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
+    app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
     
     app.views.use(.leaf)
     app.leaf.cache.isEnabled = app.environment.isRelease
@@ -18,6 +18,8 @@ public func configure(_ app: Application) throws {
         database: Environment.get("DATABASE_NAME") ?? "vapor_database",
         tlsConfiguration: .forClient(certificateVerification: .none)
     ), as: .mysql)
+    
+    app.routes.defaultMaxBodySize = ByteCount(integerLiteral: 10240000)
 
     // register routes
     try routes(app)

@@ -3,44 +3,36 @@
     #export("dependencies"):
         <link rel="stylesheet" href="/styles/blog.css">
         <link rel="stylesheet" href="/styles/addedit.css">
+        <script src='/scripts/getSinglePost.js'></script>
         <script src='/scripts/getImages.js'></script>
         <script src='/scripts/insertAtCaret.js'></script>
     #endexport
 
     #export("body"):
-        <form method="post" action="scripts/addPost.php">
+        <form method="post" enctype="multipart/form-data">
             <div class="about">
                 <div class="single">
-                    <label>Title: </label>
-                    <input type="text" name="title" id="post_title">
+                    <label id="editor">Upload New Post</label>
+                </div>
+                <div class="single">
+                    <label>File: </label>
+                    <input type="file" name="data" id="file">
                 </div>
                 <div class="single">
                     <label>Type: </label>
-                    <input type="radio" name="type" value="0" id="post_type_blog" checked>
-                    <label for="post_type_blog">Blog</label>
-                    <input type="radio" name="type" value="1" id="post_type_project">
-                    <label for="post_type_project">Project</label>
+                    <input type="radio" name="type" value="0" id="type_article" checked>
+                    <label for="type_article">Article</label>
+                    <input type="radio" name="type" value="1" id="type_project">
+                    <label for="type_project">Project</label>
                 </div>
                 <div class="single">
-                    <label>Thumbnail: </label>
-                    <input type="text" name="thumbnail" id="post_image" onclick="currentField='post_image'">
+                    <label>Icon: </label>
+                    <input type="text" name="icon" id="icon">
                 </div>
             </div>
             <div class="about">
                 <div id="imgscroller">
                     Unable to load images. Please try again later.
-                </div>
-            </div>
-            <div class="about">
-                <div class="multiline">
-                    <label>Summary: </label>
-                    <textarea type="text" name="summary" id="post_summary"></textarea>
-                </div>
-            </div>
-            <div class="about">
-                <div class="multiline">
-                    <label>Post: </label>
-                    <textarea type="text" name="post" id="post_content" onclick="currentField='post_content'"></textarea>
                 </div>
             </div>
             <div class="about">
@@ -65,11 +57,19 @@
     
     #export("content"):
         <script>
-            var currentField = "post_image";
+            var currentField = "icon";
             function setPath(text) {
                 insertAtCaret(currentField, text);
             }
             getImages();
+            
+            var id = document.URL.split("/").slice(-1)[0];
+            if (id != "postEditor") {
+                getPost(id, true);
+                document.querySelector("form").setAttribute("action", "/api/posts/"+id)
+            } else {
+                document.querySelector("form").setAttribute("action", "/api/posts")
+            }
         </script>
     #endexport
 

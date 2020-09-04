@@ -15,7 +15,7 @@ function getPosts(postType, limit, location) {
                 post.content.querySelector('#post_title').textContent = this.title;
                 post.content.querySelector('#post_summary').textContent = this.summary;
                 post.content.querySelector('#post_date').textContent = this.date;
-                post.content.querySelector('#post_image').src = (this.image ? '/images/'+this.image : '');
+                post.content.querySelector('#post_image').src = (this.icon ? '/images/'+this.icon : '');
 
                 var clone = document.importNode(post.content, true);
                 document.querySelector('#'+location).appendChild(clone);

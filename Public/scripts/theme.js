@@ -25,7 +25,7 @@ $(document).ready( function() {
                 break;
         }
         if (theme.charAt(3) == '1') { // set bold text
-            $('link[id="fonts"]').attr('href','styles/fonts-bold.css');
+            $('link[id="fonts"]').attr('href','/styles/fonts-bold.css');
             $('.bold').html('Normal text');
         }
         if (theme.charAt(4) == '1') { // set large text
@@ -35,45 +35,45 @@ $(document).ready( function() {
     }
 
     function dark() {
-        $('link[id="main"]').attr('href','styles/dark/main.css');
-        $('link[id="blog"]').attr('href','styles/dark/blog.css');
-        $('link[id="index"]').attr('href','styles/dark/index.css');
-        $('link[id="article"]').attr('href','styles/dark/article.css');
+        $('link[id="main"]').attr('href','/styles/dark/main.css');
+        $('link[id="blog"]').attr('href','/styles/dark/blog.css');
+        $('link[id="index"]').attr('href','/styles/dark/index.css');
+        $('link[id="article"]').attr('href','/styles/dark/article.css');
     }
 
     function light() {
-        $('link[id="main"]').attr('href','styles/light/main.css');
-        $('link[id="blog"]').attr('href','styles/light/blog.css');
-        $('link[id="index"]').attr('href','styles/light/index.css');
-        $('link[id="article"]').attr('href','styles/light/article.css');
+        $('link[id="main"]').attr('href','/styles/light/main.css');
+        $('link[id="blog"]').attr('href','/styles/light/blog.css');
+        $('link[id="index"]').attr('href','/styles/light/index.css');
+        $('link[id="article"]').attr('href','/styles/light/article.css');
     }
 
     function dark_hc() {
-        $('link[id="main"]').attr('href','styles/dark_hc/main.css');
-        $('link[id="blog"]').attr('href','styles/dark_hc/blog.css');
-        $('link[id="index"]').attr('href','styles/dark_hc/index.css');
-        $('link[id="article"]').attr('href','styles/dark_hc/article.css');
+        $('link[id="main"]').attr('href','/styles/dark_hc/main.css');
+        $('link[id="blog"]').attr('href','/styles/dark_hc/blog.css');
+        $('link[id="index"]').attr('href','/styles/dark_hc/index.css');
+        $('link[id="article"]').attr('href','/styles/dark_hc/article.css');
     }
 
     function light_hc() {
-        $('link[id="main"]').attr('href','styles/light_hc/main.css');
-        $('link[id="blog"]').attr('href','styles/light_hc/blog.css');
-        $('link[id="index"]').attr('href','styles/light_hc/index.css');
-        $('link[id="article"]').attr('href','styles/light_hc/article.css');
+        $('link[id="main"]').attr('href','/styles/light_hc/main.css');
+        $('link[id="blog"]').attr('href','/styles/light_hc/blog.css');
+        $('link[id="index"]').attr('href','/styles/light_hc/index.css');
+        $('link[id="article"]').attr('href','/styles/light_hc/article.css');
     }
 
     function regular() {
-        $('link[id="main_size"]').attr('href','styles/regular/main.css');
-        $('link[id="blog_size"]').attr('href','styles/regular/blog.css');
-        $('link[id="index_size"]').attr('href','styles/regular/index.css');
-        $('link[id="article_size"]').attr('href','styles/regular/article.css');
+        $('link[id="main_size"]').attr('href','/styles/regular/main.css');
+        $('link[id="blog_size"]').attr('href','/styles/regular/blog.css');
+        $('link[id="index_size"]').attr('href','/styles/regular/index.css');
+        $('link[id="article_size"]').attr('href','/styles/regular/article.css');
     }
 
     function large() {
-        $('link[id="main_size"]').attr('href','styles/large/main.css');
-        $('link[id="blog_size"]').attr('href','styles/large/blog.css');
-        $('link[id="index_size"]').attr('href','styles/large/index.css');
-        $('link[id="article_size"]').attr('href','styles/large/article.css');
+        $('link[id="main_size"]').attr('href','/styles/large/main.css');
+        $('link[id="blog_size"]').attr('href','/styles/large/blog.css');
+        $('link[id="index_size"]').attr('href','/styles/large/index.css');
+        $('link[id="article_size"]').attr('href','/styles/large/article.css');
     }
 
     var handled_contrast = false;
@@ -180,7 +180,7 @@ $(document).ready( function() {
     function weight() {
         var theme = Cookies.get('theme');
         if (theme.charAt(3) == '0') {
-            $('link[id="fonts"]').attr('href','styles/fonts-bold.css');
+            $('link[id="fonts"]').attr('href','/styles/fonts-bold.css');
             var newTheme = "";
             for (i = 0; i <= 5; i++) {
                 if (i == 3) {
@@ -192,7 +192,7 @@ $(document).ready( function() {
             Cookies.set('theme',newTheme);
             $('.bold').html('Normal text');
         } else {
-            $('link[id="fonts"]').attr('href','styles/fonts.css');
+            $('link[id="fonts"]').attr('href','/styles/fonts.css');
             var newTheme = "";
             for (i = 0; i <= 5; i++) {
                 if (i == 3) {

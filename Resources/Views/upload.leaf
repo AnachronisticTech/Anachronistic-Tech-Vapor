@@ -1,0 +1,23 @@
+#extend("base"):
+
+    #export("dependencies"):
+        <link rel="stylesheet" href="/styles/blog.css">
+        <link rel="stylesheet" href="/styles/addedit.css">
+    #endexport
+
+    #export("body"):
+        <form method="post" action="/api/upload" enctype="multipart/form-data">
+            <div class="about">
+                <input type="file" name="file">
+                <input type="submit" value="upload">
+            </div>
+        </form>
+    #endexport
+
+    #export("template"):
+    #endexport
+    
+    #export("content"):
+    #endexport
+
+#endextend

@@ -8,8 +8,9 @@ struct PageController: RouteCollection {
         routes.get("projects", use: projects)
         routes.get("contact", use: contact)
         routes.get("articles", ":id", use: articles)
-        routes.get("newPost", use: newPost)
-        routes.get("editPost", ":id", use: editPost)
+        routes.get("postEditor", use: newPost)
+        routes.get("postEditor", ":id", use: editPost)
+        routes.get("upload", use: upload)
     }
     
     func home(req: Request) throws -> EventLoopFuture<View> {
@@ -43,14 +44,20 @@ struct PageController: RouteCollection {
     }
     
     func newPost(req: Request) throws -> EventLoopFuture<View> {
-        return req.view.render("editor", [
+        return req.view.render("postEditor", [
             "title": "New Post"
         ])
     }
     
     func editPost(req: Request) throws -> EventLoopFuture<View> {
-        return req.view.render("editor", [
+        return req.view.render("postEditor", [
             "title": "Editing Post"
+        ])
+    }
+    
+    func upload(req: Request) throws -> EventLoopFuture<View> {
+        return req.view.render("upload", [
+            "title": "File upload"
         ])
     }
 }

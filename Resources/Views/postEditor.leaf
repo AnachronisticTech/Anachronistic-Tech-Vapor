@@ -19,13 +19,6 @@
                     <input type="file" name="data" id="file">
                 </div>
                 <div class="single">
-                    <label>Type: </label>
-                    <input type="radio" name="type" value="0" id="type_article" checked>
-                    <label for="type_article">Article</label>
-                    <input type="radio" name="type" value="1" id="type_project">
-                    <label for="type_project">Project</label>
-                </div>
-                <div class="single">
                     <label>Icon: </label>
                     <input type="text" name="icon" id="icon">
                 </div>

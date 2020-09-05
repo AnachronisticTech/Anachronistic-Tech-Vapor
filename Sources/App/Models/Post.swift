@@ -15,21 +15,25 @@ final class Post: Model, Content {
     @Field(key: "type")
     var type: Int
     
+    @Field(key: "date")
+    var date: Date
+    
     init() {}
     
     init(
         id: Int? = nil,
         icon: String? = nil,
-        type: Int
+        type: Int,
+        date: Date
     ) {
         self.id = id
         self.icon = icon
         self.type = type
+        self.date = date
     }
     
     struct Input: Content {
         var icon: String?
-        var type: Int
         var data: Data?
     }
     
@@ -59,7 +63,7 @@ final class Post: Model, Content {
             id: id!,
             type: type,
             icon: icon,
-            date: formatter.date(from: result.metadata["date"]!)!,
+            date: date,
             title: result.title!,
             summary: result.metadata["summary"] ?? "",
             content: result.html

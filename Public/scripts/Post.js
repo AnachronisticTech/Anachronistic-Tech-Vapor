@@ -53,11 +53,11 @@ class Post {
         })
     }
     
-    static upload() {
+    static upload(id) {
         var data = new FormData($("form")[0])
         $.ajax({
             type: "POST",
-            url: `/api/${$("form").data("name")}`,
+            url: `/api/${$("form").data("name")}${id != null ? `/${id}`: ""}`,
             cache: false,
             contentType: false,
             processData: false,

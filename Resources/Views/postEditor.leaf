@@ -35,7 +35,7 @@
                 </div>
             </div>
         </form>
-        <button onClick="Post.upload()">Upload</button>
+        <button onClick="Post.upload()" class="upload">Upload</button>
         <div id="result" class="hidden"></div>
     #endexport
 
@@ -56,9 +56,7 @@
             var id = document.URL.split("/").slice(-1)[0];
             if (id != "postEditor") {
                 Post.single(id);
-                document.querySelector("form").setAttribute("action", "/api/posts/"+id)
-            } else {
-                document.querySelector("form").setAttribute("action", "/api/posts")
+                document.querySelector(".upload").setAttribute("onClick", `Post.upload(${id})`)
             }
         </script>
     #endexport

@@ -3,7 +3,7 @@
     #export("dependencies"):
         <link rel="stylesheet" href="/styles/article.css">
         <link rel="stylesheet" href="/styles/highlight.css">
-        <script src='/scripts/getSinglePost.js'></script>
+        <script src='/scripts/Post.js'></script>
         <script src="/scripts/highlight.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
     #endexport
@@ -45,7 +45,7 @@
     
     #export("content"):
         <script>
-            getPost(document.URL.split("/").slice(-1)[0], false);
+            Post.single(document.URL.split("/").slice(-1)[0], false);
         </script>
     #endexport
 

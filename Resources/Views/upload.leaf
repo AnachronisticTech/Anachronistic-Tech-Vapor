@@ -1,12 +1,13 @@
 #extend("base"):
 
     #export("dependencies"):
+        <script src='/scripts/Post.js'></script>
         <link rel="stylesheet" href="/styles/blog.css">
         <link rel="stylesheet" href="/styles/addedit.css">
     #endexport
 
     #export("body"):
-        <form method="post" action="/api/upload" enctype="multipart/form-data">
+        <form data-name="upload">
             <div class="about">
                 <input type="file" name="file">
             </div>
@@ -16,8 +17,9 @@
                     <input type="password" name="secret">
                 </div>
             </div>
-            <input type="submit" value="Upload">
         </form>
+        <button onClick="Post.upload()">Upload</button>
+        <div id="result" class="hidden"></div>
     #endexport
 
     #export("template"):

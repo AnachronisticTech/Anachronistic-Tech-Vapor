@@ -27,6 +27,25 @@ form .about {
     margin-top: 10px;
 }
 
+#result {
+    width: calc(100% - 20px);
+    border-collapse: collapse;
+    padding: 10px;
+    margin-top: 10px;
+    font-family: sans-serif;
+}
+.success {
+    background: #7f7;
+    border: 2px solid #080;
+}
+.error {
+    background: #f77;
+    border: 2px solid #800;
+}
+.hidden {
+    display: none;
+}
+
 .about input[type=text], .about input[type=password], .about input[type=email] {
     width: 100%;
     height: calc(100% - 30px);

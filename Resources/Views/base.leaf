@@ -97,7 +97,7 @@
             <p>The screen is too small to display this content. Please try again on a larger display.</p>
         </div>
 
-        <!-- Post template -->
+        <!-- Template content -->
         #import("template")
         
         <!-- Load posts -->

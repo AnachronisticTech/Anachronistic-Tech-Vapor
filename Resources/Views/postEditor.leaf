@@ -3,13 +3,13 @@
     #export("dependencies"):
         <link rel="stylesheet" href="/styles/blog.css">
         <link rel="stylesheet" href="/styles/addedit.css">
-        <script src='/scripts/getSinglePost.js'></script>
+        <script src='/scripts/Post.js'></script>
         <script src='/scripts/getImages.js'></script>
         <script src='/scripts/insertAtCaret.js'></script>
     #endexport
 
     #export("body"):
-        <form method="post" enctype="multipart/form-data">
+        <form data-name="posts">
             <div class="about">
                 <div class="single">
                     <label id="editor">Upload New Post</label>
@@ -34,8 +34,9 @@
                     <input type="password" name="secret">
                 </div>
             </div>
-            <input type="submit" value="Add">
         </form>
+        <button onClick="Post.upload()">Upload</button>
+        <div id="result" class="hidden"></div>
     #endexport
 
     #export("template"):
@@ -54,7 +55,7 @@
             
             var id = document.URL.split("/").slice(-1)[0];
             if (id != "postEditor") {
-                getPost(id, true);
+                Post.single(id);
                 document.querySelector("form").setAttribute("action", "/api/posts/"+id)
             } else {
                 document.querySelector("form").setAttribute("action", "/api/posts")

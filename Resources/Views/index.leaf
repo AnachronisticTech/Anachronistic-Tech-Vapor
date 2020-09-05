@@ -2,7 +2,7 @@
 
     #export("dependencies"):
         <link rel="stylesheet" href="/styles/blog.css">
-        <script src='/scripts/getPosts.js'></script>
+        <script src='/scripts/Post.js'></script>
     #endexport
 
     #export("body"):
@@ -31,8 +31,8 @@
     
     #export("content"):
         <script>
-            getPosts(1, 3, 'subProjects');
-            getPosts(0, 3, 'subBlog');
+            Post.all(1, 3);
+            Post.all(0, 3);
         </script>
     #endexport
 

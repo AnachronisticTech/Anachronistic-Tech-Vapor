@@ -43,13 +43,6 @@ function getPost(id, full) {
             } else {
                 document.querySelector('#editor').innerHTML = "Editing: " + result.title;
                 document.querySelector('#icon').setAttribute('value',  result.icon ? result.icon : '');
-
-                if (result.type == 0) {
-                    document.querySelector('#type_article').setAttribute('checked',  'true');
-                } else {
-                    document.querySelector('#type_project').setAttribute('checked',  'true');
-                }
-            
             }
             document.title = result.title;
         },

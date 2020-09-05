@@ -12,14 +12,7 @@ function getPost(id, full) {
                 document.querySelector("#post_title").textContent = result.title
                 document.querySelector("#post_date").textContent = result.date
                 result.content = result.content.split("</h1>")[1]
-
-                // This may all be unnecessary now!
-                var converter = new showdown.Converter()
-                converter.setFlavor("original")
-                converter.setOption("strikethrough", "true")
-                converter.setOption("ghCodeBlocks", "true")
-
-                document.querySelector("#post_content").innerHTML = converter.makeHtml(result.content)
+                document.querySelector("#post_content").innerHTML = result.content
                 
                 // Apply syntax highlighting
                 $("pre > code").each(function() {

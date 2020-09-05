@@ -35,6 +35,7 @@ final class Post: Model, Content {
     struct Input: Content {
         var icon: String?
         var data: Data?
+        var secret: String
     }
     
     struct Output: Content {
@@ -54,10 +55,6 @@ final class Post: Model, Content {
             .replacingOccurrences(of: "\r\n", with: "\n")
         let parser = MarkdownParser()
         let result = parser.parse(markdown)
-        
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "dd/mm/yyyy"
         
         return Output(
             id: id!,

@@ -8,6 +8,10 @@
     #export("body"):
         <form method="post" action="/api/upload" enctype="multipart/form-data">
             <div class="about">
+                <div class="single">
+                    <label>Password: </label>
+                    <input type="password" name="secret">
+                </div>
                 <input type="file" name="file">
                 <input type="submit" value="upload">
             </div>

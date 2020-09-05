@@ -30,12 +30,8 @@
             </div>
             <div class="about">
                 <div class="single">
-                    <label>Username: </label>
-                    <input type="email" name="username">
-                </div>
-                <div class="single">
                     <label>Password: </label>
-                    <input type="password" name="password">
+                    <input type="password" name="secret">
                 </div>
             </div>
             <input type="submit" value="Add">

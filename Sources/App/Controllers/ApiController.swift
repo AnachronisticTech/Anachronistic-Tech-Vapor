@@ -34,22 +34,29 @@ struct ApiController: RouteCollection {
     
     func createNewPost(req: Request) throws -> EventLoopFuture<HTTPStatus> {
         guard let payload = try? req.content.decode(Post.Input.self), let data = payload.data else {
-            throw Abort(HTTPResponseStatus.badRequest)
+            throw Abort(.custom(code: 47, reasonPhrase: "error decoding payload"))
+        }
+        
+        guard let secret = Environment.get("UPLOAD_SECRET"), try Bcrypt.verify(payload.secret, created: secret) else {
+            throw Abort(.unauthorized)
         }
         
         let markdown = String(data: data, encoding: .utf8)!
             .replacingOccurrences(of: "\r\n", with: "\n")
         let parser = MarkdownParser()
         let result = parser.parse(markdown)
-        
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "dd/mm/yyyy"
+        formatter.dateFormat = "dd/MM/yyyy"
+        
+        guard let dateString = result.metadata["date"], let date = formatter.date(from: dateString) else {
+            throw Abort(.custom(code: 47, reasonPhrase: "bad date value"))
+        }
         
         let post = Post(
             icon: payload.icon,
             type: result.metadata["type"] == "project" ? 1 : 0,
-            date: formatter.date(from: result.metadata["date"]!)!
+            date: date
         )
         return post
             .save(on: req.db)
@@ -58,7 +65,7 @@ struct ApiController: RouteCollection {
                     let _ = try Folder(path: "\(req.application.directory.publicDirectory)/posts")
                         .createFile(at: "\(post.id!).md", contents: data)
                 } catch {
-                    return .badRequest
+                    return .custom(code: 47, reasonPhrase: "error saving file")
                 }
                 return .ok
             }
@@ -73,7 +80,11 @@ struct ApiController: RouteCollection {
     
     func updatePost(req: Request) throws -> EventLoopFuture<HTTPStatus> {
         guard let payload = try? req.content.decode(Post.Input.self), let id = req.parameters.get("id", as: Int.self) else {
-            throw Abort(.badRequest)
+            throw Abort(.custom(code: 47, reasonPhrase: "error getting id or decoding payload"))
+        }
+        
+        guard let secret = Environment.get("UPLOAD_SECRET"), try Bcrypt.verify(payload.secret, created: secret) else {
+            throw Abort(.unauthorized)
         }
         
         return Post
@@ -88,10 +99,10 @@ struct ApiController: RouteCollection {
                         .replacingOccurrences(of: "\r\n", with: "\n")
                     let parser = MarkdownParser()
                     let result = parser.parse(markdown)
-                    
                     let formatter = DateFormatter()
                     formatter.locale = Locale(identifier: "en_US_POSIX")
-                    formatter.dateFormat = "dd/mm/yyyy"
+                    formatter.dateFormat = "dd/MM/yyyy"
+                    
                     date = formatter.date(from: result.metadata["date"]!)!
                     type = result.metadata["type"] == "project" ? 1 : 0
                 } else {
@@ -111,7 +122,7 @@ struct ApiController: RouteCollection {
                                 let _ = try Folder(path: "\(req.application.directory.publicDirectory)/posts")
                                     .createFile(at: "\(id).md", contents: data)
                             } catch {
-                                return .badRequest
+                                return .custom(code: 47, reasonPhrase: "error saving file")
                             }
                         }
                         return .ok
@@ -170,32 +181,26 @@ struct ApiController: RouteCollection {
     func postImage(req: Request) throws -> Response {
         struct PostData: Content {
             var file: Vapor.File
+            var secret: String
         }
         
-        if let payload = try? req.content.decode(PostData.self) {
-            do {
-                let data = Data(buffer: payload.file.data)
-                let _ = try Folder(
-                    path: "\(req.application.directory.publicDirectory)/images")
-                    .createFile(
-                        at: payload.file.filename,
-                        contents: data
-                    )
-            } catch {
-                return Response(
-                    status: .badRequest,
-                    body: Response.Body(string: "upload failed with reason: \(error)")
-                )
-            }
-            return Response(
-                status: .ok,
-                body: Response.Body(string: "file uploaded")
-            )
-        } else {
-            return Response(
-                status: .badRequest,
-                body: Response.Body(string: "couldn't decode data from \(req)")
-            )
+        guard let payload = try? req.content.decode(PostData.self) else {
+            throw Abort(.custom(code: 47, reasonPhrase: "couldn't decode data"))
         }
+        
+        guard let secret = Environment.get("UPLOAD_SECRET"), try Bcrypt.verify(payload.secret, created: secret) else {
+            throw Abort(.unauthorized)
+        }
+        
+        let data = Data(buffer: payload.file.data)
+        guard let _ = try? Folder(path: "\(req.application.directory.publicDirectory)/images")
+            .createFile(at: payload.file.filename, contents: data) else {
+            throw Abort(.custom(code: 47, reasonPhrase: "error saving file"))
+        }
+        
+        return Response(
+            status: .ok,
+            body: Response.Body(string: "file uploaded")
+        )
     }
 }

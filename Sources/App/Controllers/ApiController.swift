@@ -19,11 +19,18 @@ struct ApiController: RouteCollection {
         posts.get("projects", use: getPostProjects)
         posts.get("projects", ":n", use: getPostProjects)
         
-        let projects = api.grouped("projects")
-        projects.get(use: getAllProjects)
-//        projects.get(":id", use: getProject)
+        let portfolio = api.grouped("portfolio")
+        portfolio.get(use: getAllPortfolioItems)
+        portfolio.post(use: createNewPortfolioItem)
+        portfolio.get(":id", use: getPortfolioItem)
+        portfolio.post(":id", use: updatePortfolioItem)
+        portfolio.get("interests", use: getPortfolioInterestItems)
+        portfolio.get("interests", ":n", use: getPortfolioInterestItems)
+        portfolio.get("projects", use: getPortfolioProjectItems)
+        portfolio.get("projects", ":n", use: getPortfolioProjectItems)
     }
     
+    // MARK:- Handlers relating to Posts
     func getAllPosts(req: Request) throws -> EventLoopFuture<[Post.Output]> {
         return Post
             .query(on: req.db)
@@ -65,6 +72,10 @@ struct ApiController: RouteCollection {
                     let _ = try Folder(path: "\(req.application.directory.publicDirectory)/posts")
                         .createFile(at: "\(post.id!).md", contents: data)
                 } catch {
+                    let _ = Post
+                        .find(post.id!, on: req.db)
+                        .unwrap(or: Abort(.notFound))
+                        .flatMap({ $0.delete(on: req.db) })
                     return .custom(code: 47, reasonPhrase: "error saving file")
                 }
                 return .ok
@@ -122,6 +133,10 @@ struct ApiController: RouteCollection {
                                 let _ = try Folder(path: "\(req.application.directory.publicDirectory)/posts")
                                     .createFile(at: "\(id).md", contents: data)
                             } catch {
+                                let _ = Post
+                                    .find(id, on: req.db)
+                                    .unwrap(or: Abort(.notFound))
+                                    .flatMap({ $0.delete(on: req.db) })
                                 return .custom(code: 47, reasonPhrase: "error saving file")
                             }
                         }
@@ -168,12 +183,161 @@ struct ApiController: RouteCollection {
         }
     }
     
+    // MARK:- Handlers relating to Portfolio
+    func getAllPortfolioItems(req: Request) throws -> EventLoopFuture<[PortfolioItem.Output]> {
+        return PortfolioItem
+            .query(on: req.db)
+            .sort(\.$id, .descending)
+            .all()
+            .mapEach { $0.toOutput(with: req) }
+    }
+    
+    func createNewPortfolioItem(req: Request) throws -> EventLoopFuture<HTTPStatus> {
+        guard let payload = try? req.content.decode(PortfolioItem.Input.self), let data = payload.data else {
+            throw Abort(.custom(code: 47, reasonPhrase: "error decoding payload"))
+        }
+        
+        guard let secret = Environment.get("UPLOAD_SECRET"), try Bcrypt.verify(payload.secret, created: secret) else {
+            throw Abort(.unauthorized)
+        }
+        
+        let markdown = String(data: data, encoding: .utf8)!
+            .replacingOccurrences(of: "\r\n", with: "\n")
+        let parser = MarkdownParser()
+        let result = parser.parse(markdown)
+        
+        guard let tag = result.metadata["tag"] else {
+            throw Abort(.custom(code: 47, reasonPhrase: "bad tag value"))
+        }
+        
+        let item = PortfolioItem(
+            icon: payload.icon,
+            type: result.metadata["type"] == "project" ? 1 : 0,
+            tag: tag
+        )
+        return item
+            .save(on: req.db)
+            .map {
+                do {
+                    let _ = try Folder(path: "\(req.application.directory.publicDirectory)/portfolio")
+                        .createFile(at: "\(item.id!).md", contents: data)
+                } catch {
+                    let _ = PortfolioItem
+                        .find(item.id!, on: req.db)
+                        .unwrap(or: Abort(.notFound))
+                        .flatMap({ $0.delete(on: req.db) })
+                    return .custom(code: 47, reasonPhrase: "error saving file")
+                }
+                return .ok
+            }
+    }
+    
+    func getPortfolioItem(req: Request) throws -> EventLoopFuture<PortfolioItem.Output> {
+        return PortfolioItem
+            .find(req.parameters.get("id"), on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .map { $0.toOutput(with: req) }
+    }
+    
+    func updatePortfolioItem(req: Request) throws -> EventLoopFuture<HTTPStatus> {
+        guard let payload = try? req.content.decode(PortfolioItem.Input.self), let id = req.parameters.get("id", as: Int.self) else {
+            throw Abort(.custom(code: 47, reasonPhrase: "error getting id or decoding payload"))
+        }
+        
+        guard let secret = Environment.get("UPLOAD_SECRET"), try Bcrypt.verify(payload.secret, created: secret) else {
+            throw Abort(.unauthorized)
+        }
+        
+        return PortfolioItem
+            .find(id, on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .map { $0.toOutput(with: req) }
+            .flatMap { item in
+                let tag: String
+                let type: Int
+                if let data = payload.data, data.count > 10 {
+                    let markdown = String(data: data, encoding: .utf8)!
+                        .replacingOccurrences(of: "\r\n", with: "\n")
+                    let parser = MarkdownParser()
+                    let result = parser.parse(markdown)
+                    
+                    tag = result.metadata["tag"]!
+                    type = result.metadata["type"] == "project" ? 1 : 0
+                } else {
+                    tag = item.tag
+                    type = item.type
+                }
+                
+                return PortfolioItem.query(on: req.db)
+                    .filter(\.$id == id)
+                    .set(\.$type, to: type)
+                    .set(\.$icon, to: payload.icon)
+                    .set(\.$tag, to: tag)
+                    .update()
+                    .map {
+                        if let data = payload.data, data.count > 10 {
+                            do {
+                                let _ = try Folder(path: "\(req.application.directory.publicDirectory)/portfolio")
+                                    .createFile(at: "\(id).md", contents: data)
+                            } catch {
+                                let _ = PortfolioItem
+                                    .find(id, on: req.db)
+                                    .unwrap(or: Abort(.notFound))
+                                    .flatMap({ $0.delete(on: req.db) })
+                                return .custom(code: 47, reasonPhrase: "error saving file")
+                            }
+                        }
+                        return .ok
+                    }
+            }
+    }
+    
+    func getPortfolioInterestItems(req: Request) throws -> EventLoopFuture<[PortfolioItem.Output]> {
+        if let id = req.parameters.get("n", as: Int.self) {
+            return PortfolioItem
+                .query(on: req.db)
+                .filter(\.$type == 0)
+                .sort(\.$id, .descending)
+                .range(0..<id)
+                .all()
+                .mapEach { $0.toOutput(with: req) }
+        } else {
+            return PortfolioItem
+                .query(on: req.db)
+                .filter(\.$type == 0)
+                .sort(\.$id, .descending)
+                .all()
+                .mapEach { $0.toOutput(with: req) }
+        }
+    }
+    
+    func getPortfolioProjectItems(req: Request) throws -> EventLoopFuture<[PortfolioItem.Output]> {
+        if let id = req.parameters.get("n", as: Int.self) {
+            return PortfolioItem
+                .query(on: req.db)
+                .filter(\.$type == 1)
+                .sort(\.$id, .descending)
+                .range(0..<id)
+                .all()
+                .mapEach { $0.toOutput(with: req) }
+        } else {
+            return PortfolioItem
+                .query(on: req.db)
+                .filter(\.$type == 1)
+                .sort(\.$id, .descending)
+                .all()
+                .mapEach { $0.toOutput(with: req) }
+        }
+    }
+    
+    // MARK:- Handlers relating to Projects (defunct)
     func getAllProjects(req: Request) throws -> EventLoopFuture<[Project]> {
         return Project
             .query(on: req.db)
             .all()
     }
     
+    // MARK:- Handlers relating to images
     func getAllImages(req: Request) throws -> [String] {
         return (try? Folder(path: "\(req.application.directory.publicDirectory)/images").files.map { $0.name }) ?? []
     }

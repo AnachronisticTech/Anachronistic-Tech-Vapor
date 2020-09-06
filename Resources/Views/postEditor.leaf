@@ -3,15 +3,20 @@
     #export("dependencies"):
         <link rel="stylesheet" href="/styles/blog.css">
         <link rel="stylesheet" href="/styles/addedit.css">
+        #if(editor == "portfolio"):
+        <script src='/scripts/Portfolio.js'></script>
+        #else:
         <script src='/scripts/Post.js'></script>
+        #endif
         <script src='/scripts/Image.js'></script>
+        <script src='/scripts/Upload.js'></script>
     #endexport
 
     #export("body"):
-        <form data-name="posts">
+        <form data-name="#(editor)">
             <div class="about">
                 <div class="single">
-                    <label id="editor">Upload New Post</label>
+                    <label id="editor">Upload New Item</label>
                 </div>
                 <div class="single">
                     <label>File: </label>
@@ -34,7 +39,7 @@
                 </div>
             </div>
         </form>
-        <button onClick="Post.upload()" class="upload">Upload</button>
+        <button onClick="Upload.form()" class="upload">Upload</button>
         <div id="result" class="hidden"></div>
     #endexport
 
@@ -47,10 +52,14 @@
     #export("content"):
         <script>
             Image.all()
-            var id = document.URL.split("/").slice(-1)[0];
-            if (id != "postEditor") {
-                Post.single(id);
-                $(".upload").attr("onClick", `Post.upload(${id})`)
+            var id = document.URL.split("/").slice(-1)[0]
+            if (id != "postEditor" && id != "portfolioEditor") {
+                #if(editor == "portfolio"):
+                Portfolio.single(id)
+                #else:
+                Post.single(id)
+                #endif
+                $(".upload").attr("onClick", `Upload.form(${id})`)
             }
         </script>
     #endexport

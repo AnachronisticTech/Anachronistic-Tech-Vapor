@@ -34,7 +34,7 @@
                 <div id="menu">
                     <button id="home">Home</button><!--
                     --><button id="archive">Archive</button><!--
-                    --><button id="projects">Projects</button><!--
+                    --><button id="projects">Portfolio</button><!--
                     --><button id="contact">About</button>
                 </div>
             </div>

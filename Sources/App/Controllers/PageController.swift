@@ -5,11 +5,13 @@ struct PageController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
         routes.get(use: home)
         routes.get("archive", use: archive)
-        routes.get("projects", use: projects)
+        routes.get("portfolio", use: portfolio)
         routes.get("contact", use: contact)
         routes.get("articles", ":id", use: articles)
         routes.get("postEditor", use: newPost)
         routes.get("postEditor", ":id", use: editPost)
+        routes.get("portfolioEditor", use: newPortfolioItem)
+        routes.get("portfolioEditor", ":id", use: editPortfolioItem)
         routes.get("upload", use: upload)
     }
     
@@ -25,9 +27,9 @@ struct PageController: RouteCollection {
         ])
     }
 
-    func projects(req: Request) throws -> EventLoopFuture<View> {
-        return req.view.render("projects", [
-            "title": "Projects"
+    func portfolio(req: Request) throws -> EventLoopFuture<View> {
+        return req.view.render("portfolio", [
+            "title": "Portfolio"
         ])
     }
     
@@ -45,13 +47,29 @@ struct PageController: RouteCollection {
     
     func newPost(req: Request) throws -> EventLoopFuture<View> {
         return req.view.render("postEditor", [
-            "title": "New Post"
+            "title": "New Post",
+            "editor": "posts"
         ])
     }
     
     func editPost(req: Request) throws -> EventLoopFuture<View> {
         return req.view.render("postEditor", [
-            "title": "Editing Post"
+            "title": "Editing Post",
+            "editor": "posts"
+        ])
+    }
+    
+    func newPortfolioItem(req: Request) throws -> EventLoopFuture<View> {
+        return req.view.render("postEditor", [
+            "title": "New Post",
+            "editor": "portfolio"
+        ])
+    }
+    
+    func editPortfolioItem(req: Request) throws -> EventLoopFuture<View> {
+        return req.view.render("postEditor", [
+            "title": "Editing Post",
+            "editor": "portfolio"
         ])
     }
     

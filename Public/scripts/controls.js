@@ -17,7 +17,7 @@ $(document).ready( function() {
         if (e.type == "touchstart") {
             $(this).off("click")
         }
-        window.location.href = "/projects"
+        window.location.href = "/portfolio"
     })
 
     $("#nav").on("click touchstart", "#contact", function(e) {

@@ -13,15 +13,15 @@ class Post {
             async: true,
             success: function(result) {
                 $.each(result, function() {
-                    var post = document.querySelector("#post")
+                    var post = $("#post")[0]
                     post.content.querySelector("a").href = `/articles/${this.id}`
                     post.content.querySelector("#post_title").textContent = this.title
                     post.content.querySelector("#post_summary").textContent = this.summary
                     post.content.querySelector("#post_date").textContent = this.date
-                    post.content.querySelector("#post_image").src = (this.icon ? "/images/"+this.icon : "")
+                    post.content.querySelector("#post_image").src = (this.icon ? `/images/${this.icon}` : "")
     
                     var clone = document.importNode(post.content, true)
-                    document.querySelector(`#${location}`).appendChild(clone)
+                    $(`#${location}`).append(clone)
                 })
             }
         })
@@ -36,13 +36,13 @@ class Post {
             success: function(result) {
                 document.title = result.title
                 if (full) {
-                    document.querySelector("#editor").innerHTML = `Editing: ${result.title}`
-                    document.querySelector("#icon").setAttribute("value",  result.icon ? result.icon : "")
+                    $("#editor").html(`Editing: ${result.title}`)
+                    $("#icon").attr("value",  result.icon || "")
                 } else {
-                    document.querySelector("#post_title").textContent = result.title
-                    document.querySelector("#post_date").textContent = result.date
+                    $("#post_title").html(result.title)
+                    $("#post_date").html(result.date)
                     result.content = result.content.split("</h1>")[1]
-                    document.querySelector("#post_content").innerHTML = result.content
+                    $("#post_content").html(result.content)
                     
                     // Apply syntax highlighting
                     $("pre > code").each(function() {

@@ -4,8 +4,7 @@
         <link rel="stylesheet" href="/styles/blog.css">
         <link rel="stylesheet" href="/styles/addedit.css">
         <script src='/scripts/Post.js'></script>
-        <script src='/scripts/getImages.js'></script>
-        <script src='/scripts/insertAtCaret.js'></script>
+        <script src='/scripts/Image.js'></script>
     #endexport
 
     #export("body"):
@@ -47,16 +46,11 @@
     
     #export("content"):
         <script>
-            var currentField = "icon";
-            function setPath(text) {
-                insertAtCaret(currentField, text);
-            }
-            getImages();
-            
+            Image.all()
             var id = document.URL.split("/").slice(-1)[0];
             if (id != "postEditor") {
                 Post.single(id);
-                document.querySelector(".upload").setAttribute("onClick", `Post.upload(${id})`)
+                $(".upload").attr("onClick", `Post.upload(${id})`)
             }
         </script>
     #endexport

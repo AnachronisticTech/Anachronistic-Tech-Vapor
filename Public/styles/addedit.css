@@ -34,6 +34,10 @@ form .about {
     margin-top: 10px;
     font-family: sans-serif;
 }
+.information {
+    background: #7df;
+    border: 2px solid #008;
+}
 .success {
     background: #7f7;
     border: 2px solid #080;

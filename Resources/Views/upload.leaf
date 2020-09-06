@@ -1,7 +1,7 @@
 #extend("base"):
 
     #export("dependencies"):
-        <script src='/scripts/Post.js'></script>
+        <script src='/scripts/Upload.js'></script>
         <link rel="stylesheet" href="/styles/blog.css">
         <link rel="stylesheet" href="/styles/addedit.css">
     #endexport
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </form>
-        <button onClick="Post.upload()">Upload</button>
+        <button onClick="Upload.form()">Upload</button>
         <div id="result" class="hidden"></div>
     #endexport
 

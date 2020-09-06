@@ -46,28 +46,28 @@ struct PageController: RouteCollection {
     }
     
     func newPost(req: Request) throws -> EventLoopFuture<View> {
-        return req.view.render("postEditor", [
+        return req.view.render("editor", [
             "title": "New Post",
             "editor": "posts"
         ])
     }
     
     func editPost(req: Request) throws -> EventLoopFuture<View> {
-        return req.view.render("postEditor", [
+        return req.view.render("editor", [
             "title": "Editing Post",
             "editor": "posts"
         ])
     }
     
     func newPortfolioItem(req: Request) throws -> EventLoopFuture<View> {
-        return req.view.render("postEditor", [
+        return req.view.render("editor", [
             "title": "New Post",
             "editor": "portfolio"
         ])
     }
     
     func editPortfolioItem(req: Request) throws -> EventLoopFuture<View> {
-        return req.view.render("postEditor", [
+        return req.view.render("editor", [
             "title": "Editing Post",
             "editor": "portfolio"
         ])

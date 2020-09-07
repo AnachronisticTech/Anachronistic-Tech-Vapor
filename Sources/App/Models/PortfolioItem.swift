@@ -50,7 +50,7 @@ final class PortfolioItem: Model, Content {
     }
     
     func toOutput(with request: Request) -> Output {
-        let markdown = try! Folder(path: "\(request.application.directory.publicDirectory)/portfolio")
+        let markdown = try! Folder(path: "\(request.application.directory.publicDirectory)portfolio")
             .file(named: "\(id!).md")
             .readAsString(encodedAs: .utf8)
             .replacingOccurrences(of: "\r\n", with: "\n")

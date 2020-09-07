@@ -120,6 +120,9 @@ struct ApiController: RouteCollection {
                     date = post.date
                     type = post.type
                 }
+                let revertDate = post.date
+                let revertType = post.type
+                let revertIcon = post.icon
                 
                 return Post.query(on: req.db)
                     .filter(\.$id == id)
@@ -133,10 +136,12 @@ struct ApiController: RouteCollection {
                                 let _ = try Folder(path: "\(req.application.directory.publicDirectory)/posts")
                                     .createFile(at: "\(id).md", contents: data)
                             } catch {
-                                let _ = Post
-                                    .find(id, on: req.db)
-                                    .unwrap(or: Abort(.notFound))
-                                    .flatMap({ $0.delete(on: req.db) })
+                                let _ = Post.query(on: req.db)
+                                    .filter(\.$id == id)
+                                    .set(\.$type, to: revertType)
+                                    .set(\.$icon, to: revertIcon)
+                                    .set(\.$date, to: revertDate)
+                                    .update()
                                 return .custom(code: 47, reasonPhrase: "error saving file")
                             }
                         }
@@ -267,6 +272,9 @@ struct ApiController: RouteCollection {
                     tag = item.tag
                     type = item.type
                 }
+                let revertType = item.type
+                let revertIcon = item.icon
+                let revertTag = item.tag
                 
                 return PortfolioItem.query(on: req.db)
                     .filter(\.$id == id)
@@ -280,10 +288,12 @@ struct ApiController: RouteCollection {
                                 let _ = try Folder(path: "\(req.application.directory.publicDirectory)/portfolio")
                                     .createFile(at: "\(id).md", contents: data)
                             } catch {
-                                let _ = PortfolioItem
-                                    .find(id, on: req.db)
-                                    .unwrap(or: Abort(.notFound))
-                                    .flatMap({ $0.delete(on: req.db) })
+                                let _ = PortfolioItem.query(on: req.db)
+                                    .filter(\.$id == id)
+                                    .set(\.$type, to: revertType)
+                                    .set(\.$icon, to: revertIcon)
+                                    .set(\.$tag, to: revertTag)
+                                    .update()
                                 return .custom(code: 47, reasonPhrase: "error saving file")
                             }
                         }

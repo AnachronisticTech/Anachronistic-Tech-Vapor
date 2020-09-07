@@ -49,7 +49,7 @@ final class Post: Model, Content {
     }
     
     func toOutput(with request: Request) -> Output {
-        let markdown = try! Folder(path: "\(request.application.directory.publicDirectory)/posts")
+        let markdown = try! Folder(path: "\(request.application.directory.publicDirectory)posts")
             .file(named: "\(id!).md")
             .readAsString(encodedAs: .utf8)
             .replacingOccurrences(of: "\r\n", with: "\n")

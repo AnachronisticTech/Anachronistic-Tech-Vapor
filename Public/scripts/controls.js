@@ -13,7 +13,7 @@ $(document).ready( function() {
         window.location.href = "/archive"
     })
 
-    $("nav").on("click touchstart", "#projects", function(e) {
+    $("nav").on("click touchstart", "#portfolio", function(e) {
         if (e.type == "touchstart") {
             $(this).off("click")
         }

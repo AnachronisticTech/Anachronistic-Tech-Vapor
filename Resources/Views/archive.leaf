@@ -5,7 +5,7 @@
     #endexport
 
     #export("body"):
-        <div id="subBlog" class="sublist">
+        <div class="sublist">
             <h4>All Posts</h4>
         </div>
     #endexport

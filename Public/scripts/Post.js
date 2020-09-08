@@ -1,6 +1,6 @@
 class Post {
-    static all(type, limit) {
-        var location = type == null || type == 0 ? "subBlog" : "subProjects"
+    static all(type, limit, location) {
+        location == null ? location = ".sublist" : location = `#${location}`
         var endpoint = "posts"
         var isSpecific = type == 0 || type == 1
         if (type == 0) { endpoint += "/articles" }
@@ -21,7 +21,7 @@ class Post {
                     post.content.querySelector(".icon").src = (this.icon ? `/images/${this.icon}` : "")
     
                     var clone = document.importNode(post.content, true)
-                    $(`#${location}`).append(clone)
+                    $(location).append(clone)
                 })
             }
         })

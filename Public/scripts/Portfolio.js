@@ -1,6 +1,6 @@
 class Portfolio {
-    static all(type, limit) {
-        var location = type == null || type == 0 ? "subInterests" : "subProjects"
+    static all(type, limit, location) {
+        location == null ? location = ".sublist" : location = `#${location}`
         var endpoint = "portfolio"
         var isSpecific = type == 0 || type == 1
         if (type == 0) { endpoint += "/interests" }
@@ -21,7 +21,7 @@ class Portfolio {
                     // post.content.querySelector("#post_image").src = (this.icon ? `/images/${this.icon}` : "")
     
                     var clone = document.importNode(item.content, true)
-                    $(`#${location}`).append(clone)
+                    $(location).append(clone)
 
                     $.ajax({
                         type: "GET",

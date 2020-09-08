@@ -9,10 +9,6 @@
         <!-- Default styles -->
         <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,700|Quicksand:400,500" rel="stylesheet">
         <link rel="stylesheet" href="/styles/structure.css">
-<!--        <link rel="stylesheet" id="main" href="/styles/light/main.css">-->
-<!--        <link rel="stylesheet" id="main_size" href="/styles/regular/main.css">-->
-<!--        <link rel="stylesheet" id="fonts" href="/styles/fonts.css">-->
-<!--        <link rel="stylesheet" href="/styles/main.css">-->
 
         <!-- Libraries and scripts -->
         <script src='/scripts/jquery-3.3.1.min.js'></script>
@@ -33,7 +29,7 @@
                 <div id="menu">
                     <button id="home">Home</button><!--
                     --><button id="archive">Archive</button><!--
-                    --><button id="projects">Portfolio</button><!--
+                    --><button id="portfolio">Portfolio</button><!--
                     --><button id="contact">About</button>
                 </div>
             </div>

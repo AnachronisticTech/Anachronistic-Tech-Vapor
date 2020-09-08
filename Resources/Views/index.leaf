@@ -5,10 +5,10 @@
     #endexport
 
     #export("body"):
-        <div id="subProjects" class="sublist">
+        <div id="projects" class="sublist">
             <h4>Latest Projects</h4>
         </div>
-        <div id="subBlog" class="sublist">
+        <div id="articles" class="sublist">
             <h4>Latest Blog Posts</h4>
         </div>
     #endexport
@@ -30,8 +30,8 @@
     
     #export("content"):
         <script>
-            Post.all(1, 3);
-            Post.all(0, 3);
+            Post.all(1, 3, "projects");
+            Post.all(0, 3, "articles");
         </script>
     #endexport
 

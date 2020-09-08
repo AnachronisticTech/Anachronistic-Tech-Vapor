@@ -1,33 +1,32 @@
 #extend("base"):
 
     #export("dependencies"):
-        <link rel="stylesheet" href="/styles/projects.css">
         <script src='/scripts/Portfolio.js'></script>
     #endexport
 
     #export("body"):
-        <div id="subProjects">
-            <h2>Latest Projects</h2>
+        <div id="subProjects" class="sublist">
+            <h2>Projects</h2>
         </div>
-        <div id="subInterests">
-            <h2>Latest Blog Posts</h2>
+        <div id="subInterests" class="sublist">
+            <h2>Interests</h2>
         </div>
     #endexport
 
     #export("template"):
-        <template id="project">
-            <div class="project narrow">
-                <div class="container">
-                    <div class="icon">
-                        <img src="">
-                        <h5></h5>
-                        <p></p>
-                    </div>
-                    <div class="detail">
-                        <div class="link"></div>
-                        <h5></h5>
-                        <p class="summary"></p>
-                    </div>
+        <template id="item">
+            <div class="item">
+                <div class="icon">
+                    <img src="/images/psakse_circleable.jpg">
+                    <h5 id="title">Psakse</h5>
+                    <p id="subtitle">Subtitle about psakse</p>
+                    <div class="links"></div>
+                </div>
+                <div id="item_content">
+                    <p id="">Main content about psakse</p>
+                    <hr />
+                    <h5>Related Posts</h5>
+                    <a>Link to each post</a>
                 </div>
             </div>
         </template>

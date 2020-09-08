@@ -7,7 +7,7 @@ h1 {
 }
 
 	/* INDEX STYLES */
-#subProjects h2, #subBlog h2 {
+.sublist h2 {
 	margin-top:0px;
 	margin-bottom:0px;
 	color:#111;

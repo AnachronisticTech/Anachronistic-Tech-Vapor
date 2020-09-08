@@ -72,10 +72,10 @@ final class Post: Model, Content {
                 """
             }
             return """
-            <div class="inlineImg">
-                \(isVideo ? video(src: elements[1]) : "<img src=\"/images/\(elements[1])\">" )
-                \(hasCaption ? "<h5>\(elements[3])</h5>" : "")
-            </div>
+            <figure>
+                \(isVideo ? video(src: elements[1]) : "<img src=\"/images/\(elements[1])\"\(hasCaption ? "alt=\"\(elements[3])\"" : "")>" )
+                \(hasCaption ? "<figcaption>\(elements[3])</figcaption>" : "")
+            </figure>
             """
         }
         parser.addModifier(imageModiefier)

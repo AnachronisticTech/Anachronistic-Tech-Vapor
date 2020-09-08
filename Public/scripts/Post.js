@@ -14,11 +14,11 @@ class Post {
             success: function(result) {
                 $.each(result, function() {
                     var post = $("#post")[0]
-                    post.content.querySelector("a").href = `/articles/${this.id}`
-                    post.content.querySelector("#post_title").textContent = this.title
-                    post.content.querySelector("#post_summary").textContent = this.summary
-                    post.content.querySelector("#post_date").textContent = this.date
-                    post.content.querySelector("#post_image").src = (this.icon ? `/images/${this.icon}` : "")
+                    post.content.querySelector(".post").href = `/articles/${this.id}`
+                    post.content.querySelector(".title").textContent = this.title
+                    post.content.querySelector(".summary").textContent = this.summary
+                    post.content.querySelector(".date").textContent = this.date
+                    post.content.querySelector(".icon").src = (this.icon ? `/images/${this.icon}` : "")
     
                     var clone = document.importNode(post.content, true)
                     $(`#${location}`).append(clone)
@@ -39,10 +39,10 @@ class Post {
                     $("#editor").html(`Editing: ${result.title}`)
                     $("#icon").attr("value",  result.icon || "")
                 } else {
-                    $("#post_title").html(result.title)
-                    $("#post_date").html(result.date)
+                    $("h2").html(result.title)
+                    $("h6").html(result.date)
                     result.content = result.content.split("</h1>")[1]
-                    $("#post_content").html(result.content)
+                    $("article").html(result.content)
                     
                     // Apply syntax highlighting
                     $("pre > code").each(function() {

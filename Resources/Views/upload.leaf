@@ -1,9 +1,9 @@
 #extend("base"):
 
     #export("dependencies"):
+<!--        <link rel="stylesheet" href="/styles/blog.css">-->
+<!--        <link rel="stylesheet" href="/styles/addedit.css">-->
         <script src='/scripts/Upload.js'></script>
-        <link rel="stylesheet" href="/styles/blog.css">
-        <link rel="stylesheet" href="/styles/addedit.css">
     #endexport
 
     #export("body"):

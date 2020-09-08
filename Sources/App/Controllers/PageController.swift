@@ -41,7 +41,8 @@ struct PageController: RouteCollection {
     
     func articles(req: Request) throws -> EventLoopFuture<View> {
         return req.view.render("article", [
-            "title": "Article"
+            "title": "Article",
+            "id": req.parameters.get("id", as: String.self)
         ])
     }
     
@@ -55,7 +56,8 @@ struct PageController: RouteCollection {
     func editPost(req: Request) throws -> EventLoopFuture<View> {
         return req.view.render("editor", [
             "title": "Editing Post",
-            "editor": "posts"
+            "editor": "posts",
+            "id": req.parameters.get("id", as: String.self)
         ])
     }
     
@@ -69,7 +71,8 @@ struct PageController: RouteCollection {
     func editPortfolioItem(req: Request) throws -> EventLoopFuture<View> {
         return req.view.render("editor", [
             "title": "Editing Post",
-            "editor": "portfolio"
+            "editor": "portfolio",
+            "id": req.parameters.get("id", as: String.self)
         ])
     }
     

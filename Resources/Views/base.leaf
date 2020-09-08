@@ -7,11 +7,12 @@
         <title>#(title) | Anachronistic Tech</title>
 
         <!-- Default styles -->
-        <link rel="stylesheet" id="main" href="/styles/light/main.css">
-        <link rel="stylesheet" id="main_size" href="/styles/regular/main.css">
         <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,700|Quicksand:400,500" rel="stylesheet">
-        <link rel="stylesheet" id="fonts" href="/styles/fonts.css">
-        <link rel="stylesheet" href="/styles/main.css">
+        <link rel="stylesheet" href="/styles/structure.css">
+<!--        <link rel="stylesheet" id="main" href="/styles/light/main.css">-->
+<!--        <link rel="stylesheet" id="main_size" href="/styles/regular/main.css">-->
+<!--        <link rel="stylesheet" id="fonts" href="/styles/fonts.css">-->
+<!--        <link rel="stylesheet" href="/styles/main.css">-->
 
         <!-- Libraries and scripts -->
         <script src='/scripts/jquery-3.3.1.min.js'></script>
@@ -25,10 +26,8 @@
     
     <body>
         <!-- Header and menu -->
-        <div id="title">
-            <h1>Anachronistic Technology</h1>
-        </div>
-        <div id="nav">
+        <h1 id="title">Anachronistic Technology</h1>
+        <nav class="item-container">
             <div id="menu-layer-1">
                 <button id="settings"><img src="/images/icons/cog.png" height="40px" width="40px"></button>
                 <div id="menu">
@@ -44,51 +43,49 @@
                 --><button class="bold">Bolder text</button><!--
                 --><button class="large">Larger text</button>
             </div>
-        </div>
+        </nav>
 
         <!-- Main content -->
-        <div id="wrapper">
+        <div id="main">
             <div id="content">
                 #import("body")
             </div>
             
             <!-- About section and notices -->
-            <div id="sidebar">
-                <div class="about">
+            <aside>
+                <div class="sidebox about">
                     <div class="profileImgContainer">
                         <img class="profileImg" src="/images/avatar_512.jpg">
                     </div>
-                    <h2>Daniel Marriner</h2>
+                    <h4>Daniel Marriner</h4>
                     <p>is a third-year computer science student at the University of Warwick, UK. His passions include science-fiction, dismantling anything technological that isn't nailed to the floor, learning new programming techniques, and light gaming. His favourite drink is diet Pepsi, and he also enjoys having chocolate-coated digestive biscuits to hand.</p>
                 </div>
-                <div class="about">
-                    <h2>Cookie Policy</h2>
+                <div class="sidebox">
+                    <h4>Cookie Policy</h4>
                     <p>This site uses cookies for saving visual preferences and powering the Disqus comments. These cookies are essential to site functionality, so there is no way to disable them, unless you wish to remove them entirely. Further, this site does not employ analytics tracking. Your data is your own, and I am more interested in respecting peoples' boundaries than measuring statistics. If you would still prefer not to have cookies on your device, please feel free to block cookies on this site, but the visual and accessibility features will no longer function as intended.</p>
                 </div>
-            </div>
+            </aside>
         </div>
         
         <!-- Footer section -->
-        <div id="footer">
-            <div class="links">
-                <div class="section">
-                    <h6>Blogs I enjoy reading:</h6>
-                    <p><a href="http://bit-player.org">bit-player by Brian Hayes</a></p>
-                    <p><a href="https://www.jorel.dev/blog">Jorel's Blog by Jorel Ali</a></p>
-                </div>
-                <div class="section">
-                    <h6>My other sites:</h6>
-                    <p><a href="https://sto-database.co.uk">STO Database project</a></p>
-                    <p><a href="https://github.com/AnachronisticTech">My GitHub</a></p>
-                    <p><a href="https://www.linkedin.com/in/AnachronisticTech">My LinkedIn</a></p>
-                    <p><a href="https://www.deviantart.com/iwillcomply">My DeviantArt</a></p>
-                </div>
-                <div class="section">
-                    <h6>Groups I am affiliated with:</h6>
-                    <p><a href="http://warwickgamedesign.co.uk/">Warwick Game Design Society</a></p>
-                </div>
+        <footer>
+            <div>
+                <h5>Blogs I enjoy reading:</h5>
+                <p><a class="text-link" href="http://bit-player.org">bit-player by Brian Hayes</a></p>
+                <p><a class="text-link" href="https://www.jorel.dev/blog">Jorel's Blog by Jorel Ali</a></p>
             </div>
-        </div>
+            <div>
+                <h5>My other sites:</h5>
+                <p><a class="text-link" href="https://sto-database.co.uk">STO Database project</a></p>
+                <p><a class="text-link" href="https://github.com/AnachronisticTech">My GitHub</a></p>
+                <p><a class="text-link" href="https://www.linkedin.com/in/AnachronisticTech">My LinkedIn</a></p>
+                <p><a class="text-link" href="https://www.deviantart.com/iwillcomply">My DeviantArt</a></p>
+            </div>
+            <div>
+                <h5>Groups I am affiliated with:</h5>
+                <p><a class="text-link" href="http://warwickgamedesign.co.uk/">Warwick Game Design Society</a></p>
+            </div>
+        </footer>
 
         <!-- Fallback for small screens -->
         <div class="fallback">

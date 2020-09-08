@@ -1,8 +1,8 @@
 #extend("base"):
 
     #export("dependencies"):
-        <link rel="stylesheet" href="/styles/blog.css">
-        <link rel="stylesheet" href="/styles/addedit.css">
+<!--        <link rel="stylesheet" href="/styles/blog.css">-->
+<!--        <link rel="stylesheet" href="/styles/addedit.css">-->
         #if(editor == "portfolio"):
         <script src='/scripts/Portfolio.js'></script>
         #else:
@@ -52,15 +52,14 @@
     #export("content"):
         <script>
             Image.all()
-            var id = document.URL.split("/").slice(-1)[0]
-            if (id != "postEditor" && id != "portfolioEditor") {
+            #if(id != nil):
                 #if(editor == "portfolio"):
-                Portfolio.single(id)
+                Portfolio.single(#(id))
                 #else:
-                Post.single(id)
+                Post.single(#(id))
                 #endif
-                $(".upload").attr("onClick", `Upload.form(${id})`)
-            }
+                $(".upload").attr("onClick", `Upload.form(${#(id)})`)
+            #endif
         </script>
     #endexport
 

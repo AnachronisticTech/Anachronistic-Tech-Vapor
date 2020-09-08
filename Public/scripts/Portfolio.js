@@ -12,16 +12,26 @@ class Portfolio {
             datatype: "json",
             async: true,
             success: function(result) {
-                $.each(result, function() {
-                    // var post = $("#post")[0]
+                $.each(result, function(index) {
+                    var item = $("#item")[0]
+                    item.content.querySelector("#item_content").prepend(this.content)
                     // post.content.querySelector("a").href = `/articles/${this.id}`
                     // post.content.querySelector("#post_title").textContent = this.title
                     // post.content.querySelector("#post_summary").textContent = this.summary
-                    // post.content.querySelector("#post_date").textContent = this.date
                     // post.content.querySelector("#post_image").src = (this.icon ? `/images/${this.icon}` : "")
     
-                    // var clone = document.importNode(post.content, true)
-                    // $(`#${location}`).append(clone)
+                    var clone = document.importNode(item.content, true)
+                    $(`#${location}`).append(clone)
+
+                    $.ajax({
+                        type: "GET",
+                        url: `/api/tag/${this.tag}`,
+                        datatype: "json",
+                        async: true,
+                        success: function(posts) {
+                            result[index].posts = posts // might be unneccessary
+                        }
+                    })
                 })
             }
         })

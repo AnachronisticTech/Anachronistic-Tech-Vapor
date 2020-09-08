@@ -1,21 +1,20 @@
 #extend("base"):
 
     #export("dependencies"):
-        <link rel="stylesheet" href="/styles/blog.css">
     #endexport
 
     #export("body"):
-        <div id="post">
-            <h2>About me</h2>
+        <article>
+            <h4>About me</h4>
             <p>I'm a third year student of Computer Science at the University of Warwick in the UK. During term time I live near Coventry with three of my coursemates. During holidays I return home to Cyprus to be with my family and enjoy the beaches and warmer weather.</p>
-            <h2>History</h2>
+            <h4>History</h4>
             <p>Cyprus has been my home since my parents and I moved there when I was nine. I went to school at The Junior and Senior School Nicosia where I studied for and took my GCSE and A-Level exams. After graduation in 2016, I took a gap year and worked for Pan-Invest Management for a few months on a project involving a new database and reporting system. In October 2017, I began my first year in Computer Science at Warwick, and scored a First by the time the academic year came to a close in June.</p>
             <p>Over the summer of 2018 I became inspired by a friend I had met during first year to write a blog on my thoughts, experiences, and projects. I knew the likelihood of anyone finding it by chance was pretty minimal, but I always liked writing, and I loved the idea of starting a 'public journal' that anyone could read. At the very least, I could document things in my life, and maybe have something interesting to put in a CV or on a business card...</p>
-            <h2>Contact</h2>
+            <h4>Contact</h4>
             <p>If you would like to get in touch with me (regarding thoughts on my blog, bug-reporting, project ideas, or even if you feel bored or lonely!) feel free to drop me an email at:
             <a href="mailto:danielmarriner@anachronistic-tech.co.uk">danielmarriner@anachronistic-tech.co.uk</a>.</p>
             <p>You can also find me on GitHub <a href="https://github.com/AnachronisticTech">here</a>, LinkedIn <a href="https://www.linkedin.com/in/AnachronisticTech">here</a>, and DeviantArt <a href="https://www.deviantart.com/iwillcomply">here</a>.</p>
-        </div>
+        </article>
     #endexport
 
     #export("template"):

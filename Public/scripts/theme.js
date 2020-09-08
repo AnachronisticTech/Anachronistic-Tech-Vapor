@@ -72,7 +72,7 @@ $(document).ready( function() {
             $(".contrast").html("High contrast")
         }
     }
-    $("#nav").on("click touchstart", ".contrast", function(e) {
+    $("nav").on("click touchstart", ".contrast", function(e) {
         if (e.type == "touchstart") {
             $(this).off("click")
             handled_contrast = true
@@ -97,7 +97,7 @@ $(document).ready( function() {
             $(".dark").html("Dark mode")
         }
     }
-    $("#nav").on("click touchstart", ".dark", function(e) {
+    $("nav").on("click touchstart", ".dark", function(e) {
         if (e.type == "touchstart") {
             $(this).off("click")
             handled_brightness = true
@@ -122,7 +122,7 @@ $(document).ready( function() {
             $(".bold").html("Bolder text")
         }
     }
-    $("#nav").on("click touchstart", ".bold", function(e) {
+    $("nav").on("click touchstart", ".bold", function(e) {
         if (e.type == "touchstart") {
             $(this).off("click")
             handled_weight = true
@@ -147,7 +147,7 @@ $(document).ready( function() {
             $(".large").html("Larger text")
         }
     }
-    $("#nav").on("click touchstart", ".large", function(e) {
+    $("nav").on("click touchstart", ".large", function(e) {
         if (e.type == "touchstart") {
             $(this).off("click")
             handled_size = true

@@ -12,11 +12,11 @@ h1 {
 }
 
 	/* INDEX STYLES */
-	#subProjects h2, #subBlog h2 {
-		margin-top:0px;
-		margin-bottom:0px;
-		color:#fff;
-	}
+.sublist h2 {
+	margin-top:0px;
+	margin-bottom:0px;
+	color:#fff;
+}
 	
 	/* ARCHIVE STYLES */
 .post {

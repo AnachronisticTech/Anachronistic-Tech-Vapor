@@ -8,11 +8,11 @@
     #endexport
 
     #export("body"):
-        <div id="post">
+        <article>
             <h2></h2>
             <h6></h6>
-            <article></article>
-        </div>
+            <div></div>
+        </article>
 
         <div id="disqus_thread"></div>
         <script>

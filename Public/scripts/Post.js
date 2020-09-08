@@ -39,10 +39,10 @@ class Post {
                     $("#editor").html(`Editing: ${result.title}`)
                     $("#icon").attr("value",  result.icon || "")
                 } else {
-                    $("h2").html(result.title)
-                    $("h6").html(result.date)
+                    $("article > h2").html(result.title)
+                    $("article > h6").html(result.date)
                     result.content = result.content.split("</h1>")[1]
-                    $("article").html(result.content)
+                    $("article > div").html(result.content)
                     
                     // Apply syntax highlighting
                     $("pre > code").each(function() {

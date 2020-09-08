@@ -67,7 +67,7 @@
             </aside>
         </div>
         
-        <!-- Footer section -->
+        <!-- Footer -->
         <footer>
             <div>
                 <h5>Blogs I enjoy reading:</h5>
@@ -97,7 +97,7 @@
         <!-- Template content -->
         #import("template")
         
-        <!-- Load posts -->
+        <!-- Load remote content -->
         #import("content")
     </body>
 </html>

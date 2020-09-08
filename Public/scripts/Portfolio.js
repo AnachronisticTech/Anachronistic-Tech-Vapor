@@ -55,7 +55,7 @@ class Portfolio {
         })
     }
     
-    static single(id, full = true) {
+    static single(id) {
         $.ajax({
             type: "GET",
             url: `/api/portfolio/${id}`,
@@ -63,20 +63,8 @@ class Portfolio {
             async: true,
             success: function(result) {
                 document.title = result.title
-                if (full) {
-                    $("#editor").html(`Editing: ${result.title}`)
-                    $("#icon").attr("value",  result.icon || "")
-                } else {
-                    // $("#post_title").html(result.title)
-                    // $("#post_date").html(result.date)
-                    // result.content = result.content.split("</h1>")[1]
-                    // $("#post_content").html(result.content)
-                    
-                    // // Apply syntax highlighting
-                    // $("pre > code").each(function() {
-                    //     hljs.highlightBlock(this)
-                    // });
-                }
+                $("#editor").html(`Editing: ${result.title}`)
+                $("#icon").attr("value",  result.icon || "")
             }
         })
     }

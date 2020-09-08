@@ -18,18 +18,23 @@ final class Post: Model, Content {
     @Field(key: "date")
     var date: Date
     
+    @Field(key: "tags")
+    var tags: String
+    
     init() {}
     
     init(
         id: Int? = nil,
         icon: String? = nil,
         type: Int,
-        date: Date
+        date: Date,
+        tags: String = ""
     ) {
         self.id = id
         self.icon = icon
         self.type = type
         self.date = date
+        self.tags = tags
     }
     
     struct Input: Content {
@@ -43,6 +48,7 @@ final class Post: Model, Content {
         var type: Int
         var icon: String?
         var date: Date
+        var tags: [String]
         var title: String
         var summary: String
         var content: String
@@ -80,6 +86,7 @@ final class Post: Model, Content {
             type: type,
             icon: icon,
             date: date,
+            tags: tags.split(separator: ";").map { String($0) },
             title: result.title!,
             summary: result.metadata["summary"] ?? "",
             content: result.html

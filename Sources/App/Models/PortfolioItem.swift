@@ -45,6 +45,7 @@ final class PortfolioItem: Model, Content {
         var tag: String
         var title: String
         var subtitle: String
+        var content: String
         var github: String?
         var web: String?
     }
@@ -64,6 +65,7 @@ final class PortfolioItem: Model, Content {
             tag: tag,
             title: result.title!,
             subtitle: result.metadata["subtitle"] ?? "",
+            content: result.html,
             github: result.metadata["github"],
             web: result.metadata["web"]
         )

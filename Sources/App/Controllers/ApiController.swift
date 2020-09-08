@@ -8,6 +8,7 @@ struct ApiController: RouteCollection {
         let api = routes.grouped("api")
         api.get("images", use: getAllImages)
         api.post("upload", use: postImage)
+        api.get("tag", ":n", use: getPostsByTag)
         
         let posts = api.grouped("posts")
         posts.get(use: getAllPosts)
@@ -63,7 +64,8 @@ struct ApiController: RouteCollection {
         let post = Post(
             icon: payload.icon,
             type: result.metadata["type"] == "project" ? 1 : 0,
-            date: date
+            date: date,
+            tags: result.metadata["tags"] ?? ""
         )
         return post
             .save(on: req.db)
@@ -105,6 +107,7 @@ struct ApiController: RouteCollection {
             .flatMap { post in
                 let date: Date
                 let type: Int
+                let tags: String
                 if let data = payload.data, data.count > 10 {
                     let markdown = String(data: data, encoding: .utf8)!
                         .replacingOccurrences(of: "\r\n", with: "\n")
@@ -116,19 +119,23 @@ struct ApiController: RouteCollection {
                     
                     date = formatter.date(from: result.metadata["date"]!)!
                     type = result.metadata["type"] == "project" ? 1 : 0
+                    tags = result.metadata["tags"] ?? ""
                 } else {
                     date = post.date
                     type = post.type
+                    tags = post.tags.joined(separator: ";")
                 }
                 let revertDate = post.date
                 let revertType = post.type
                 let revertIcon = post.icon
+                let revertTags = post.tags.joined(separator: ";")
                 
                 return Post.query(on: req.db)
                     .filter(\.$id == id)
                     .set(\.$type, to: type)
                     .set(\.$icon, to: payload.icon)
                     .set(\.$date, to: date)
+                    .set(\.$tags, to: tags)
                     .update()
                     .map {
                         if let data = payload.data, data.count > 10 {
@@ -141,6 +148,7 @@ struct ApiController: RouteCollection {
                                     .set(\.$type, to: revertType)
                                     .set(\.$icon, to: revertIcon)
                                     .set(\.$date, to: revertDate)
+                                    .set(\.$tags, to: revertTags)
                                     .update()
                                 return .custom(code: 47, reasonPhrase: "error saving file")
                             }
@@ -186,6 +194,19 @@ struct ApiController: RouteCollection {
                 .all()
                 .mapEach { $0.toOutput(with: req) }
         }
+    }
+    
+    func getPostsByTag(req: Request) throws -> EventLoopFuture<[Post.Output]> {
+        guard let tag = req.parameters.get("n", as: String.self) else {
+            throw Abort(.badRequest)
+        }
+        
+        return Post
+            .query(on: req.db)
+            .sort(\.$date, .descending)
+            .filter(\.$tags ~~ tag)
+            .all()
+            .mapEach { $0.toOutput(with: req) }
     }
     
     // MARK:- Handlers relating to Portfolio

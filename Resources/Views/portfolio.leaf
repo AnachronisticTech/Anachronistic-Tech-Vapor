@@ -6,27 +6,27 @@
 
     #export("body"):
         <div id="projects" class="sublist">
-            <h2>Projects</h2>
+            <h4>Projects</h4>
         </div>
         <div id="interests" class="sublist">
-            <h2>Interests</h2>
+            <h4>Interests</h4>
         </div>
     #endexport
 
     #export("template"):
         <template id="item">
-            <div class="item">
-                <div class="icon">
-                    <img src="/images/psakse_circleable.jpg">
-                    <h5 id="title">Psakse</h5>
-                    <p id="subtitle">Subtitle about psakse</p>
-                    <div class="links"></div>
+            <div class="item flex item-container">
+                <div class="detail">
+                    <img class="icon" src="/images/psakse_circleable.jpg">
+                    <h3></h3>
+                    <p></p>
+                    <div class="links glyph"></div>
                 </div>
-                <div id="item_content">
-                    <p id="">Main content about psakse</p>
+                <div class="overview">
+                    <p></p>
                     <hr />
                     <h5>Related Posts</h5>
-                    <a>Link to each post</a>
+                    <div class="posts"></div>
                 </div>
             </div>
         </template>

@@ -12,15 +12,29 @@ class Portfolio {
             datatype: "json",
             async: true,
             success: function(result) {
-                $.each(result, function(index) {
-                    var item = $("#item")[0]
-                    item.content.querySelector("#item_content").prepend(this.content)
-                    // post.content.querySelector("a").href = `/articles/${this.id}`
-                    // post.content.querySelector("#post_title").textContent = this.title
-                    // post.content.querySelector("#post_summary").textContent = this.summary
-                    // post.content.querySelector("#post_image").src = (this.icon ? `/images/${this.icon}` : "")
+                $.each(result, function() {
+                    var item = $("#item")[0].content
+                    var tag = this.tag
+                    item.querySelector(".item").setAttribute("id", `id-${this.tag}`)
+                    item.querySelector(".detail > h3").textContent = this.title
+                    item.querySelector(".detail > p").textContent = this.subtitle
+
+                    var parser = new DOMParser()
+                    var content = parser
+                        .parseFromString(this.content, 'text/html')
+                        .body.lastChild.textContent
+                    item.querySelector(".overview > p").innerHTML = content
+                    item.querySelector(".icon").src = (this.icon ? `/images/${this.icon}` : "")
+                    var links = ""
+                    if (this.github) {
+                        links += `<a href="${this.github}"><img src="/images/icons/github.svg"></a>`
+                    }
+                    if (this.web) {
+                        links += `<a href="${this.web}"><img src="/images/icons/world.png"></a>`
+                    }
+                    item.querySelector(".links").innerHTML = links
     
-                    var clone = document.importNode(item.content, true)
+                    var clone = document.importNode(item, true)
                     $(location).append(clone)
 
                     $.ajax({
@@ -29,7 +43,11 @@ class Portfolio {
                         datatype: "json",
                         async: true,
                         success: function(posts) {
-                            result[index].posts = posts // might be unneccessary
+                            $.each(posts, function(index) {
+                                var post = posts[index]
+                                $(`#id-${tag} > .overview > .posts`)
+                                    .append(`<a class="text-link" href="/articles/${post.id}">${post.title}</a>`)
+                            })
                         }
                     })
                 })

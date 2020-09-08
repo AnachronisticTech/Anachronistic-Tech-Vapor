@@ -25,7 +25,7 @@
         <h1 id="title">Anachronistic Technology</h1>
         <nav class="item-container">
             <div id="menu-layer-1">
-                <button id="settings"><img src="/images/icons/cog.png" height="40px" width="40px"></button>
+                <button id="settings" class="glyph"><img src="/images/icons/cog.png"></button>
                 <div id="menu">
                     <button id="home">Home</button><!--
                     --><button id="archive">Archive</button><!--

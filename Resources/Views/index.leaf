@@ -15,10 +15,10 @@
 
     #export("template"):
         <template id="post">
-            <a class="post" href="">
+            <a class="post item" href="">
                 <div class="flex">
                     <img class="icon" src="">
-                    <div>
+                    <div class="overview">
                         <h3 class="title"></h3>
                         <p class="summary"></p>
                         <h6 class="date"></h6>

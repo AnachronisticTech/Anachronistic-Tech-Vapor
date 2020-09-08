@@ -13,14 +13,14 @@ class Post {
             async: true,
             success: function(result) {
                 $.each(result, function() {
-                    var post = $("#post")[0]
-                    post.content.querySelector(".post").href = `/articles/${this.id}`
-                    post.content.querySelector(".title").textContent = this.title
-                    post.content.querySelector(".summary").textContent = this.summary
-                    post.content.querySelector(".date").textContent = this.date
-                    post.content.querySelector(".icon").src = (this.icon ? `/images/${this.icon}` : "")
+                    var post = $("#post")[0].content
+                    post.querySelector(".post").href = `/articles/${this.id}`
+                    post.querySelector(".title").textContent = this.title
+                    post.querySelector(".summary").textContent = this.summary
+                    post.querySelector(".date").textContent = this.date
+                    post.querySelector(".icon").src = (this.icon ? `/images/${this.icon}` : "")
     
-                    var clone = document.importNode(post.content, true)
+                    var clone = document.importNode(post, true)
                     $(location).append(clone)
                 })
             }

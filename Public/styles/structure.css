@@ -30,6 +30,9 @@
     --date-size:            16px;    /* 18px */
     --paragraph-text-size:  18px;    /* 25px */
     --aside-text-size:      16px;    /* 24px */
+
+    --glyph-filter:         0%;     /* 100% */    /* 0% */    /* 100% */
+    --glyph-hover-filter:   0%;     /* 100% */    /* 100% */  /* 0% */
 }
     
     /* GLOBAL STYLES */
@@ -83,6 +86,12 @@ h6 {
 }
 p {
     font-size: var(--paragraph-text-size);
+}
+.glyph img {
+    filter: invert(var(--glyph-filter));
+}
+button.glyph:hover img {
+    filter: invert(var(--glyph-hover-filter));
 }
 
     /* RESET STYLES */
@@ -216,26 +225,16 @@ button::-moz-focus-inner {
 
 /* Screens narrower than 1250px */
 @media only screen and (max-width:1249px) {
-	.post img {
+	.item img {
 		display: none;
 	}
-	.post h4 {
+	.item h3 {
 		margin-top: 0px;
 	}
 }
 
 /* Screens wider than 1250px */
 @media only screen and (min-width:1250px) {
-	.post img {
-		margin: 10px;
-		margin-left: 0px;
-		flex-shrink: 0;
-		max-height: 200px;
-		max-width: 200px;
-	}
-	.post h4 {
-		margin-top: 10px;
-	}
 }
 
 /* Screens between 900px and 1249px */
@@ -277,7 +276,7 @@ button::-moz-focus-inner {
 	#content {
 		width: calc(100% - 400px);
 	}
-	.post {
+	.item {
 		margin-right: 20px;
 	}
 
@@ -349,9 +348,14 @@ nav button:not(#settings) {
 #settings {
     float: right;
     height: 50px;
-    padding: 5px;
+    padding: 0px;
     width: 50px;
     margin: 0px;
+}
+#settings img {
+    height: 40px;
+    width: 40px;
+    margin: 5px;
 }
 nav button {
 	font-size: 20px;
@@ -372,12 +376,24 @@ button {
 	min-height: 200px;
 	margin-top: 20px;
 }
-.post {
+
+.item {
 	display: block;
-	margin-bottom: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: var(--text-color); 
+}
+.item img {
+    flex-shrink: 0;
+    max-height: 200px;
+    max-width: 200px;
+}
+.item h3 {
+    margin-top: 10px;
+}
+.post {
 	text-decoration: none;
     transition: 0.3s ease;
-    color: var(--text-color); 
 }
 .post:hover {
     color: var(--post-hover-color);
@@ -385,20 +401,62 @@ button {
 }
 .flex {
 	display: flex;
-}
-.flex div {
-	position: relative;
+    flex-direction: row;
 }
 .post h3 {
 	margin-top: 3px;
-	margin-bottom: 0px;
+    margin-bottom: 0px;
 }
-.post p {
+.item p {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
-.post h6 {
+.item h6 {
 	margin-bottom: 9px;
+}
+.detail {
+    max-width: 210px;
+}
+.detail .icon {
+    border: 2px solid var(--sidebox-border-color);
+	border-radius: 100px;
+}
+.detail h3 {
+	margin-top: 3px;
+    margin-bottom: 0px;
+    text-align: center;
+    width: 100%;
+}
+.detail p {
+    text-align: center;
+    width: 100%;
+}
+.links {
+    width: 100%;
+    text-align: center;
+}
+.links a {
+    display: inline-block;
+    width: 50%;
+}
+.links img {
+    max-width: 50px;
+}
+.detail, .overview {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+.overview {
+    padding-left: 10px;
+}
+.overview hr {
+    width: 100%;
+}
+.overview h5 {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 article h2, article h3, article h4, article h6 {

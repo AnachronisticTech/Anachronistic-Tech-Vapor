@@ -60,7 +60,8 @@ final class Post: Model, Content {
             .readAsString(encodedAs: .utf8)
             .replacingOccurrences(of: "\r\n", with: "\n")
         var parser = MarkdownParser()
-        let imageModiefier = Modifier(target: .images) { html, md in
+        
+        let imageModiefier = Modifier(target: .images) { html, _ in
             let elements = html.split(separator: "\"").map { String($0) }
             let isVideo = elements[1].split(separator: ".")[1] == "mp4"
             let hasCaption = elements.count > 3
@@ -72,13 +73,20 @@ final class Post: Model, Content {
                 """
             }
             return """
-            <div class="inlineImg">
-                \(isVideo ? video(src: elements[1]) : "<img src=\"/images/\(elements[1])\">" )
-                \(hasCaption ? "<h5>\(elements[3])</h5>" : "")
-            </div>
+            <figure>
+                \(isVideo ? video(src: elements[1]) : "<img src=\"/images/\(elements[1])\"\(hasCaption ? "alt=\"\(elements[3])\"" : "")>" )
+                \(hasCaption ? "<figcaption>\(elements[3])</figcaption>" : "")
+            </figure>
             """
         }
+        let headingModifier = Modifier(target: .headings) { html, _ in
+            return html
+                .replacingOccurrences(of: "h3", with: "h4")
+                .replacingOccurrences(of: "h2", with: "h3")
+        }
+        
         parser.addModifier(imageModiefier)
+        parser.addModifier(headingModifier)
         let result = parser.parse(markdown)
         
         return Output(

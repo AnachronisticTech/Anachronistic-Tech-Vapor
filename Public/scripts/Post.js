@@ -1,6 +1,6 @@
 class Post {
-    static all(type, limit) {
-        var location = type == null || type == 0 ? "subBlog" : "subProjects"
+    static all(type, limit, location) {
+        location == null ? location = ".sublist" : location = `#${location}`
         var endpoint = "posts"
         var isSpecific = type == 0 || type == 1
         if (type == 0) { endpoint += "/articles" }
@@ -13,15 +13,19 @@ class Post {
             async: true,
             success: function(result) {
                 $.each(result, function() {
-                    var post = $("#post")[0]
-                    post.content.querySelector("a").href = `/articles/${this.id}`
-                    post.content.querySelector("#post_title").textContent = this.title
-                    post.content.querySelector("#post_summary").textContent = this.summary
-                    post.content.querySelector("#post_date").textContent = this.date
-                    post.content.querySelector("#post_image").src = (this.icon ? `/images/${this.icon}` : "")
+                    this.title = this.title.replace("&amp;", "&")
+                    this.summary = this.summary.replace("&amp;", "&")
+                    var post = $("#post")[0].content
+                    post.querySelector(".post").href = `/articles/${this.id}`
+                    post.querySelector(".title").textContent = this.title
+                    post.querySelector(".summary").textContent = this.summary
+                    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+                    this.date = (new Date(this.date)).toLocaleDateString("en-US", options)
+                    post.querySelector(".date").textContent = this.date
+                    post.querySelector(".icon").src = (this.icon ? `/images/${this.icon}` : "")
     
-                    var clone = document.importNode(post.content, true)
-                    $(`#${location}`).append(clone)
+                    var clone = document.importNode(post, true)
+                    $(location).append(clone)
                 })
             }
         })
@@ -39,10 +43,10 @@ class Post {
                     $("#editor").html(`Editing: ${result.title}`)
                     $("#icon").attr("value",  result.icon || "")
                 } else {
-                    $("#post_title").html(result.title)
-                    $("#post_date").html(result.date)
+                    $("article > h2").html(result.title)
+                    $("article > h6").html(result.date)
                     result.content = result.content.split("</h1>")[1]
-                    $("#post_content").html(result.content)
+                    $("article > div").html(result.content)
                     
                     // Apply syntax highlighting
                     $("pre > code").each(function() {

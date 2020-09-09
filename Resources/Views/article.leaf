@@ -1,7 +1,6 @@
 #extend("base"):
 
     #export("dependencies"):
-        <link rel="stylesheet" href="/styles/article.css">
         <link rel="stylesheet" href="/styles/highlight.css">
         <script src='/scripts/Post.js'></script>
         <script src="/scripts/highlight.js"></script>
@@ -9,11 +8,11 @@
     #endexport
 
     #export("body"):
-        <div id="post">
-            <h3 id="post_title"></h3>
-            <h4 id="post_date"></h4>
-            <div id="post_content"></div>
-        </div>
+        <article>
+            <h2></h2>
+            <h6></h6>
+            <div></div>
+        </article>
 
         <div id="disqus_thread"></div>
         <script>
@@ -24,10 +23,10 @@
             
             var disqus_config = function () {
                 // Your page's canonical URL variable
-                this.page.url = window.location.href;
+                this.page.url = window.location.href
                 
                 // Your page's unique identifier variable
-                this.page.identifier = document.URL.split("/").slice(-1)[0];
+                this.page.identifier = #(id)
             };
             
             (function() { // DON'T EDIT BELOW THIS LINE
@@ -45,7 +44,7 @@
     
     #export("content"):
         <script>
-            Post.single(document.URL.split("/").slice(-1)[0], false);
+            Post.single(#(id), false)
         </script>
     #endexport
 

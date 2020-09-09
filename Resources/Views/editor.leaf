@@ -1,8 +1,6 @@
 #extend("base"):
 
     #export("dependencies"):
-        <link rel="stylesheet" href="/styles/blog.css">
-        <link rel="stylesheet" href="/styles/addedit.css">
         #if(editor == "portfolio"):
         <script src='/scripts/Portfolio.js'></script>
         #else:
@@ -14,29 +12,27 @@
 
     #export("body"):
         <form data-name="#(editor)">
-            <div class="about">
-                <div class="single">
+            <div class="sidebox">
+                <div>
                     <label id="editor">Upload New Item</label>
                 </div>
-                <div class="single">
+                <div>
                     <label>File: </label>
                     <input type="file" name="data" id="file">
                 </div>
-                <div class="single">
+                <div>
                     <label>Icon: </label>
                     <input type="text" name="icon" id="icon">
                 </div>
             </div>
-            <div class="about">
+            <div class="sidebox">
                 <div id="imgscroller">
                     Unable to load images. Please try again later.
                 </div>
             </div>
-            <div class="about">
-                <div class="single">
-                    <label>Password: </label>
-                    <input type="password" name="secret">
-                </div>
+            <div class="sidebox">
+                <label>Password: </label>
+                <input type="password" name="secret">
             </div>
         </form>
         <button onClick="Upload.form()" class="upload">Upload</button>
@@ -52,15 +48,14 @@
     #export("content"):
         <script>
             Image.all()
-            var id = document.URL.split("/").slice(-1)[0]
-            if (id != "postEditor" && id != "portfolioEditor") {
+            #if(id != nil):
                 #if(editor == "portfolio"):
-                Portfolio.single(id)
+                Portfolio.single(#(id))
                 #else:
-                Post.single(id)
+                Post.single(#(id))
                 #endif
-                $(".upload").attr("onClick", `Upload.form(${id})`)
-            }
+                $(".upload").attr("onClick", `Upload.form(${#(id)})`)
+            #endif
         </script>
     #endexport
 

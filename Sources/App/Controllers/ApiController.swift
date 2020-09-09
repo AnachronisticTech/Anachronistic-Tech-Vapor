@@ -56,6 +56,7 @@ struct ApiController: RouteCollection {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "dd/MM/yyyy"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         
         guard let dateString = result.metadata["date"], let date = formatter.date(from: dateString) else {
             throw Abort(.custom(code: 47, reasonPhrase: "bad date value"))
@@ -116,6 +117,7 @@ struct ApiController: RouteCollection {
                     let formatter = DateFormatter()
                     formatter.locale = Locale(identifier: "en_US_POSIX")
                     formatter.dateFormat = "dd/MM/yyyy"
+                    formatter.timeZone = TimeZone(secondsFromGMT: 0)
                     
                     date = formatter.date(from: result.metadata["date"]!)!
                     type = result.metadata["type"] == "project" ? 1 : 0

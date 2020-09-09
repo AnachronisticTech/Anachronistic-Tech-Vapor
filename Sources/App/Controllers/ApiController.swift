@@ -363,13 +363,6 @@ struct ApiController: RouteCollection {
         }
     }
     
-    // MARK:- Handlers relating to Projects (defunct)
-    func getAllProjects(req: Request) throws -> EventLoopFuture<[Project]> {
-        return Project
-            .query(on: req.db)
-            .all()
-    }
-    
     // MARK:- Handlers relating to images
     func getAllImages(req: Request) throws -> [String] {
         return (try? Folder(path: "\(req.application.directory.publicDirectory)/images").files.map { $0.name }) ?? []

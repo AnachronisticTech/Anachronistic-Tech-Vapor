@@ -414,12 +414,10 @@ button {
 .item h6 {
 	margin-bottom: 9px;
 }
-.detail {
-    max-width: 210px;
-}
 .detail .icon {
     border: 2px solid var(--sidebox-border-color);
-	border-radius: 100px;
+    border-radius: 100px;
+    margin: auto;
 }
 .detail h3 {
 	margin-top: 3px;
@@ -456,6 +454,12 @@ button {
 }
 .overview h5 {
     margin-top: 5px;
+    margin-bottom: 5px;
+}
+.overview ul {
+    margin: 0px;
+}
+.overview li {
     margin-bottom: 5px;
 }
 

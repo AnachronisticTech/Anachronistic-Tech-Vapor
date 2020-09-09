@@ -26,7 +26,7 @@
                     <p></p>
                     <hr />
                     <h5>Related Posts</h5>
-                    <div class="posts"></div>
+                    <ul></ul>
                 </div>
             </div>
         </template>
@@ -34,8 +34,8 @@
     
     #export("content"):
         <script>
-            Portfolio.all(1, 3, "projects");
-            Portfolio.all(0, 3, "interests");
+            Portfolio.all(1, null, "projects");
+            Portfolio.all(0, null, "interests");
         </script>
     #endexport
 

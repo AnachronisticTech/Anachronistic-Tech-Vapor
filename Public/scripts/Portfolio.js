@@ -43,10 +43,16 @@ class Portfolio {
                         datatype: "json",
                         async: true,
                         success: function(posts) {
+                            if (posts.length == 0) {
+                                $(`#id-${tag} > .overview > hr`).remove()
+                                $(`#id-${tag} > .overview > h5`).remove()
+                                $(`#id-${tag} > .overview > ul`).remove()
+                                return
+                            }
                             $.each(posts, function(index) {
                                 var post = posts[index]
-                                $(`#id-${tag} > .overview > .posts`)
-                                    .append(`<a class="text-link" href="/articles/${post.id}">${post.title}</a>`)
+                                $(`#id-${tag} > .overview > ul`)
+                                    .append(`<li><a class="text-link" href="/articles/${post.id}">${post.title}</a></ul>`)
                             })
                         }
                     })

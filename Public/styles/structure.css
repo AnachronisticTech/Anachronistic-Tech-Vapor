@@ -10,10 +10,10 @@
     --text-color:           #777;     /* #b7b7b7 */  /* #000 */  /* #fff */
     --text-emphasis-color:  #111;     /* #f7f7f7 */  /* #000 */  /* #fff */
     --post-hover-color:     #111;     /* #eee */     /* #fff */  /* #111 */
-    --post-bghover-color:   #fefefe;  /* #333 */     /* #111 */  /* #fff */
+    --post-bghover-color:   rgba(0,0,0,0);/* clear *//* #111 */  /* #fff */
     --link-color:           #111;     /* #eee */     /* #000 */  /* #fff */
     --link-hover-color:     #111;     /* #eee */     /* #fff */  /* #000 */
-    --link-background-color:#fefefe;  /* #333 */     /* #000 */  /* #fff */
+    --link-background-color:rgba(0,0,0,0);/* clear *//* #000 */  /* #fff */
     --link-underline-color: #000;     /* #fff */     /* #000 */  /* #fff */
     --link-hunderline-size:   4px;      /* 4px  */     /* 1px  */  /* 1px  */
 

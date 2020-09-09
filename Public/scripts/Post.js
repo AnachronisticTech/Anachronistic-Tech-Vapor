@@ -44,6 +44,8 @@ class Post {
                     $("#icon").attr("value",  result.icon || "")
                 } else {
                     $("article > h2").html(result.title)
+                    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+                    result.date = (new Date(result.date)).toLocaleDateString("en-US", options)
                     $("article > h6").html(result.date)
                     result.content = result.content.split("</h1>")[1]
                     $("article > div").html(result.content)

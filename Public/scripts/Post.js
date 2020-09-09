@@ -13,15 +13,15 @@ class Post {
             async: true,
             success: function(result) {
                 $.each(result, function() {
-                    var title = this.title.replace("&amp;", "&")
-                    var summary = this.summary.replace("&amp;", "&")
+                    this.title = this.title.replace("&amp;", "&")
+                    this.summary = this.summary.replace("&amp;", "&")
                     var post = $("#post")[0].content
                     post.querySelector(".post").href = `/articles/${this.id}`
-                    post.querySelector(".title").textContent = title
-                    post.querySelector(".summary").textContent = summary
+                    post.querySelector(".title").textContent = this.title
+                    post.querySelector(".summary").textContent = this.summary
                     var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-                    var date = (new Date(this.date)).toLocaleDateString("en-US", options)
-                    post.querySelector(".date").textContent = date
+                    this.date = (new Date(this.date)).toLocaleDateString("en-US", options)
+                    post.querySelector(".date").textContent = this.date
                     post.querySelector(".icon").src = (this.icon ? `/images/${this.icon}` : "")
     
                     var clone = document.importNode(post, true)

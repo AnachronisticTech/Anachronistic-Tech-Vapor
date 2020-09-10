@@ -233,10 +233,6 @@ button::-moz-focus-inner {
 	}
 }
 
-/* Screens wider than 1250px */
-@media only screen and (min-width:1250px) {
-}
-
 /* Screens between 900px and 1249px */
 @media only screen and (max-width:1249px) and (min-width:900px) {
 	#main {

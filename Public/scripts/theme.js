@@ -53,6 +53,7 @@ $(document).ready( function() {
                 root.style.setProperty("--link-background-color", "rgba(0,0,0,0)")
                 root.style.setProperty("--link-underline-color", "#000")
                 root.style.setProperty("--link-hunderline-size", "4px")
+                root.style.setProperty("--contrast-divider-size", "0px")
                 root.style.setProperty("--glyph-filter", "0%")
                 root.style.setProperty("--glyph-hover-filter", "0%")
                 break
@@ -73,6 +74,7 @@ $(document).ready( function() {
                 root.style.setProperty("--link-background-color", "rgba(0,0,0,0)")
                 root.style.setProperty("--link-underline-color", "#fff")
                 root.style.setProperty("--link-hunderline-size", "4px")
+                root.style.setProperty("--contrast-divider-size", "0px")
                 root.style.setProperty("--glyph-filter", "100%")
                 root.style.setProperty("--glyph-hover-filter", "100%")
                 break
@@ -93,6 +95,7 @@ $(document).ready( function() {
                 root.style.setProperty("--link-background-color", "#000")
                 root.style.setProperty("--link-underline-color", "#000")
                 root.style.setProperty("--link-hunderline-size", "1px")
+                root.style.setProperty("--contrast-divider-size", "2px")
                 root.style.setProperty("--glyph-filter", "0%")
                 root.style.setProperty("--glyph-hover-filter", "100%")
                 break
@@ -113,6 +116,7 @@ $(document).ready( function() {
                 root.style.setProperty("--link-background-color", "#fff")
                 root.style.setProperty("--link-underline-color", "#fff")
                 root.style.setProperty("--link-hunderline-size", "1px")
+                root.style.setProperty("--contrast-divider-size", "2px")
                 root.style.setProperty("--glyph-filter", "100%")
                 root.style.setProperty("--glyph-hover-filter", "0%")
                 break

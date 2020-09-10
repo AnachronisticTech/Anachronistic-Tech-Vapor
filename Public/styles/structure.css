@@ -16,6 +16,7 @@
     --link-background-color:rgba(0,0,0,0);/* clear *//* #000 */  /* #fff */
     --link-underline-color: #000;     /* #fff */     /* #000 */  /* #fff */
     --link-hunderline-size:   4px;      /* 4px  */     /* 1px  */  /* 1px  */
+    --contrast-divider-size:  0px;      /* 0px  */     /* 2px  */  /* 2px  */
 
     --font-weight-a: normal;    /* 700 */
     --font-weight-b: normal;    /* 500 */
@@ -115,6 +116,9 @@ button::-moz-focus-inner {
 }
 
     /* UTILITY STYLES */
+.item-container {
+    border-bottom: var(--contrast-divider-size) solid var(--divider-color);
+}
 .item-container, .item-container button {
     background: var(--container-color);
 }

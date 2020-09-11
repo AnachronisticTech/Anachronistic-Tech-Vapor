@@ -16,6 +16,7 @@ class Portfolio {
                     var item = $("#item")[0].content
                     var tag = this.tag
                     item.querySelector(".item").setAttribute("id", `id-${this.tag}`)
+                    item.querySelector(".edit").setAttribute("href", `/portfolioEditor/${this.id}`)
                     item.querySelector(".detail > h3").textContent = this.title
                     item.querySelector(".detail > p").textContent = this.subtitle
 

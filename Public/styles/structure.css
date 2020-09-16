@@ -328,9 +328,6 @@ nav button:hover {
 #menu-layer-2 {
     height: 0px;
 }
-#menu-layer-2 * {
-    display: none;
-}
 .max-height {
     height: 100px;
 }
@@ -366,6 +363,10 @@ button {
 	-webkit-appearance: none;
 	padding-left: 8px;
 	padding-right: 8px;
+}
+.visible {
+    display: inline-block;
+    vertical-align: top;
 }
 
 #main {

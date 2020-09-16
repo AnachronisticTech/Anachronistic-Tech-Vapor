@@ -1,35 +1,34 @@
 class Upload {
     static form(id) {
-        $("#result").removeClass("hidden")
-        $("#result").removeClass("success")
-        $("#result").removeClass("error")
-        $("#result").addClass("information")
-        $("#result").html("<b>Uploading</b>")
+        let result = document.querySelector("#result")
+        result.classList.remove("hidden")
+        result.classList.remove("success")
+        result.classList.remove("error")
+        result.classList.add("information")
+        result.innerHTML = "<b>Uploading</b>"
         
-        var data = new FormData($("form")[0])
-        $.ajax({
-            type: "POST",
-            url: `/api/${$("form").data("name")}${id != null ? `/${id}`: ""}`,
-            cache: false,
-            contentType: false,
-            processData: false,
-            mimeType: "multipart/form-data",
-            data: data,
-            async: true,
-            success: function() {
-                $("#result").removeClass("hidden")
-                $("#result").removeClass("information")
-                $("#result").removeClass("error")
-                $("#result").addClass("success")
-                $("#result").html("<b>Success:</b> Upload complete")
-            },
-            error: function(xhr, status, error) {
-                $("#result").removeClass("hidden")
-                $("#result").removeClass("information")
-                $("#result").removeClass("success")
-                $("#result").addClass("error")
-                $("#result").html(`<b>Error:</b> Upload failed: ${error}`)
+        var data = new FormData(document.querySelector("form"))
+        let name = document.querySelector("form").dataset.name
+
+        var request = new XMLHttpRequest()
+        request.open('POST', `/api/${name}${id != null ? `/${id}`: ""}`, true)
+
+        request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                result.classList.remove("hidden")
+                result.classList.remove("information")
+                result.classList.remove("error")
+                result.classList.add("success")
+                result.innerHTML = "<b>Success:</b> Upload complete"
+            } else {
+                result.classList.remove("hidden")
+                result.classList.remove("information")
+                result.classList.remove("success")
+                result.classList.add("error")
+                result.innerHTML = `<b>Error:</b> Upload failed: ${this.statusText}`
             }
-        })
+        }
+
+        request.send(data);
     }
 }

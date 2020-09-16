@@ -11,7 +11,16 @@
         <link rel="stylesheet" href="/styles/structure.css">
 
         <!-- Libraries and scripts -->
-        <script src='/scripts/jquery-3.3.1.min.js'></script>
+        <script>
+            function ready(fn) {
+                if (document.readyState === "complete" || document.readyState === "interactive") {
+                    // call on next available tick
+                    setTimeout(fn, 1);
+                } else {
+                    document.addEventListener("DOMContentLoaded", fn);
+                }
+            }
+        </script>
         <script src='/scripts/theme.js'></script>
         <script src='/scripts/controls.js'></script>
         <script src='/scripts/js.cookie.js'></script>
@@ -34,10 +43,10 @@
                 </div>
             </div>
             <div id="menu-layer-2">
-                <button class="contrast">High contrast</button><!--
-                --><button class="dark">Dark mode</button><!--
-                --><button class="bold">Bolder text</button><!--
-                --><button class="large">Larger text</button>
+                <button class="contrast hidden">High contrast</button><!--
+                --><button class="dark hidden">Dark mode</button><!--
+                --><button class="bold hidden">Bolder text</button><!--
+                --><button class="large hidden">Larger text</button>
             </div>
         </nav>
 

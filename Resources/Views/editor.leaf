@@ -54,7 +54,9 @@
                 #else:
                 Post.single(#(id))
                 #endif
-                $(".upload").attr("onClick", `Upload.form(${#(id)})`)
+                document.querySelector(".upload").addEventListener("click", function() {
+                    Upload.form(#(id))
+                })
             #endif
         </script>
     #endexport

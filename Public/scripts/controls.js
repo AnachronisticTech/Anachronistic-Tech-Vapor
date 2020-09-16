@@ -1,50 +1,44 @@
-$(document).ready( function() {
-    $("nav").on("click touchstart", "#home", function(e) {
-        if (e.type == "touchstart") {
-            $(this).off("click")
-        }
-        window.location.href = "/"
-    })
+ready(function() {
+    function homeHandler() { window.location.href = "/" }
+    document.querySelector("#home").addEventListener("click", homeHandler)
+    document.querySelector("#home").addEventListener("touchstart", homeHandler)
 
-    $("nav").on("click touchstart", "#archive", function(e) {
-        if (e.type == "touchstart") {
-            $(this).off("click")
-        }
-        window.location.href = "/archive"
-    })
+    function archiveHandler() { window.location.href = "/archive"}
+    document.querySelector("#archive").addEventListener("click", archiveHandler)
+    document.querySelector("#archive").addEventListener("touchstart", archiveHandler)
 
-    $("nav").on("click touchstart", "#portfolio", function(e) {
-        if (e.type == "touchstart") {
-            $(this).off("click")
-        }
-        window.location.href = "/portfolio"
-    })
+    function portfolioHandler() { window.location.href = "/portfolio" }
+    document.querySelector("#portfolio").addEventListener("click", portfolioHandler)
+    document.querySelector("#portfolio").addEventListener("touchstart", portfolioHandler)
 
-    $("nav").on("click touchstart", "#contact", function(e) {
-        if (e.type == "touchstart") {
-            $(this).off("click")
-        }
-        window.location.href = "/contact"
-    })
+    function contactHandler() { window.location.href = "/contact" }
+    document.querySelector("#contact").addEventListener("click", contactHandler)
+    document.querySelector("#contact").addEventListener("touchstart", contactHandler)
 
     var handled = false
     function settings() {
-        if ($("#menu-layer-2").hasClass("button-height")) {
-            $("nav").removeClass("max-height")
-            $("#menu-layer-2").removeClass("button-height")
-            $("#menu-layer-2").children().css("display","none")
+        let nav = document.querySelector("nav")
+        let menu = document.querySelector("#menu-layer-2")
+        if (menu.classList.contains("button-height")) {
+            nav.classList.remove("max-height")
+            menu.classList.remove("button-height")
+            Array.from(menu.children).forEach(element => {
+                element.classList.remove("visible")
+                element.classList.add("hidden")
+            });
         } else {
-            $("nav").addClass("max-height")
-            $("#menu-layer-2").addClass("button-height")
-            $("#menu-layer-2").children().css("display","initial")
-            $("#menu-layer-2").children().css("vertical-align","top")
+            nav.classList.add("max-height")
+            menu.classList.add("button-height")
+            Array.from(menu.children).forEach(element => {
+                element.classList.add("visible")
+                element.classList.remove("hidden")
+            });
         }
     }
-
-    $("nav").on("click touchstart", "#settings", function(e) {
+    function settingsHandler(e) {
         e.stopPropagation()
         if (e.type == "touchend") {
-            $(this).off("click")
+            this.removeEventListener("click")
             handled = true
             settings()
         } else if (e.type == "click" && !handled) {
@@ -52,5 +46,7 @@ $(document).ready( function() {
         } else {
             handled = false
         }
-    })
+    }
+    document.querySelector("#settings").addEventListener("click", settingsHandler)
+    document.querySelector("#settings").addEventListener("touchend", settingsHandler)
 })

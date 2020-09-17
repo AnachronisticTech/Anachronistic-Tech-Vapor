@@ -22,28 +22,37 @@ public func configure(_ app: Application) throws {
     
     app.routes.defaultMaxBodySize = ByteCount(integerLiteral: 10240000)
     
-    let homePath = Environment.get("CERTIFICATE_PATH") ?? app.directory.workingDirectory
-    let certPath = homePath + "/fullchain.pem"
-    let keyPath = homePath + "/privkey.pem"
+    let certPath = Environment.get("CERT_PATH")
+    let keyPath = Environment.get("KEY_PATH")
+    let hostname = Environment.get("HOSTNAME")
+    let port = Environment.get("PORT")
+    
+    if let certPath = certPath, let keyPath = keyPath {
+        let certs = try! NIOSSLCertificate.fromPEMFile(certPath)
+            .map { NIOSSLCertificateSource.certificate($0) }
+        let tls = TLSConfiguration.forServer(certificateChain: certs, privateKey: .file(keyPath))
+        let portVal: Int
+        if let port = port {
+            portVal = Int(port) ?? 8080
+        } else {
+            portVal = 8080
+        }
 
-    let certs = try! NIOSSLCertificate.fromPEMFile(certPath)
-        .map { NIOSSLCertificateSource.certificate($0) }
-    let tls = TLSConfiguration.forServer(certificateChain: certs, privateKey: .file(keyPath))
-
-    app.http.server.configuration = .init(
-        hostname: "localhost",
-        port: 8080,
-        backlog: 256,
-        reuseAddress: true,
-        tcpNoDelay: true,
-        responseCompression: .disabled,
-        requestDecompression: .disabled,
-        supportPipelining: false,
-        supportVersions: Set<HTTPVersionMajor>([.two]),
-        tlsConfiguration: tls,
-        serverName: nil,
-        logger: nil
-    )
+        app.http.server.configuration = .init(
+            hostname: hostname ?? "127.0.0.1",
+            port: portVal,
+            backlog: 256,
+            reuseAddress: true,
+            tcpNoDelay: true,
+            responseCompression: .disabled,
+            requestDecompression: .disabled,
+            supportPipelining: false,
+            supportVersions: Set<HTTPVersionMajor>([.two]),
+            tlsConfiguration: tls,
+            serverName: nil,
+            logger: nil
+        )
+    }
 
     // register routes
     try routes(app)

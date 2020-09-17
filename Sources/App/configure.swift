@@ -24,15 +24,23 @@ public func configure(_ app: Application) throws {
     
     let certPath = Environment.get("CERT_PATH")
     let keyPath = Environment.get("KEY_PATH")
+    let hostname = Environment.get("HOSTNAME")
+    let port = Environment.get("PORT")
     
     if let certPath = certPath, let keyPath = keyPath {
         let certs = try! NIOSSLCertificate.fromPEMFile(certPath)
             .map { NIOSSLCertificateSource.certificate($0) }
         let tls = TLSConfiguration.forServer(certificateChain: certs, privateKey: .file(keyPath))
+        let portVal: Int
+        if let port = port {
+            portVal = Int(port) ?? 8080
+        } else {
+            portVal = 8080
+        }
 
         app.http.server.configuration = .init(
-            hostname: "127.0.0.1",
-            port: 8080,
+            hostname: hostname ?? "127.0.0.1",
+            port: portVal,
             backlog: 256,
             reuseAddress: true,
             tcpNoDelay: true,

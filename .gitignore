@@ -75,3 +75,4 @@ build/
 Public/images
 Public/posts
 Public/portfolio
+.env

@@ -185,6 +185,7 @@ ready(function() {
     }
 
     function contrastHandler(e) {
+        if (e.type == "touchstart") { e.preventDefault() }
         let theme = Cookies.get("theme")
         themeCSS(theme.charAt(1) == "0" ? "1" : "0", theme.charAt(2))
     }
@@ -192,6 +193,7 @@ ready(function() {
     document.querySelector(".contrast").addEventListener("touchstart", contrastHandler)
 
     function styleHandler(e) {
+        if (e.type == "touchstart") { e.preventDefault() }
         let theme = Cookies.get("theme")
         themeCSS(theme.charAt(1), theme.charAt(2) == "0" ? "1" : "0")
     }
@@ -199,6 +201,7 @@ ready(function() {
     document.querySelector(".dark").addEventListener("touchstart", styleHandler)
 
     function weightHandler(e) {
+        if (e.type == "touchstart") { e.preventDefault() }
         let theme = Cookies.get("theme")
         weightCSS(theme.charAt(3) == "0" ? "1" : "0")
     }
@@ -206,6 +209,7 @@ ready(function() {
     document.querySelector(".bold").addEventListener("touchstart", weightHandler)
 
     function sizeHandler(e) {
+        if (e.type == "touchstart") { e.preventDefault() }
         let theme = Cookies.get("theme")
         sizeCSS(theme.charAt(4) == "0" ? "1" : "0")
     }

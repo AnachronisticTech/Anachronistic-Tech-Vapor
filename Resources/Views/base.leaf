@@ -42,7 +42,7 @@
                     --><button id="contact">About</button>
                 </div>
             </div>
-            <div id="menu-layer-2">
+            <div id="menu-layer-2" class="hidden">
                 <button class="contrast hidden">High contrast</button><!--
                 --><button class="dark hidden">Dark mode</button><!--
                 --><button class="bold hidden">Bolder text</button><!--

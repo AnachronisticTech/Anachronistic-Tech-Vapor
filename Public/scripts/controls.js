@@ -17,21 +17,16 @@ ready(function() {
 
     var handled = false
     function settings() {
-        let nav = document.querySelector("nav")
         let menu = document.querySelector("#menu-layer-2")
-        if (menu.classList.contains("button-height")) {
-            nav.classList.remove("max-height")
-            menu.classList.remove("button-height")
+        if (menu.classList.contains("hidden")) {
+            menu.classList.remove("hidden")
             Array.from(menu.children).forEach(element => {
-                element.classList.remove("visible")
-                element.classList.add("hidden")
+                element.classList.remove("hidden")
             });
         } else {
-            nav.classList.add("max-height")
-            menu.classList.add("button-height")
+            menu.classList.add("hidden")
             Array.from(menu.children).forEach(element => {
-                element.classList.add("visible")
-                element.classList.remove("hidden")
+                element.classList.add("hidden")
             });
         }
     }

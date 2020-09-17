@@ -6,56 +6,62 @@ class Post {
         if (type == 0) { endpoint += "/articles" }
         if (type == 1) { endpoint += "/projects" }
         if (isSpecific && limit !== null) { endpoint += `/${limit}` }
-        $.ajax({
-            type: "GET",
-            url: `/api/${endpoint}`,
-            datatype: "json",
-            async: true,
-            success: function(result) {
-                $.each(result, function() {
-                    this.title = this.title.replace("&amp;", "&")
-                    this.summary = this.summary.replace("&amp;", "&")
-                    var post = $("#post")[0].content
-                    post.querySelector(".post").href = `/articles/${this.id}`
-                    post.querySelector(".title").textContent = this.title
-                    post.querySelector(".summary").textContent = this.summary
-                    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-                    this.date = (new Date(this.date)).toLocaleDateString("en-US", options)
-                    post.querySelector(".date").textContent = this.date
-                    post.querySelector(".icon").src = (this.icon ? `/images/${this.icon}` : "")
+
+        var request = new XMLHttpRequest()
+        request.open('GET', `/api/${endpoint}`, true)
+
+        request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                let data = JSON.parse(this.response)
+                data.forEach(el => {
+                    el.title = el.title.replace("&amp;", "&")
+                    el.summary = el.summary.replace("&amp;", "&")
+                    let post = document.querySelector("#post").content
+                    post.querySelector(".post").href = `/articles/${el.id}`
+                    post.querySelector(".title").textContent = el.title
+                    post.querySelector(".summary").textContent = el.summary
+                    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+                    el.date = (new Date(el.date)).toLocaleDateString("en-US", options)
+                    post.querySelector(".date").textContent = el.date
+                    post.querySelector(".icon").src = (el.icon ? `/images/${el.icon}` : "")
     
                     var clone = document.importNode(post, true)
-                    $(location).append(clone)
+                    document.querySelector(location).appendChild(clone)
                 })
             }
-        })
+        }
+
+        request.send()
     }
     
     static single(id, full = true) {
-        $.ajax({
-            type: "GET",
-            url: `/api/posts/${id}`,
-            datatype: "json",
-            async: true,
-            success: function(result) {
+        var request = new XMLHttpRequest()
+        request.open('GET', `/api/posts/${id}`, true)
+
+        request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                let result = JSON.parse(this.response)
                 document.title = result.title
                 if (full) {
-                    $("#editor").html(`Editing: ${result.title}`)
-                    $("#icon").attr("value",  result.icon || "")
+                    document.querySelector("#editor").innerHTML = `Editing: ${result.title}`
+                    document.querySelector("#icon").value = result.icon || ""
                 } else {
-                    $("article > h2").html(result.title)
+                    document.querySelector("article > h2").innerHTML = result.title
                     var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
                     result.date = (new Date(result.date)).toLocaleDateString("en-US", options)
-                    $("article > h6").html(result.date)
+                    document.querySelector("article > h6").innerHTML = result.date
                     result.content = result.content.split("</h1>")[1]
-                    $("article > div").html(result.content)
+                    document.querySelector("article > div").innerHTML = result.content
                     
                     // Apply syntax highlighting
-                    $("pre > code").each(function() {
-                        hljs.highlightBlock(this)
-                    });
+                    let codeBlocks = document.querySelectorAll("pre > code")
+                    Array.from(codeBlocks).forEach(element => {
+                        hljs.highlightBlock(element)
+                    })
                 }
             }
-        })
+        }
+
+        request.send()
     }
 }

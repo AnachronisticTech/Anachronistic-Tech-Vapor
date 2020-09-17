@@ -15,12 +15,12 @@
 
     #export("template"):
         <template id="item">
-            <div class="item flex item-container">
+            <div class="item portfolio item-container">
                 <a class="edit glyph">
                     <img src="/images/icons/cog.png">
                 </a>
                 <div class="detail">
-                    <img class="icon" src="/images/psakse_circleable.jpg">
+                    <img class="icon" src="">
                     <h3></h3>
                     <p></p>
                     <div class="links glyph"></div>

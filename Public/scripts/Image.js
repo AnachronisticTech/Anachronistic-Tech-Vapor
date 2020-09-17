@@ -1,25 +1,28 @@
 class Image {
     static all() {
-        $.ajax({
-            type:"GET",
-            url:"/api/images",
-            datatype:"json",
-            async: true,
-            success: function(data) {
-                $("#imgscroller").html("")
-                $.each(data, function(_, path) {
-                    var image = $("#image")[0]
-                    image.content.querySelector("img").src = `/images/${path}`
-                    var clone = document.importNode(image.content, true)
-                    $("#imgscroller").append(clone)
+        var request = new XMLHttpRequest()
+        request.open('GET', "/api/images", true)
+
+        request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                let data = JSON.parse(this.response)
+                document.querySelector("#imgscroller").innerHTML = ""
+                data.forEach(element => {
+                    let image = document.querySelector("#image").content
+                    image.querySelector("img").src = `/images/${element}`
+                    var clone = document.importNode(image, true)
+                    document.querySelector("#imgscroller").appendChild(clone)
                 })
-                $("#imgscroller").children().each(function() {
-                    $(this).on("click", function() {
-                        var path = $(this).attr("src").slice(8)
-                        $("#icon").val(path)
+                let imgScroller = document.querySelector("#imgscroller")
+                Array.from(imgScroller.children).forEach(element => {
+                    element.addEventListener("click", function() {
+                        let path = element.getAttribute("src").slice(8)
+                        document.querySelector("#icon").value = path
                     })
                 })
             }
-        })
+        }
+
+        request.send()
     }
 }

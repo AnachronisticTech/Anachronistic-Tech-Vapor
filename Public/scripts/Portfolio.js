@@ -6,73 +6,78 @@ class Portfolio {
         if (type == 0) { endpoint += "/interests" }
         if (type == 1) { endpoint += "/projects" }
         if (isSpecific && limit !== null) { endpoint += `/${limit}` }
-        $.ajax({
-            type: "GET",
-            url: `/api/${endpoint}`,
-            datatype: "json",
-            async: true,
-            success: function(result) {
-                $.each(result, function() {
-                    var item = $("#item")[0].content
-                    var tag = this.tag
-                    item.querySelector(".item").setAttribute("id", `id-${this.tag}`)
-                    item.querySelector(".edit").setAttribute("href", `/portfolioEditor/${this.id}`)
-                    item.querySelector(".detail > h3").textContent = this.title
-                    item.querySelector(".detail > p").textContent = this.subtitle
+
+        var request = new XMLHttpRequest()
+        request.open('GET', `/api/${endpoint}`, true)
+
+        request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                let data = JSON.parse(this.response)
+                data.forEach(element => {
+                    let item = document.querySelector("#item").content
+                    let tag = element.tag
+                    item.querySelector(".item").id = `id-${tag}`
+                    item.querySelector(".edit").setAttribute("href", `/portfolioEditor/${element.id}`)
+                    item.querySelector(".detail > h3").textContent = element.title
+                    item.querySelector(".detail > p").textContent = element.subtitle
 
                     var parser = new DOMParser()
                     var content = parser
-                        .parseFromString(this.content, 'text/html')
+                        .parseFromString(element.content, 'text/html')
                         .body.lastChild.textContent
                     item.querySelector(".overview > p").innerHTML = content
-                    item.querySelector(".icon").src = (this.icon ? `/images/${this.icon}` : "")
+                    item.querySelector(".icon").src = (element.icon ? `/images/${element.icon}` : "")
                     var links = ""
-                    if (this.github) {
-                        links += `<a href="${this.github}"><img src="/images/icons/github.svg"></a>`
+                    if (element.github) {
+                        links += `<a href="${element.github}"><img src="/images/icons/github.svg"></a>`
                     }
-                    if (this.web) {
-                        links += `<a href="${this.web}"><img src="/images/icons/world.png"></a>`
+                    if (element.web) {
+                        links += `<a href="${element.web}"><img src="/images/icons/world.png"></a>`
                     }
                     item.querySelector(".links").innerHTML = links
-    
-                    var clone = document.importNode(item, true)
-                    $(location).append(clone)
 
-                    $.ajax({
-                        type: "GET",
-                        url: `/api/tag/${this.tag}`,
-                        datatype: "json",
-                        async: true,
-                        success: function(posts) {
-                            if (posts.length == 0) {
-                                $(`#id-${tag} > .overview > hr`).remove()
-                                $(`#id-${tag} > .overview > h5`).remove()
-                                $(`#id-${tag} > .overview > ul`).remove()
-                                return
+                    var clone = document.importNode(item, true)
+                    document.querySelector(location).appendChild(clone)
+
+                    var nestedRequest = new XMLHttpRequest()
+                    nestedRequest.open('GET', `/api/tag/${element.tag}`, true)
+
+                    nestedRequest.onload = function() {
+                        let posts = JSON.parse(this.response)
+                        if (posts.length == 0) {
+                            let el = document.querySelector(`#id-${tag} > .overview`)
+                            while (el.childElementCount > 1) {
+                                el.removeChild(el.lastChild)
                             }
-                            $.each(posts, function(index) {
-                                var post = posts[index]
-                                $(`#id-${tag} > .overview > ul`)
-                                    .append(`<li><a class="text-link" href="/articles/${post.id}">${post.title}</a></ul>`)
-                            })
+                            return
                         }
-                    })
+                        posts.forEach(el => {
+                            document.querySelector(`#id-${tag} > .overview > ul`)
+                            .insertAdjacentHTML("afterend", `<li><a class="text-link" href="/articles/${el.id}">${el.title}</a></ul>`)
+                        })
+                    }
+
+                    nestedRequest.send()
                 })
             }
-        })
+        }
+
+        request.send()
     }
     
     static single(id) {
-        $.ajax({
-            type: "GET",
-            url: `/api/portfolio/${id}`,
-            datatype: "json",
-            async: true,
-            success: function(result) {
+        var request = new XMLHttpRequest()
+        request.open('GET', `/api/portfolio/${id}`, true)
+
+        request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                let result = JSON.parse(this.response)
                 document.title = result.title
-                $("#editor").html(`Editing: ${result.title}`)
-                $("#icon").attr("value",  result.icon || "")
+                document.querySelector("#editor").innerHTML = `Editing: ${result.title}`
+                document.querySelector("#icon").setAttribute("value",  result.icon || "")
             }
-        })
+        }
+
+        request.send()
     }
 }

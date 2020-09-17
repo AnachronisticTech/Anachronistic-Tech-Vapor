@@ -16,13 +16,11 @@
     #export("template"):
         <template id="post">
             <a class="post item" href="">
-                <div class="flex">
-                    <img class="icon" src="">
-                    <div class="overview">
-                        <h3 class="title"></h3>
-                        <p class="summary"></p>
-                        <h6 class="date"></h6>
-                    </div>
+                <img class="icon" src="">
+                <div class="overview">
+                    <h3 class="title"></h3>
+                    <p class="summary"></p>
+                    <h6 class="date"></h6>
                 </div>
             </a>
         </template>

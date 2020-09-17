@@ -15,7 +15,7 @@
 
     #export("template"):
         <template id="item">
-            <div class="item flex item-container">
+            <div class="item portfolio item-container">
                 <a class="edit glyph">
                     <img src="/images/icons/cog.png">
                 </a>

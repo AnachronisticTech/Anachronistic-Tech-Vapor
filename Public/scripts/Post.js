@@ -14,8 +14,6 @@ class Post {
             if (this.status >= 200 && this.status < 400) {
                 let data = JSON.parse(this.response)
                 data.forEach(el => {
-                    el.title = el.title.replace("&amp;", "&")
-                    el.summary = el.summary.replace("&amp;", "&")
                     let post = document.querySelector("#post").content
                     post.querySelector(".post").href = `/articles/${el.id}`
                     post.querySelector(".title").textContent = el.title

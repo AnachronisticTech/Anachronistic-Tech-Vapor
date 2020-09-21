@@ -205,7 +205,7 @@ struct ApiController: RouteCollection {
         
         return Post
             .query(on: req.db)
-            .sort(\.$date, .descending)
+            .sort(\.$date, .ascending)
             .filter(\.$tags ~~ tag)
             .all()
             .mapEach { $0.toOutput(with: req) }

@@ -13,7 +13,8 @@ let package = Package(
         .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/fluent-mysql-driver.git", from: "4.0.0-rc"),
         .package(url: "https://github.com/johnsundell/Ink.git", from: "0.5.0"),
-        .package(url: "https://github.com/JohnSundell/Files", from: "4.0.0")
+        .package(url: "https://github.com/JohnSundell/Files", from: "4.0.0"),
+        .package(name: "HTMLEntities", url: "https://github.com/IBM-Swift/swift-html-entities.git", from: "3.0.14")
     ],
     targets: [
         .target(
@@ -24,7 +25,8 @@ let package = Package(
                 .product(name: "FluentMySQLDriver", package: "fluent-mysql-driver"),
                 .product(name: "Vapor", package: "vapor"),
                 .product(name: "Files", package: "Files"),
-                .product(name: "Ink", package: "Ink")
+                .product(name: "Ink", package: "Ink"),
+                .product(name: "HTMLEntities", package: "HTMLEntities")
             ],
             swiftSettings: [
                 // Enable better optimizations when building in Release configuration. Despite the use of

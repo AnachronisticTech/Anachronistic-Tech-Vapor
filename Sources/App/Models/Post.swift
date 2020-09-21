@@ -2,6 +2,7 @@ import Fluent
 import Vapor
 import Files
 import Ink
+import HTMLEntities
 
 final class Post: Model, Content {
     static var schema: String = "content"
@@ -95,9 +96,9 @@ final class Post: Model, Content {
             icon: icon,
             date: date,
             tags: tags.split(separator: ";").map { String($0) },
-            title: result.title!,
-            summary: result.metadata["summary"] ?? "",
-            content: result.html
+            title: result.title!.htmlUnescape(),
+            summary: result.metadata["summary"]?.htmlUnescape() ?? "",
+            content: result.html.htmlUnescape()
         )
     }
 }

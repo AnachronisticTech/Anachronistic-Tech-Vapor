@@ -383,11 +383,14 @@ struct ApiController: RouteCollection {
         }
         
         let data = Data(buffer: payload.file.data)
-        guard let _ = try? Folder(path: "\(req.application.directory.publicDirectory)/images")
-            .createFile(at: payload.file.filename, contents: data) else {
+
+        guard FileManager.default.createFile(
+            atPath: "\(req.application.directory.publicDirectory)/images/\(payload.file.filename)",
+            contents: data,
+            attributes: [.posixPermissions: 0o544]
+        ) else {
             throw Abort(.custom(code: 47, reasonPhrase: "error saving file"))
         }
-        FileManager.default.setAttributes([.posixPermissions: 0o544], ofItemAtPath: "\(req.application.directory.publicDirectory)/images/\(payload.file.filename)")
         
         return Response(
             status: .ok,

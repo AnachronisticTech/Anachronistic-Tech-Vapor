@@ -6,7 +6,7 @@
     #export("body"):
         <article>
             <h4>About me</h4>
-            <p>I'm a third year student of Computer Science at the University of Warwick in the UK. During term time I live near Coventry with three of my coursemates. During holidays I return home to Cyprus to be with my family and enjoy the beaches and warmer weather.</p>
+            <p>I'm a Computer Science MSc student at the University of Warwick in the UK. When I'm not on campus or in the wider Coventry area, you can probably find me at home in Cyprus enjoying the warm weather and sunny beaches.</p>
             <h4>History</h4>
             <p>Cyprus has been my home since my parents and I moved there when I was nine. I went to school at The Junior and Senior School Nicosia where I studied for and took my GCSE and A-Level exams. After graduation in 2016, I took a gap year and worked for Pan-Invest Management for a few months on a project involving a new database and reporting system. In October 2017, I began my first year in Computer Science at Warwick, and scored a First by the time the academic year came to a close in June.</p>
             <p>Over the summer of 2018 I became inspired by a friend I had met during first year to write a blog on my thoughts, experiences, and projects. I knew the likelihood of anyone finding it by chance was pretty minimal, but I always liked writing, and I loved the idea of starting a 'public journal' that anyone could read. At the very least, I could document things in my life, and maybe have something interesting to put in a CV or on a business card...</p>

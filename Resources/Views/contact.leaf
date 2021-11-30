@@ -6,21 +6,22 @@
     #export("body"):
         <article>
             <h4>About me</h4>
-            <p>I'm a Computer Science MSc student at the University of Warwick in the UK. When I'm not on campus or in the wider Coventry area, you can probably find me at home in Cyprus enjoying the warm weather and sunny beaches.</p>
+            <p>I'm a Junior Unity/C# developer at the Cyprus office of Qiiwi Games. When not at work, you can usually find me at a nearby beach enjoying the sun and warm weather, or at home tinkering with whatever personal project has taken my fancy. My projects are mostly programming-related, but I'm also interested in other creative outlets such as 3D printing and painting.</p>
             <h4>History</h4>
-            <p>Cyprus has been my home since my parents and I moved there when I was nine. I went to school at The Junior and Senior School Nicosia where I studied for and took my GCSE and A-Level exams. After graduation in 2016, I took a gap year and worked for Pan-Invest Management for a few months on a project involving a new database and reporting system. In October 2017, I began my first year in Computer Science at Warwick, and scored a First by the time the academic year came to a close in June.</p>
+            <p>Cyprus has been my home since my parents and I moved there when I was nine. I went to school at The Junior and Senior School Nicosia where I studied for and took my GCSE and A-Level exams. After graduation in 2016, I took a gap year and worked for Pan-Invest Management for a few months on a project involving a new database and reporting system.</p>
+            <p>In October 2017, I began my degree in Computer Science at the University of Warwick, where my passion for programming really took off. I finished my Bachelors degree in 2020, and was accepted into the taught Masters programme where I carried out a research project into 3D object reconstruction using consumer smartphones for my final dissertation. After completing my Masters, I was offered a job in Cyprus at Qiiwi Games where I am part of a team developing licensed mobile games for iOS and Android devices.</p>
             <p>Over the summer of 2018 I became inspired by a friend I had met during first year to write a blog on my thoughts, experiences, and projects. I knew the likelihood of anyone finding it by chance was pretty minimal, but I always liked writing, and I loved the idea of starting a 'public journal' that anyone could read. At the very least, I could document things in my life, and maybe have something interesting to put in a CV or on a business card...</p>
             <h4>Contact</h4>
-            <p>If you would like to get in touch with me (regarding thoughts on my blog, bug-reporting, project ideas, or even if you feel bored or lonely!) feel free to drop me an email at:
+            <p>If you would like to get in touch with me (regarding thoughts on my blog, bug-reporting, project ideas, or even if you feel bored or lonely!), please feel free to drop me an email at:
             <a href="mailto:danielmarriner@anachronistic-tech.co.uk">danielmarriner@anachronistic-tech.co.uk</a>.</p>
-            <p>You can also find me on GitHub <a href="https://github.com/AnachronisticTech">here</a>, LinkedIn <a href="https://www.linkedin.com/in/AnachronisticTech">here</a>, and DeviantArt <a href="https://www.deviantart.com/iwillcomply">here</a>.</p>
+            <p>You can also find me on <a href="https://github.com/AnachronisticTech">GitHub</a>, <a href="https://www.linkedin.com/in/AnachronisticTech">LinkedIn</a>, and <a href="https://www.deviantart.com/iwillcomply">DeviantArt</a>.</p>
         </article>
     #endexport
 
     #export("template"):
     #endexport
-    
+
     #export("content"):
     #endexport
-    
+
 #endextend

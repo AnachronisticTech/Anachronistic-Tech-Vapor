@@ -29,6 +29,10 @@ struct ApiController: RouteCollection {
         portfolio.get("interests", ":n", use: getPortfolioInterestItems)
         portfolio.get("projects", use: getPortfolioProjectItems)
         portfolio.get("projects", ":n", use: getPortfolioProjectItems)
+
+        let psakse = api.grouped("psakse")
+        psakse.get(use: getAllPuzzles)
+        psakse.post(use: createPuzzle)
     }
     
     // MARK:- Handlers relating to Posts
@@ -396,5 +400,14 @@ struct ApiController: RouteCollection {
             status: .ok,
             body: Response.Body(string: "file uploaded")
         )
+    }
+
+    // MARK:- Handlers relating to Puzzles
+    func getAllPuzzles(req: Request) throws -> EventLoopFuture<[Puzzle]> {
+        return Puzzle.query(on: req.db).all()
+    }
+
+    func createPuzzle(req: Request) throws -> EventLoopFuture<HTTPStatus> {
+        fatalError("not yet implemented")
     }
 }

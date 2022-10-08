@@ -13,6 +13,7 @@ struct PageController: RouteCollection {
         routes.get("portfolioEditor", use: newPortfolioItem)
         routes.get("portfolioEditor", ":id", use: editPortfolioItem)
         routes.get("upload", use: upload)
+        routes.get("psakse", use: psakse)
     }
     
     func home(req: Request) throws -> EventLoopFuture<View> {
@@ -79,6 +80,12 @@ struct PageController: RouteCollection {
     func upload(req: Request) throws -> EventLoopFuture<View> {
         return req.view.render("upload", [
             "title": "File upload"
+        ])
+    }
+
+    func psakse(req: Request) throws -> EventLoopFuture<View> {
+        return req.view.render("psakse", [
+            "title": "Puzzle upload"
         ])
     }
 }

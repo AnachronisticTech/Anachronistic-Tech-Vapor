@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Puzzle upload</title>
+        <link rel="stylesheet" href="/Psakse/styles/psakse.css">
+        <script src='/Psakse/scripts/Psakse.js'></script>
+    </head>
+
+    <body>
+        <!-- <form action="upload.php" method="post">
+            <div><label>Puzzle string: </label><input type="text" name="string" id="string"><label id="length"> 0</label></div>
+            <div>([0-9][0-9][gypo][paxe]){3}[0-2]{17} gypow</div>
+        </form> -->
+        <div class="container">
+            <div class="wrapper">
+                <div class="quantity">
+                    <div id="btn-0" class="green"><img src="/Psakse/images/icons/psakse/psi.png"><span>0</span></div>
+                    <div id="btn-1" class="green"><img src="/Psakse/images/icons/psakse/a.png"><span>0</span></div>
+                    <div id="btn-2" class="green"><img src="/Psakse/images/icons/psakse/xi.png"><span>0</span></div>
+                    <div id="btn-3" class="green"><img src="/Psakse/images/icons/psakse/e.png"><span>0</span></div>
+                    <div id="btn-4" class="yellow"><img src="/Psakse/images/icons/psakse/psi.png"><span>0</span></div>
+                    <div id="btn-5" class="yellow"><img src="/Psakse/images/icons/psakse/a.png"><span>0</span></div>
+                    <div id="btn-6" class="yellow"><img src="/Psakse/images/icons/psakse/xi.png"><span>0</span></div>
+                    <div id="btn-7" class="yellow"><img src="/Psakse/images/icons/psakse/e.png"><span>0</span></div>
+                    <div id="btn-8" class="purple"><img src="/Psakse/images/icons/psakse/psi.png"><span>0</span></div>
+                    <div id="btn-9" class="purple"><img src="/Psakse/images/icons/psakse/a.png"><span>0</span></div>
+                    <div id="btn-10" class="purple"><img src="/Psakse/images/icons/psakse/xi.png"><span>0</span></div>
+                    <div id="btn-11" class="purple"><img src="/Psakse/images/icons/psakse/e.png"><span>0</span></div>
+                    <div id="btn-12" class="orange"><img src="/Psakse/images/icons/psakse/psi.png"><span>0</span></div>
+                    <div id="btn-13" class="orange"><img src="/Psakse/images/icons/psakse/a.png"><span>0</span></div>
+                    <div id="btn-14" class="orange"><img src="/Psakse/images/icons/psakse/xi.png"><span>0</span></div>
+                    <div id="btn-15" class="orange"><img src="/Psakse/images/icons/psakse/e.png"><span>0</span></div>
+                    <div id="btn-16" class="wild"><img src="/Psakse/images/icons/psakse/dot.png"><span>2</span></div>
+                    <span id="counter">3+20</span>
+                </div>
+                <div id="generate" class="inactive">Generate puzzle!</div>
+                <div id="output"></div>
+            </div>
+            <div class="grid">
+                <div id="btn-0"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-1"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-2"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-3"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-4"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-5"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-6"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-7"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-8"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-9"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-10"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-11"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-12"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-13"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-14"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-15"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-16"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-17"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-18"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-19"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-20"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-21"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-22"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-23"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-24"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+            </div>
+        </div>
+        <div class="popover">
+            <div id="btn-0" class="green"><img src="/Psakse/images/icons/psakse/psi.png"></div>
+            <div id="btn-1" class="green"><img src="/Psakse/images/icons/psakse/a.png"></div>
+            <div id="btn-2" class="green"><img src="/Psakse/images/icons/psakse/xi.png"></div>
+            <div id="btn-3" class="green"><img src="/Psakse/images/icons/psakse/e.png"></div>
+            <div id="btn-4" class="yellow"><img src="/Psakse/images/icons/psakse/psi.png"></div>
+            <div id="btn-5" class="yellow"><img src="/Psakse/images/icons/psakse/a.png"></div>
+            <div id="btn-6" class="yellow"><img src="/Psakse/images/icons/psakse/xi.png"></div>
+            <div id="btn-7" class="yellow"><img src="/Psakse/images/icons/psakse/e.png"></div>
+            <div id="btn-8" class="purple"><img src="/Psakse/images/icons/psakse/psi.png"></div>
+            <div id="btn-9" class="purple"><img src="/Psakse/images/icons/psakse/a.png"></div>
+            <div id="btn-10" class="purple"><img src="/Psakse/images/icons/psakse/xi.png"></div>
+            <div id="btn-11" class="purple"><img src="/Psakse/images/icons/psakse/e.png"></div>
+            <div id="btn-12" class="orange"><img src="/Psakse/images/icons/psakse/psi.png"></div>
+            <div id="btn-13" class="orange"><img src="/Psakse/images/icons/psakse/a.png"></div>
+            <div id="btn-14" class="orange"><img src="/Psakse/images/icons/psakse/xi.png"></div>
+            <div id="btn-15" class="orange"><img src="/Psakse/images/icons/psakse/e.png"></div>
+            <div id="btn-16"><img src="/Psakse/images/icons/psakse/none.png"></div>
+        </div>
+    </body>
+    <script>
+        lastClicked = null
+        locked = []
+        deck = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2]
+        limit = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+        grid = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        // document.querySelector("#string").addEventListener("keyup", function(e) {
+        //     var length = document.querySelector(this).val.length
+        //     document.querySelector("#length").innerHTML = ` ${length}`
+        // })
+        Array.from(document.querySelectorAll(".grid > *")).forEach(el => {
+            el.addEventListener("click", (e) => {
+                e.stopPropagation()
+                let rect = el.getBoundingClientRect()
+                if (lastClicked !== null) {
+                    Array.from(lastClicked.children).forEach(element => {
+                        element.style.border = "5px solid white"
+                    })
+                }
+                lastClicked = el
+                Array.from(el.children).forEach(element => {
+                    element.style.border = "5px solid gray"
+                })
+                let popover = document.querySelector(".popover")
+                popover.style.visibility = "visible"
+                popover.style.position = "absolute"
+                popover.style.top = rect.top + 10// + document.body.scrollTop
+                popover.style.left = rect.left + 80// + document.body.scrollLeft
+            })
+        })
+        document.querySelector("body").addEventListener("click", function(e) {
+            document.querySelector(".popover").style.visibility = "hidden"
+            if (lastClicked !== null) {
+                lastClicked.children().style.border = "5px solid white"
+                lastClicked = null
+            }
+        })
+        document.querySelector(".popover").addEventListener("click", function(e) {
+            e.stopPropagation()
+        })
+        // $('.popover').children().on('click', function() {
+        //     event.stopPropagation()
+        //     sym = $(this).children().attr('src')
+        //     col = $(this).attr('class')
+        //     index = $(this).index()
+        //     pos = lastClicked.index()
+        //     if (sym == 'none.png') {
+        //         lastClicked.children().children().attr('src', 'blank.png')
+        //         lastClicked.children().attr('class', '')
+        //         locked = locked.filter(function(value, index, arr) {
+        //             return value != lastClicked.children().attr('data')
+        //         })
+        //         restore(lastClicked.children().attr('data'))
+        //         checker(pos, 0)
+        //     } else if (limit[index] > 0 && deck[index] != limit[index] && locked.length < 3 && grid[pos] == 0) {
+        //         lastClicked.children().children().attr('src', sym)
+        //         lastClicked.children().attr('class', col+' border')
+        //         limit[index] -= 1
+        //         data = '' + position(pos) + color(col) + symbol(sym)
+        //         locked.push(data)
+        //         lastClicked.children().attr('data', data)
+        //         checker(pos, 1)
+        //     }
+        //     $('#counter').text((3 - locked.length) + '+' + (22 - sum(deck)))
+        //         if (locked.length + sum(deck) == 25) {
+        //             $('#generate').attr('class', 'active')
+        //             $('#generate').on('click', generatePuzzle)
+        //         } else {
+        //             $('#generate').attr('class', 'inactive')
+        //             $('#generate').off()
+        //         }
+        //     $('.popover').css('visibility', 'hidden')
+        //     lastClicked.children().css('border', '5px solid white')
+        //     lastClicked = null
+        // })
+        // $('.quantity').children().on({
+        //     'contextmenu': function(e) {
+        //         e.preventDefault()
+        //     },
+        //     'mousedown': function(e) {
+        //         index = $(this).index()
+        //         if (e.which == 1 && 22 - sum(deck) != 0) {
+        //             if (deck[index] < limit[index]) {
+        //                 deck[index] += 1
+        //             }
+        //         }
+        //         if (e.which == 3) {
+        //             if (deck[index] > 0) {
+        //                 deck[index] -= 1
+        //             }
+        //         }
+        //         $(this).children('span').text(deck[index])
+        //         $('#counter').text((3 - locked.length) + '+' + (22 - sum(deck)))
+        //         if (locked.length + sum(deck) == 25) {
+        //             $('#generate').attr('class', 'active')
+        //             $('#generate').on('click', generatePuzzle)
+        //         } else {
+        //             $('#generate').attr('class', 'inactive')
+        //             $('#generate').off()
+        //         }
+        //     }
+        // })
+        const sum = arr => arr.reduce((a, b) => a + b, 0)
+        generatePuzzle = function() {
+            event.stopPropagation()
+            puzzle = ''
+            locked.forEach(function(e) {
+                puzzle += '' + e
+            })
+            deck.forEach(function(e) {
+                puzzle += ('' + e)
+            })
+            console.log(puzzle)
+            $.ajax({
+                type: "POST",
+                data: {'string': ''+puzzle},
+                url: 'upload.php',
+                dataType: "json",
+                success: function(data) {
+                    if (data.status == 'success') {
+                        alert('Puzzle created successfully')
+                        reset()
+                    } else {
+                        alert('There was a problem creating the puzzle')
+                        // alert(JSON.stringify(data))
+                    }
+                },
+                async: false
+            });
+        }
+        function reset() {
+            lastClicked = null
+            locked = []
+            deck = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2]
+            limit = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+            grid = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            $('.grid').children().children().attr('class', '')
+            $('.grid').children().children().css('border', '5px solid white')
+            $('.grid').children().children().children().attr('src', 'blank.png')
+            $('.quantity').children().children('span').text('0')
+            $('.quantity').children('#btn-16').children('span').text('2')
+            $('.quantity').children('span').text('3+20')
+            $('#generate').attr('class', 'inactive')
+            $('#generate').off()
+        }
+        function position(index) {
+            n = '' + index
+            if (n.length == 1) {
+                return '0' + index
+            } else {
+                return '' + index
+            }
+        }
+        function symbol(filename) {
+            switch (filename) {
+                case 'psi.png': return 'p'
+                case 'a.png': return 'a'
+                case 'xi.png': return 'x'
+                case 'e.png': return 'e'
+            }
+        }
+        function color(classname) {
+            switch (classname) {
+                case 'green': return 'g'
+                case 'yellow': return 'y'
+                case 'purple': return 'p'
+                case 'orange': return 'o'
+            }
+        }
+        function restore(data) {
+            card = data.slice(2, 4)
+            switch (card) {
+                case 'gp': limit[0] += 1
+                case 'ga': limit[1] += 1
+                case 'gx': limit[2] += 1
+                case 'ge': limit[3] += 1
+                case 'yp': limit[4] += 1
+                case 'ya': limit[5] += 1
+                case 'yx': limit[6] += 1
+                case 'ye': limit[7] += 1
+                case 'pp': limit[8] += 1
+                case 'pa': limit[9] += 1
+                case 'px': limit[10] += 1
+                case 'pe': limit[11] += 1
+                case 'op': limit[12] += 1
+                case 'oa': limit[13] += 1
+                case 'ox': limit[14] += 1
+                case 'oe': limit[15] += 1
+            }
+        }
+        function checker(position, val) {
+            gridsize = 5
+            grid[position] = val
+            if (position < gridsize) {
+                if (position == 0) {
+                    // console.log("Corner - top left")
+                    grid[position + 1] = val
+                    grid[position + gridsize] = val
+                } else if (position == (gridsize - 1)) {
+                    // console.log("Corner - top right")
+                    grid[position - 1] = val
+                    grid[position + gridsize] = val
+                } else {
+                    // console.log("Edge - top")
+                    grid[position - 1] = val
+                    grid[position + 1] = val
+                    grid[position + gridsize] = val
+                }
+            } else if (position % gridsize == 0) {
+                if (position == gridsize * (gridsize - 1)) {
+                    // console.log("Corner - bottom left")
+                    grid[position + 1] = val
+                    grid[position - gridsize] = val
+                } else {
+                    // console.log("Edge - left")
+                    grid[position + 1] = val
+                    grid[position - gridsize] = val
+                    grid[position + gridsize] = val
+                }
+            } else if (position % gridsize == gridsize - 1) {
+                if (position == (gridsize * gridsize) - 1) {
+                    // console.log("Corner - bottom right")
+                    grid[position - 1] = val
+                    grid[position - gridsize] = val
+                } else {
+                    // console.log("Edge - right")
+                    grid[position - 1] = val
+                    grid[position - gridsize] = val
+                    grid[position + gridsize] = val
+                }
+            } else if (position > gridsize * (gridsize - 1)) {
+                // console.log("Edge - bottom")
+                    grid[position - 1] = val
+                    grid[position + 1] = val
+                    grid[position - gridsize] = val
+            } else {
+                // console.log("Centre")
+                    grid[position - 1] = val
+                    grid[position + 1] = val
+                    grid[position - gridsize] = val
+                    grid[position + gridsize] = val
+            }
+        }
+    </script>
+</html>

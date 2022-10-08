@@ -1,0 +1,62 @@
+#extend("AnachronisticTech/base"):
+    #export("dependencies"):
+        #if(editor == "portfolio"):
+        <script src='/AnachronisticTech/scripts/Portfolio.js'></script>
+        #else:
+        <script src='/AnachronisticTech/scripts/Post.js'></script>
+        #endif
+        <script src='/AnachronisticTech/scripts/Image.js'></script>
+        <script src='/AnachronisticTech/scripts/Upload.js'></script>
+    #endexport
+
+    #export("body"):
+        <form data-name="#(editor)">
+            <div class="sidebox">
+                <div>
+                    <label id="editor">Upload New Item</label>
+                </div>
+                <div>
+                    <label>File: </label>
+                    <input type="file" name="data" id="file">
+                </div>
+                <div>
+                    <label>Icon: </label>
+                    <input type="text" name="icon" id="icon">
+                </div>
+            </div>
+            <div class="sidebox">
+                <div id="imgscroller">
+                    Unable to load images. Please try again later.
+                </div>
+            </div>
+            <div class="sidebox">
+                <label>Password: </label>
+                <input type="password" name="secret">
+            </div>
+        </form>
+        <button onClick="Upload.form()" class="upload">Upload</button>
+        <div id="result" class="hidden"></div>
+    #endexport
+
+    #export("template"):
+        <template id="image">
+            <img src="" onclick="">
+        </template>
+    #endexport
+    
+    #export("content"):
+        <script>
+            Image.all()
+            #if(id != nil):
+                #if(editor == "portfolio"):
+                Portfolio.single(#(id))
+                #else:
+                Post.single(#(id))
+                #endif
+                document.querySelector(".upload").addEventListener("click", function() {
+                    Upload.form(#(id))
+                })
+            #endif
+        </script>
+    #endexport
+#endextend

@@ -1,0 +1,43 @@
+#extend("AnachronisticTech/base"):
+    #export("dependencies"):
+        <script src='/AnachronisticTech/scripts/Portfolio.js'></script>
+    #endexport
+
+    #export("body"):
+        <div id="projects" class="sublist">
+            <h4>Projects</h4>
+        </div>
+        <div id="interests" class="sublist">
+            <h4>Interests</h4>
+        </div>
+    #endexport
+
+    #export("template"):
+        <template id="item">
+            <div class="item portfolio item-container">
+                <a class="edit glyph">
+                    <img src="/AnachronisticTech/images/icons/cog.png">
+                </a>
+                <div class="detail">
+                    <img class="icon" src="">
+                    <h3></h3>
+                    <p></p>
+                    <div class="links glyph"></div>
+                </div>
+                <div class="overview">
+                    <p></p>
+                    <hr />
+                    <h5>Related Posts</h5>
+                    <ul></ul>
+                </div>
+            </div>
+        </template>
+    #endexport
+    
+    #export("content"):
+        <script>
+            Portfolio.all(1, null, "projects");
+            Portfolio.all(0, null, "interests");
+        </script>
+    #endexport
+#endextend

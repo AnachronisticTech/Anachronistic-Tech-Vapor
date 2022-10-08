@@ -1,0 +1,25 @@
+#extend("AnachronisticTech/base"):
+    #export("dependencies"):
+        <script src='/AnachronisticTech/scripts/Upload.js'></script>
+    #endexport
+
+    #export("body"):
+        <form data-name="upload">
+            <div class="sidebox">
+                <input type="file" name="file">
+            </div>
+            <div class="sidebox">
+                <label>Password: </label>
+                <input type="password" name="secret">
+            </div>
+        </form>
+        <button onClick="Upload.form()">Upload</button>
+        <div id="result" class="hidden"></div>
+    #endexport
+
+    #export("template"):
+    #endexport
+    
+    #export("content"):
+    #endexport
+#endextend

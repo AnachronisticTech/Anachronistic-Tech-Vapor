@@ -8,7 +8,7 @@ class Post {
         if (isSpecific && limit !== null) { endpoint += `/${limit}` }
 
         var request = new XMLHttpRequest()
-        request.open('GET', `/api/${endpoint}`, true)
+        request.open('GET', `/at-api/${endpoint}`, true)
 
         request.onload = function() {
             if (this.status >= 200 && this.status < 400) {
@@ -34,7 +34,7 @@ class Post {
     
     static single(id, full = true) {
         var request = new XMLHttpRequest()
-        request.open('GET', `/api/posts/${id}`, true)
+        request.open('GET', `/at-api/posts/${id}`, true)
 
         request.onload = function() {
             if (this.status >= 200 && this.status < 400) {

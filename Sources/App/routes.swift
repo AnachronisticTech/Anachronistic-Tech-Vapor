@@ -3,6 +3,6 @@ import Vapor
 import Leaf
 
 func routes(_ app: Application) throws {
-    try app.register(collection: PageController())
-    try app.register(collection: ApiController())
+    try app.register(collection: AnachronisticTechAPI())
+    try app.register(collection: PsakseAPI())
 }

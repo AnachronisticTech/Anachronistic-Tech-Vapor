@@ -1,7 +1,7 @@
 class Image {
     static all() {
         var request = new XMLHttpRequest()
-        request.open('GET', "/api/images", true)
+        request.open('GET', "/at-api/images", true)
 
         request.onload = function() {
             if (this.status >= 200 && this.status < 400) {

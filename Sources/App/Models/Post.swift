@@ -5,7 +5,7 @@ import Ink
 import HTMLEntities
 
 final class Post: Model, Content {
-    static var schema: String = "content"
+    static var schema: String = "posts"
     
     @ID(custom: "id")
     var id: Int?
@@ -62,7 +62,7 @@ final class Post: Model, Content {
             .replacingOccurrences(of: "\r\n", with: "\n")
         var parser = MarkdownParser()
         
-        let imageModiefier = Modifier(target: .images) { html, _ in
+        let imageModifier = Modifier(target: .images) { html, _ in
             let elements = html.split(separator: "\"").map { String($0) }
             let isVideo = elements[1].split(separator: ".")[1] == "mp4"
             let hasCaption = elements.count > 3
@@ -86,7 +86,7 @@ final class Post: Model, Content {
                 .replacingOccurrences(of: "h2", with: "h3")
         }
         
-        parser.addModifier(imageModiefier)
+        parser.addModifier(imageModifier)
         parser.addModifier(headingModifier)
         let result = parser.parse(markdown)
         
@@ -101,4 +101,12 @@ final class Post: Model, Content {
             content: result.html.htmlUnescape()
         )
     }
+
+    static var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return formatter
+    }()
 }

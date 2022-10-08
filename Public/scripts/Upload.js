@@ -11,7 +11,7 @@ class Upload {
         let name = document.querySelector("form").dataset.name
 
         var request = new XMLHttpRequest()
-        request.open('POST', `/api/${name}${id != null ? `/${id}`: ""}`, true)
+        request.open('POST', `/at-api/${name}${id != null ? `/${id}`: ""}`, true)
 
         request.onload = function() {
             if (this.status >= 200 && this.status < 400) {

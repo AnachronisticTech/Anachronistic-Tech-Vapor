@@ -8,7 +8,7 @@ class Portfolio {
         if (isSpecific && limit !== null) { endpoint += `/${limit}` }
 
         var request = new XMLHttpRequest()
-        request.open('GET', `/api/${endpoint}`, true)
+        request.open('GET', `/at-api/${endpoint}`, true)
 
         request.onload = function() {
             if (this.status >= 200 && this.status < 400) {
@@ -40,7 +40,7 @@ class Portfolio {
                     document.querySelector(location).appendChild(clone)
 
                     var nestedRequest = new XMLHttpRequest()
-                    nestedRequest.open('GET', `/api/tag/${element.tag}`, true)
+                    nestedRequest.open('GET', `/at-api/tag/${element.tag}`, true)
 
                     nestedRequest.onload = function() {
                         let posts = JSON.parse(this.response)
@@ -67,7 +67,7 @@ class Portfolio {
     
     static single(id) {
         var request = new XMLHttpRequest()
-        request.open('GET', `/api/portfolio/${id}`, true)
+        request.open('GET', `/at-api/portfolio/${id}`, true)
 
         request.onload = function() {
             if (this.status >= 200 && this.status < 400) {

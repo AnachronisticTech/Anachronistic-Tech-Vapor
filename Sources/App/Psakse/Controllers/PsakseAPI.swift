@@ -9,16 +9,15 @@ import Vapor
 
 struct PsakseAPI: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
-        routes.get("psakse", use: psakse)
-
         let api = routes.grouped("psakse-api")
         api.get(use: getAllPuzzles)
         api.post(use: createPuzzle)
+        api.get("editor", use: editor)
     }
 
     // MARK: - Handlers relating to views
-    func psakse(req: Request) throws -> EventLoopFuture<View> {
-        return req.view.render("psakse", [
+    func editor(req: Request) throws -> EventLoopFuture<View> {
+        return req.view.render("Psakse/editor", [
             "title": "Puzzle upload"
         ])
     }

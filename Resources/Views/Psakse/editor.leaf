@@ -15,74 +15,74 @@
         <div class="container">
             <div class="wrapper">
                 <div class="quantity">
-                    <div id="btn-0" class="green"><img src="/Psakse/images/icons/psakse/psi.png"><span>0</span></div>
-                    <div id="btn-1" class="green"><img src="/Psakse/images/icons/psakse/a.png"><span>0</span></div>
-                    <div id="btn-2" class="green"><img src="/Psakse/images/icons/psakse/xi.png"><span>0</span></div>
-                    <div id="btn-3" class="green"><img src="/Psakse/images/icons/psakse/e.png"><span>0</span></div>
-                    <div id="btn-4" class="yellow"><img src="/Psakse/images/icons/psakse/psi.png"><span>0</span></div>
-                    <div id="btn-5" class="yellow"><img src="/Psakse/images/icons/psakse/a.png"><span>0</span></div>
-                    <div id="btn-6" class="yellow"><img src="/Psakse/images/icons/psakse/xi.png"><span>0</span></div>
-                    <div id="btn-7" class="yellow"><img src="/Psakse/images/icons/psakse/e.png"><span>0</span></div>
-                    <div id="btn-8" class="purple"><img src="/Psakse/images/icons/psakse/psi.png"><span>0</span></div>
-                    <div id="btn-9" class="purple"><img src="/Psakse/images/icons/psakse/a.png"><span>0</span></div>
-                    <div id="btn-10" class="purple"><img src="/Psakse/images/icons/psakse/xi.png"><span>0</span></div>
-                    <div id="btn-11" class="purple"><img src="/Psakse/images/icons/psakse/e.png"><span>0</span></div>
-                    <div id="btn-12" class="orange"><img src="/Psakse/images/icons/psakse/psi.png"><span>0</span></div>
-                    <div id="btn-13" class="orange"><img src="/Psakse/images/icons/psakse/a.png"><span>0</span></div>
-                    <div id="btn-14" class="orange"><img src="/Psakse/images/icons/psakse/xi.png"><span>0</span></div>
-                    <div id="btn-15" class="orange"><img src="/Psakse/images/icons/psakse/e.png"><span>0</span></div>
-                    <div id="btn-16" class="wild"><img src="/Psakse/images/icons/psakse/dot.png"><span>2</span></div>
+                    <div id="btn-0" class="green"><img src="/Psakse/images/psi.png"><span>0</span></div>
+                    <div id="btn-1" class="green"><img src="/Psakse/images/a.png"><span>0</span></div>
+                    <div id="btn-2" class="green"><img src="/Psakse/images/xi.png"><span>0</span></div>
+                    <div id="btn-3" class="green"><img src="/Psakse/images/e.png"><span>0</span></div>
+                    <div id="btn-4" class="yellow"><img src="/Psakse/images/psi.png"><span>0</span></div>
+                    <div id="btn-5" class="yellow"><img src="/Psakse/images/a.png"><span>0</span></div>
+                    <div id="btn-6" class="yellow"><img src="/Psakse/images/xi.png"><span>0</span></div>
+                    <div id="btn-7" class="yellow"><img src="/Psakse/images/e.png"><span>0</span></div>
+                    <div id="btn-8" class="purple"><img src="/Psakse/images/psi.png"><span>0</span></div>
+                    <div id="btn-9" class="purple"><img src="/Psakse/images/a.png"><span>0</span></div>
+                    <div id="btn-10" class="purple"><img src="/Psakse/images/xi.png"><span>0</span></div>
+                    <div id="btn-11" class="purple"><img src="/Psakse/images/e.png"><span>0</span></div>
+                    <div id="btn-12" class="orange"><img src="/Psakse/images/psi.png"><span>0</span></div>
+                    <div id="btn-13" class="orange"><img src="/Psakse/images/a.png"><span>0</span></div>
+                    <div id="btn-14" class="orange"><img src="/Psakse/images/xi.png"><span>0</span></div>
+                    <div id="btn-15" class="orange"><img src="/Psakse/images/e.png"><span>0</span></div>
+                    <div id="btn-16" class="wild"><img src="/Psakse/images/dot.png"><span>2</span></div>
                     <span id="counter">3+20</span>
                 </div>
                 <div id="generate" class="inactive">Generate puzzle!</div>
                 <div id="output"></div>
             </div>
             <div class="grid">
-                <div id="btn-0"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-1"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-2"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-3"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-4"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-5"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-6"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-7"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-8"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-9"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-10"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-11"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-12"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-13"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-14"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-15"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-16"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-17"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-18"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-19"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-20"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-21"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-22"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-23"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
-                <div id="btn-24"><div><img src="/Psakse/images/icons/psakse/blank.png"></div></div>
+                <div id="btn-0"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-1"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-2"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-3"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-4"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-5"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-6"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-7"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-8"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-9"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-10"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-11"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-12"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-13"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-14"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-15"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-16"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-17"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-18"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-19"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-20"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-21"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-22"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-23"><div><img src="/Psakse/images/blank.png"></div></div>
+                <div id="btn-24"><div><img src="/Psakse/images/blank.png"></div></div>
             </div>
         </div>
         <div class="popover">
-            <div id="btn-0" class="green"><img src="/Psakse/images/icons/psakse/psi.png"></div>
-            <div id="btn-1" class="green"><img src="/Psakse/images/icons/psakse/a.png"></div>
-            <div id="btn-2" class="green"><img src="/Psakse/images/icons/psakse/xi.png"></div>
-            <div id="btn-3" class="green"><img src="/Psakse/images/icons/psakse/e.png"></div>
-            <div id="btn-4" class="yellow"><img src="/Psakse/images/icons/psakse/psi.png"></div>
-            <div id="btn-5" class="yellow"><img src="/Psakse/images/icons/psakse/a.png"></div>
-            <div id="btn-6" class="yellow"><img src="/Psakse/images/icons/psakse/xi.png"></div>
-            <div id="btn-7" class="yellow"><img src="/Psakse/images/icons/psakse/e.png"></div>
-            <div id="btn-8" class="purple"><img src="/Psakse/images/icons/psakse/psi.png"></div>
-            <div id="btn-9" class="purple"><img src="/Psakse/images/icons/psakse/a.png"></div>
-            <div id="btn-10" class="purple"><img src="/Psakse/images/icons/psakse/xi.png"></div>
-            <div id="btn-11" class="purple"><img src="/Psakse/images/icons/psakse/e.png"></div>
-            <div id="btn-12" class="orange"><img src="/Psakse/images/icons/psakse/psi.png"></div>
-            <div id="btn-13" class="orange"><img src="/Psakse/images/icons/psakse/a.png"></div>
-            <div id="btn-14" class="orange"><img src="/Psakse/images/icons/psakse/xi.png"></div>
-            <div id="btn-15" class="orange"><img src="/Psakse/images/icons/psakse/e.png"></div>
-            <div id="btn-16"><img src="/Psakse/images/icons/psakse/none.png"></div>
+            <div id="btn-0" class="green"><img src="/Psakse/images/psi.png"></div>
+            <div id="btn-1" class="green"><img src="/Psakse/images/a.png"></div>
+            <div id="btn-2" class="green"><img src="/Psakse/images/xi.png"></div>
+            <div id="btn-3" class="green"><img src="/Psakse/images/e.png"></div>
+            <div id="btn-4" class="yellow"><img src="/Psakse/images/psi.png"></div>
+            <div id="btn-5" class="yellow"><img src="/Psakse/images/a.png"></div>
+            <div id="btn-6" class="yellow"><img src="/Psakse/images/xi.png"></div>
+            <div id="btn-7" class="yellow"><img src="/Psakse/images/e.png"></div>
+            <div id="btn-8" class="purple"><img src="/Psakse/images/psi.png"></div>
+            <div id="btn-9" class="purple"><img src="/Psakse/images/a.png"></div>
+            <div id="btn-10" class="purple"><img src="/Psakse/images/xi.png"></div>
+            <div id="btn-11" class="purple"><img src="/Psakse/images/e.png"></div>
+            <div id="btn-12" class="orange"><img src="/Psakse/images/psi.png"></div>
+            <div id="btn-13" class="orange"><img src="/Psakse/images/a.png"></div>
+            <div id="btn-14" class="orange"><img src="/Psakse/images/xi.png"></div>
+            <div id="btn-15" class="orange"><img src="/Psakse/images/e.png"></div>
+            <div id="btn-16"><img src="/Psakse/images/none.png"></div>
         </div>
     </body>
     <script>

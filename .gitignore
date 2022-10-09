@@ -72,7 +72,7 @@ build/
 
 # End of https://www.toptal.com/developers/gitignore/api/xcode,visualstudiocode,swiftpm,vapor
 
-Public/images
-Public/posts
-Public/portfolio
+Public/AnachronisticTech/content/images
+Public/AnachronisticTech/content/posts
+Public/AnachronisticTech/content/portfolio
 .env

@@ -12,18 +12,21 @@ public func configure(_ app: Application) throws {
     app.leaf.cache.isEnabled = app.environment.isRelease
     
     app.routes.defaultMaxBodySize = ByteCount(integerLiteral: 10240000)
+
+    let hostname = Environment.get("HOSTNAME") ?? "127.0.0.1"
+    let port = Int(Environment.get("PORT") ?? "") ?? 8080
     
     if
-        let certPath = Environment.get("CERT_PATH"),
-        let keyPath = Environment.get("KEY_PATH")
+        let certificatesPath = Environment.get("CERT_PATH"),
+        let privateKeyPath = Environment.get("KEY_PATH")
     {
-        let certs = try! NIOSSLCertificate
-            .fromPEMFile(certPath)
+        let certificates = try! NIOSSLCertificate
+            .fromPEMFile(certificatesPath)
             .map { NIOSSLCertificateSource.certificate($0) }
 
         let tls = TLSConfiguration.makeServerConfiguration(
-            certificateChain: certs,
-            privateKey: .file(keyPath)
+            certificateChain: certificates,
+            privateKey: .file(privateKeyPath)
         )
 
         app.databases.use(
@@ -32,14 +35,14 @@ public func configure(_ app: Application) throws {
                 username: Environment.get("DATABASE_USERNAME") ?? "vapor_username",
                 password: Environment.get("DATABASE_PASSWORD") ?? "vapor_password",
                 database: Environment.get("DATABASE_NAME") ?? "vapor_database",
-                tlsConfiguration: .makeClientConfiguration()
+                tlsConfiguration: .makeServerConfiguration(certificateChain: certificates, privateKey: .file(privateKeyPath))
             ),
             as: .mysql
         )
 
         app.http.server.configuration = .init(
-            hostname: Environment.get("HOSTNAME") ?? "127.0.0.1",
-            port: Int(Environment.get("PORT") ?? "") ?? 8080,
+            hostname: hostname,
+            port: port,
             backlog: 256,
             reuseAddress: true,
             tcpNoDelay: true,
@@ -50,6 +53,8 @@ public func configure(_ app: Application) throws {
             tlsConfiguration: tls
         )
     } else {
+        app.http.server.configuration.hostname = hostname
+        app.http.server.configuration.port = port
         app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
     }
 

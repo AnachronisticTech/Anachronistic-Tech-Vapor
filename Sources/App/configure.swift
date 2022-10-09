@@ -61,8 +61,12 @@ public func configure(_ app: Application) throws {
         app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
     }
 
+    // AnachronisticTech
     app.migrations.add(CreatePost())
     app.migrations.add(CreatePortfolio())
+
+    // CentralSeaServer
+    app.migrations.add(CreateNewsItem())
 
     try app.autoMigrate().wait()
 

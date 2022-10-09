@@ -29,13 +29,16 @@ public func configure(_ app: Application) throws {
             privateKey: .file(privateKeyPath)
         )
 
+        var localTLSConfiguration = TLSConfiguration.makeClientConfiguration()
+        localTLSConfiguration.certificateVerification = .none
+
         app.databases.use(
             .mysql(
                 hostname: Environment.get("DATABASE_HOST") ?? "localhost",
                 username: Environment.get("DATABASE_USERNAME") ?? "vapor_username",
                 password: Environment.get("DATABASE_PASSWORD") ?? "vapor_password",
                 database: Environment.get("DATABASE_NAME") ?? "vapor_database",
-                tlsConfiguration: tls
+                tlsConfiguration: localTLSConfiguration
             ),
             as: .mysql
         )

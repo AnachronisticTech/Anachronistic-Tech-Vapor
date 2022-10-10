@@ -15,7 +15,7 @@ struct CreateNewsItem: Migration {
             .field("category", .string, .required)
             .field("headline", .string, .required)
             .field("published", .datetime, .required)
-            .field("description", .string, .required)
+            .field("description", .sql(raw: "TEXT"), .required)
             .create()
     }
 

@@ -55,7 +55,17 @@ final class NewsItem: Model, Content {
     }()
 }
 
-struct NewsItemPayload: Content {
+struct Secret: Content {
     let secret: String
-    let newsItem: NewsItem
+}
+
+struct SecurePayload<T: Codable>: Content {
+    let secret: String
+    let content: T
+}
+
+struct NewsItemPatch: Codable {
+    let category: String?
+    let headline: String?
+    let description: String?
 }

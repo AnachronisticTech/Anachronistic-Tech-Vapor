@@ -4,6 +4,8 @@ import FluentSQLiteDriver
 import Vapor
 import Leaf
 import NIOSSL
+import WebServiceBuilder
+import AnachronisticTechAPI
 
 public func configure(_ app: Application) throws {
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
@@ -15,6 +17,7 @@ public func configure(_ app: Application) throws {
 
     let hostname = Environment.get("HOSTNAME") ?? "127.0.0.1"
     let port = Int(Environment.get("PORT") ?? "") ?? 8080
+    var serviceLogging = LogBehaviour.none
     
     if
         let certificatesPath = Environment.get("CERT_PATH"),
@@ -59,16 +62,21 @@ public func configure(_ app: Application) throws {
         app.http.server.configuration.hostname = hostname
         app.http.server.configuration.port = port
         app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
+        serviceLogging = .errorsAndWarnings
     }
 
     // AnachronisticTech
-    app.migrations.add(CreatePost())
-    app.migrations.add(CreatePortfolio())
+    try app.configure(service: AnachronisticTechWebService(
+        publicPath: app.directory.publicDirectory,
+        resourcesPath: app.directory.resourcesDirectory,
+        pathComponent: "AnachronisticTech",
+        logBehaviour: serviceLogging
+    ))
 
     // CentralSeaServer
     app.migrations.add(CreateNewsItem())
 
-    try app.autoMigrate().wait()
+    try? app.autoMigrate().wait()
 
     // register routes
     try routes(app)

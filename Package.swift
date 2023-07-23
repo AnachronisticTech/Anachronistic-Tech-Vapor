@@ -2,12 +2,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "Blog",
+    name: "Backend",
     platforms: [
        .macOS(.v10_15)
     ],
     dependencies: [
         // 💧 A server-side Swift web framework.
+        .package(url: "https://github.com/AnachronisticTech/AnachronisticTechAPI", from: "1.0.0"),
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
@@ -21,6 +22,7 @@ let package = Package(
         .target(
             name: "App",
             dependencies: [
+                .product(name: "AnachronisticTechAPI", package: "AnachronisticTechAPI"),
                 .product(name: "Leaf", package: "leaf"),
                 .product(name: "Fluent", package: "fluent"),
                 .product(name: "FluentMySQLDriver", package: "fluent-mysql-driver"),

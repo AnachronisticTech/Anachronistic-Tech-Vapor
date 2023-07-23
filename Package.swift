@@ -9,6 +9,7 @@ let package = Package(
     dependencies: [
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/AnachronisticTech/AnachronisticTechAPI", from: "1.0.0"),
+        .package(url: "https://github.com/AnachronisticTech/PsakseAPI", from: "1.0.0"),
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
@@ -23,6 +24,7 @@ let package = Package(
             name: "App",
             dependencies: [
                 .product(name: "AnachronisticTechAPI", package: "AnachronisticTechAPI"),
+                .product(name: "PsakseAPI", package: "PsakseAPI"),
                 .product(name: "Leaf", package: "leaf"),
                 .product(name: "Fluent", package: "fluent"),
                 .product(name: "FluentMySQLDriver", package: "fluent-mysql-driver"),

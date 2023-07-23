@@ -137,6 +137,15 @@
         }
       },
       {
+        "package": "PsakseAPI",
+        "repositoryURL": "https://github.com/AnachronisticTech/PsakseAPI",
+        "state": {
+          "branch": null,
+          "revision": "882494faf36d78313f870f5abfddb1dc8bc943f4",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "routing-kit",
         "repositoryURL": "https://github.com/vapor/routing-kit.git",
         "state": {

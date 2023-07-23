@@ -6,6 +6,7 @@ import Leaf
 import NIOSSL
 import WebServiceBuilder
 import AnachronisticTechAPI
+import PsakseAPI
 
 public func configure(_ app: Application) throws {
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
@@ -70,6 +71,14 @@ public func configure(_ app: Application) throws {
         publicPath: app.directory.publicDirectory,
         resourcesPath: app.directory.resourcesDirectory,
         pathComponent: "AnachronisticTech",
+        logBehaviour: serviceLogging
+    ))
+
+    // Psakse
+    try app.configure(service: PsakseWebService(
+        publicPath: app.directory.publicDirectory,
+        resourcesPath: app.directory.resourcesDirectory,
+        pathComponent: "Psakse",
         logBehaviour: serviceLogging
     ))
 

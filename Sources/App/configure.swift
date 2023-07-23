@@ -7,6 +7,7 @@ import NIOSSL
 import WebServiceBuilder
 import AnachronisticTechAPI
 import PsakseAPI
+import CentralSeaServerAPI
 
 public func configure(_ app: Application) throws {
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
@@ -83,7 +84,11 @@ public func configure(_ app: Application) throws {
     ))
 
     // CentralSeaServer
-    app.migrations.add(CreateNewsItem())
+    try app.configure(service: CentralSeaServerService(
+        publicPath: app.directory.publicDirectory,
+        pathComponent: "CentralSeaServer",
+        logBehaviour: serviceLogging
+    ))
 
     try? app.autoMigrate().wait()
 

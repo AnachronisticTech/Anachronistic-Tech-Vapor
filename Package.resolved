@@ -32,9 +32,9 @@
         "package": "CentralSeaServerAPI",
         "repositoryURL": "https://github.com/AnachronisticTech/CentralSeaServerAPI",
         "state": {
-          "branch": null,
-          "revision": "0f85d2e33c43c8de0c2a7b3da911fc508385e0b3",
-          "version": "0.0.1"
+          "branch": "fix/json_encoding",
+          "revision": "44fe5890ff88df9fbae7612555c2cddc3401c39d",
+          "version": null
         }
       },
       {
@@ -150,8 +150,8 @@
         "repositoryURL": "https://github.com/AnachronisticTech/PsakseAPI",
         "state": {
           "branch": null,
-          "revision": "882494faf36d78313f870f5abfddb1dc8bc943f4",
-          "version": "1.0.0"
+          "revision": "8231aec6ea8a77563263a846b3ba59fb636693a6",
+          "version": "1.0.1"
         }
       },
       {
@@ -267,8 +267,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio.git",
         "state": {
           "branch": null,
-          "revision": "5f542894dd8efbd766d8adf73ef2f947b0cd5e21",
-          "version": "2.56.0"
+          "revision": "a2e487b77f17edbce9a65f2b7415f2f479dc8e48",
+          "version": "2.57.0"
         }
       },
       {

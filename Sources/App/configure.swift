@@ -90,7 +90,7 @@ public func configure(_ app: Application) throws {
         logBehaviour: serviceLogging
     ))
 
-    try? app.autoMigrate().wait()
+    try app.autoMigrate().wait()
 
     // register routes
     try routes(app)

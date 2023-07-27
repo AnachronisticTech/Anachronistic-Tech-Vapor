@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/AnachronisticTech/AnachronisticTechAPI",
         "state": {
           "branch": null,
-          "revision": "517559090ae97361473d76b3edf8f617ec3c5cdd",
-          "version": "1.0.0"
+          "revision": "a0ff0dc8c4794536c6d6c6c258f248d08c0293d7",
+          "version": "1.0.1"
         }
       },
       {
@@ -33,7 +33,7 @@
         "repositoryURL": "https://github.com/AnachronisticTech/CentralSeaServerAPI",
         "state": {
           "branch": "fix/json_encoding",
-          "revision": "c9751eddde944d7753fc1c79e8ee166a7738b398",
+          "revision": "bb588f5c247cf1f79d22d340d0d81baa1e8e8c33",
           "version": null
         }
       },

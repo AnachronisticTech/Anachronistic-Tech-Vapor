@@ -33,7 +33,7 @@
         "repositoryURL": "https://github.com/AnachronisticTech/CentralSeaServerAPI",
         "state": {
           "branch": "fix/json_encoding",
-          "revision": "44fe5890ff88df9fbae7612555c2cddc3401c39d",
+          "revision": "c9751eddde944d7753fc1c79e8ee166a7738b398",
           "version": null
         }
       },
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/vapor/fluent-kit.git",
         "state": {
           "branch": null,
-          "revision": "cee27b81cbda867642604021cdf01aaee8d2b0f0",
-          "version": "1.43.1"
+          "revision": "46ea401fb74ae48a433d991ff67f9fdae379f7e5",
+          "version": "1.43.2"
         }
       },
       {
@@ -330,8 +330,8 @@
         "repositoryURL": "https://github.com/AnachronisticTech/WebServiceBuilder",
         "state": {
           "branch": null,
-          "revision": "a9f8a07d8809c215ba5afd0413145de0859aea95",
-          "version": "1.0.0"
+          "revision": "77c7ace379ea4753cad3ae4c7c56982a4096fe33",
+          "version": "1.0.1"
         }
       },
       {

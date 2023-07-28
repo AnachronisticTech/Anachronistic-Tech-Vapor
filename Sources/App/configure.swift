@@ -4,12 +4,12 @@ import FluentSQLiteDriver
 import Vapor
 import Leaf
 import NIOSSL
-import WebServiceBuilder
 import AnachronisticTechAPI
 import PsakseAPI
 import CentralSeaServerAPI
 
-public func configure(_ app: Application) throws {
+public func configure(_ app: Application) throws
+{
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
     
     app.views.use(.leaf)
@@ -17,13 +17,14 @@ public func configure(_ app: Application) throws {
     
     app.routes.defaultMaxBodySize = ByteCount(integerLiteral: 10240000)
 
-    let hostname = Environment.get("HOSTNAME") ?? "127.0.0.1"
-    let port = Int(Environment.get("PORT") ?? "") ?? 8080
-    var serviceLogging = LogBehaviour.none
+    let hostname = Environment.hostname
+    let port = Environment.port
+    let devMode = Environment.devMode
+    let serviceLogging = Environment.logBehaviour
     
     if
-        let certificatesPath = Environment.get("CERT_PATH"),
-        let privateKeyPath = Environment.get("KEY_PATH")
+        let certificatesPath = Environment.Security.certificatePath,
+        let privateKeyPath = Environment.Security.privateKeyPath
     {
         let certificates = try! NIOSSLCertificate
             .fromPEMFile(certificatesPath)
@@ -39,10 +40,10 @@ public func configure(_ app: Application) throws {
 
         app.databases.use(
             .mysql(
-                hostname: Environment.get("DATABASE_HOST") ?? "localhost",
-                username: Environment.get("DATABASE_USERNAME") ?? "vapor_username",
-                password: Environment.get("DATABASE_PASSWORD") ?? "vapor_password",
-                database: Environment.get("DATABASE_NAME") ?? "vapor_database",
+                hostname: Environment.Database.host,
+                username: Environment.Database.username,
+                password: Environment.Database.password,
+                database: Environment.Database.name,
                 tlsConfiguration: localTLSConfiguration
             ),
             as: .mysql
@@ -60,11 +61,12 @@ public func configure(_ app: Application) throws {
             supportVersions: Set<HTTPVersionMajor>([.two]),
             tlsConfiguration: tls
         )
-    } else {
+    }
+    else
+    {
         app.http.server.configuration.hostname = hostname
         app.http.server.configuration.port = port
         app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
-        serviceLogging = .errorsAndWarnings
     }
 
     // AnachronisticTech
@@ -72,23 +74,30 @@ public func configure(_ app: Application) throws {
         publicPath: app.directory.publicDirectory,
         resourcesPath: app.directory.resourcesDirectory,
         pathComponent: "AnachronisticTech",
-        logBehaviour: serviceLogging
+        logBehaviour: serviceLogging,
+        devMode: devMode
     ))
 
     // Psakse
-    try app.configure(service: PsakseWebService(
-        publicPath: app.directory.publicDirectory,
-        resourcesPath: app.directory.resourcesDirectory,
-        pathComponent: "Psakse",
-        logBehaviour: serviceLogging
-    ))
+    if Environment.Services.PsakseAPIEnabled
+    {
+        try app.configure(service: PsakseWebService(
+            publicPath: app.directory.publicDirectory,
+            resourcesPath: app.directory.resourcesDirectory,
+            pathComponent: "Psakse",
+            logBehaviour: serviceLogging
+        ))
+    }
 
     // CentralSeaServer
-    try app.configure(service: CentralSeaServerService(
-        publicPath: app.directory.publicDirectory,
-        pathComponent: "CentralSeaServer",
-        logBehaviour: serviceLogging
-    ))
+    if Environment.Services.CSSAPIEnabled
+    {
+        try app.configure(service: CentralSeaServerService(
+            publicPath: app.directory.publicDirectory,
+            pathComponent: "CentralSeaServer",
+            logBehaviour: serviceLogging
+        ))
+    }
 
     try app.autoMigrate().wait()
 

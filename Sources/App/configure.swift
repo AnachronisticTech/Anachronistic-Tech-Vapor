@@ -16,11 +16,6 @@ public func configure(_ app: Application) throws
     app.leaf.cache.isEnabled = app.environment.isRelease
     
     app.routes.defaultMaxBodySize = ByteCount(integerLiteral: 10240000)
-
-    let hostname = Environment.hostname
-    let port = Environment.port
-    let devMode = Environment.devMode
-    let serviceLogging = Environment.logBehaviour
     
     if
         let certificatesPath = Environment.Security.certificatePath,
@@ -50,8 +45,8 @@ public func configure(_ app: Application) throws
         )
 
         app.http.server.configuration = .init(
-            hostname: hostname,
-            port: port,
+            hostname: Environment.hostname,
+            port: Environment.port,
             backlog: 256,
             reuseAddress: true,
             tcpNoDelay: true,
@@ -64,8 +59,8 @@ public func configure(_ app: Application) throws
     }
     else
     {
-        app.http.server.configuration.hostname = hostname
-        app.http.server.configuration.port = port
+        app.http.server.configuration.hostname = Environment.hostname
+        app.http.server.configuration.port = Environment.port
         app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
     }
 
@@ -74,8 +69,8 @@ public func configure(_ app: Application) throws
         publicPath: app.directory.publicDirectory,
         resourcesPath: app.directory.resourcesDirectory,
         pathComponent: "AnachronisticTech",
-        logBehaviour: serviceLogging,
-        devMode: devMode
+        logBehaviour: Environment.logBehaviour,
+        devMode: !app.environment.isRelease
     ))
 
     // Psakse
@@ -85,7 +80,7 @@ public func configure(_ app: Application) throws
             publicPath: app.directory.publicDirectory,
             resourcesPath: app.directory.resourcesDirectory,
             pathComponent: "Psakse",
-            logBehaviour: serviceLogging
+            logBehaviour: Environment.logBehaviour
         ))
     }
 
@@ -95,12 +90,9 @@ public func configure(_ app: Application) throws
         try app.configure(service: CentralSeaServerService(
             publicPath: app.directory.publicDirectory,
             pathComponent: "CentralSeaServer",
-            logBehaviour: serviceLogging
+            logBehaviour: Environment.logBehaviour
         ))
     }
 
     try app.autoMigrate().wait()
-
-    // register routes
-    try routes(app)
 }

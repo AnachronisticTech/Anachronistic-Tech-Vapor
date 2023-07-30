@@ -12,7 +12,6 @@ extension Environment
 {
     static var hostname: String { Environment.get("HOSTNAME") ?? "127.0.0.1" }
     static var port: Int { Int(Environment.get("PORT") ?? "") ?? 8080 }
-    static var devMode: Bool { Bool(Environment.get("DEV_MODE") ?? "") ?? false }
     static var logBehaviour: LogBehaviour
     {
         guard let behaviour = Environment.get("LOG_BEHAVIOUR") else { return .none }

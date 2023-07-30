@@ -70,7 +70,7 @@ public func configure(_ app: Application) throws
         resourcesPath: app.directory.resourcesDirectory,
         pathComponent: "AnachronisticTech",
         logBehaviour: Environment.logBehaviour,
-        devMode: !app.environment.isRelease
+        devMode: Environment.devMode
     ))
 
     // Psakse

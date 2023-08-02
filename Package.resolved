@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/vapor/fluent-kit.git",
         "state": {
           "branch": null,
-          "revision": "46ea401fb74ae48a433d991ff67f9fdae379f7e5",
-          "version": "1.43.2"
+          "revision": "e562a1015a814d42582cbccd3e58f03187d6718c",
+          "version": "1.44.0"
         }
       },
       {
@@ -330,8 +330,8 @@
         "repositoryURL": "https://github.com/AnachronisticTech/WebServiceBuilder",
         "state": {
           "branch": null,
-          "revision": "77c7ace379ea4753cad3ae4c7c56982a4096fe33",
-          "version": "1.0.1"
+          "revision": "9d0b35718eb0040dd0e27ef419eaa7d70560fc90",
+          "version": "1.0.2"
         }
       },
       {

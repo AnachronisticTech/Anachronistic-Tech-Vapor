@@ -90,7 +90,8 @@ public func configure(_ app: Application) throws
         try app.configure(service: CentralSeaServerService(
             publicPath: app.directory.publicDirectory,
             pathComponent: "CentralSeaServer",
-            logBehaviour: Environment.logBehaviour
+            logBehaviour: Environment.logBehaviour,
+            devMode: Environment.devMode
         ))
     }
 

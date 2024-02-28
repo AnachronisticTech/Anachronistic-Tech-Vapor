@@ -13,7 +13,7 @@ let package = Package(
         .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/fluent-mysql-driver.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/fluent-sqlite-driver.git", from: "4.0.0"),
-        .package(url: "https://github.com/AnachronisticTech/AnachronisticTechAPI", from: "1.0.0"),
+        .package(url: "https://github.com/AnachronisticTech/AnachronisticTechAPI", from: "1.1.0"),
         .package(url: "https://github.com/AnachronisticTech/PsakseAPI", from: "1.0.0"),
         .package(url: "https://github.com/AnachronisticTech/CentralSeaServerAPI", .branch("fix/json_encoding")),
     ],
